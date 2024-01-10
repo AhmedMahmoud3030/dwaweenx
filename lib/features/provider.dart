@@ -41,9 +41,12 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
 
     final DocumentSnapshot snapshot = await FirebaseFirestore.instance
-        .collection('dewan')
-        .doc('dewanData')
+        .collection('dwaween')
+        .doc('5CoLOJ5JvPGc25c9dHUU')
         .get();
+
+        print("heloooooooooooooooooooo");
+        print(snapshot.data());
     final loadedData = snapshot.data() as Map<String, dynamic>;
 
     dewanBody = await DawawenBody.fromJson(loadedData);
@@ -53,6 +56,22 @@ class BaseProvider extends ChangeNotifier {
     groupByPurpose(dewanBody!.dawawen);
     notifyListeners();
   }
+
+  // Future<void> readDwaweenData() async {
+  //   dewanBodyLoading = true;
+  //   notifyListeners();
+  //   final String res =
+  //       await rootBundle.loadString('assets/json/dewanlist.json');
+
+  //   var loadedData = await json.decode(res);
+
+  //   dewanBody = await DawawenBody.fromJson(loadedData);
+  //   dewanBodyTemp = await DawawenBody.fromJson(loadedData);
+
+  //   dewanBodyLoading = false;
+  //   groupByPurpose(dewanBody!.dawawen);
+  //   notifyListeners();
+  // }
 
   restJson() {
     Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
