@@ -19,11 +19,11 @@ class Dawawen extends Equatable {
   });
 
   Dawawen copyWith({
-     String? id,
-     String? name,
-     String? nameT,
-     String? dec,
-     String? type,
+    String? id,
+    String? name,
+    String? nameT,
+    String? dec,
+    String? type,
     List<KasydaBody>? kasaed,
   }) =>
       Dawawen(

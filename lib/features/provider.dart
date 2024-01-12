@@ -17,13 +17,49 @@ import 'package:flutter/material.dart';
 import 'Kasaed/kasaed.dart';
 
 class BaseProvider extends ChangeNotifier {
+  //?============================GlobalData=================================================
+  Future<void> readDwaweenData() async {
+    dewanBodyLoading = true;
+    notifyListeners();
+
+    final DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection('dwaween')
+        .doc('5CoLOJ5JvPGc25c9dHUU')
+        .get();
+
+    final loadedData = snapshot.data() as Map<String, dynamic>;
+
+    dewanBody = await DawawenBodyModel.fromJson(loadedData);
+
+    dewanBodyLoading = false;
+    groupByPurposeMethod(dewanBody!.dawawen);
+    notifyListeners();
+  }
+
+  //?=======================================================================================
+  //?============================BaseScreen=================================================
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  int selectedIndex = 0;
+
+  List<Widget> screens = [
+    HomeScreen(),
+    DwaweenScreen(),
+    KasaedScreen(),
+    AboutScreen()
+  ];
+
+  void setSelectedIndex({required int index, required bool x}) {
+    selectedIndex = index;
+    clearTextEditingController(x);
+    restJson();
+    notifyListeners();
+  }
+  //?=============================================================================
   //!-------------------------DataBase-------------------------------------------
 
   FirestoreService service = FirestoreService(FirebaseFirestore.instance);
 
-
   //!-------------------------Base-----------------------------------------------
-  int selectedIndex = 0;
 
   List<String> _kafya = [];
 
@@ -38,68 +74,25 @@ class BaseProvider extends ChangeNotifier {
     groupByPurposeMethod(dewanBody!.dawawen);
   }
 
-  Future<void> readDwaweenData() async {
-    dewanBodyLoading = true;
-    notifyListeners();
-
-    final DocumentSnapshot snapshot = await FirebaseFirestore.instance
-        .collection('dwaween')
-        .doc('5CoLOJ5JvPGc25c9dHUU')
-        .get();
-
-        print("heloooooooooooooooooooo");
-        print(snapshot.data());
-    final loadedData = snapshot.data() as Map<String, dynamic>;
-
-    dewanBody = await DawawenBodyModel.fromJson(loadedData);
-    dewanBodyTemp = await DawawenBodyModel.fromJson(loadedData);
-
-    dewanBodyLoading = false;
-    groupByPurposeMethod(dewanBody!.dawawen);
-    notifyListeners();
-  }
-
-  // Future<void> readDwaweenData() async {
-  //   dewanBodyLoading = true;   
-  //   notifyListeners();
-  //   final String res =
-  //       await rootBundle.loadString('assets/json/dewanlist.json');
-
-  //   var loadedData = await json.decode(res);
-
-  //   dewanBody = await DawawenBody.fromJson(loadedData);
-  //   dewanBodyTemp = await DawawenBody.fromJson(loadedData);
-
-  //   dewanBodyLoading = false;
-  //   groupByPurpose(dewanBody!.dawawen);
-  //   notifyListeners();
-  // }
-
   restJson() {
-    Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    dewanBody = DawawenBodyModel.fromJson(json);
     groupByPurposeMethod(dewanBody!.dawawen);
   }
 
   List<Dawawen> filterDawawenByName(String name) {
-    Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    var de = DawawenBodyModel.fromJson(json);
-    return de.dawawen.where((d) {
+    return dewanBody!.dawawen.where((d) {
       return d.name.toLowerCase().contains(name.toLowerCase());
     }).toList();
   }
 
   List<Dawawen> filterKaseydaByText(String text) {
-    Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    var de = DawawenBodyModel.fromJson(json);
-    de.dawawen.forEach((dawawen) {
-      dawawen.kasaed = dawawen.kasaed
+    dewanBody!.dawawen.forEach((dawawen) {
+      dawawen.kasaed
           .where((kenashat) =>
               kenashat.kaseyda.toLowerCase().contains(text.toLowerCase()))
           .toList();
     });
 
-    return de.dawawen;
+    return dewanBody!.dawawen;
   }
 
   void groupByPurposeMethod(List<Dawawen> dawawenList) {
@@ -113,12 +106,6 @@ class BaseProvider extends ChangeNotifier {
     }
 
     groupedBy = grouped.entries.map((entry) {
-      return groupByPurpose(
-        purpose: entry.key,
-        kenshat: entry.value,
-      );
-    }).toList();
-    groupedByTemp = grouped.entries.map((entry) {
       return groupByPurpose(
         purpose: entry.key,
         kenshat: entry.value,
@@ -210,17 +197,15 @@ class BaseProvider extends ChangeNotifier {
   }
 
   List<Dawawen> filterKaseydaByTextOrPurpose(String text) {
-    Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    var de = DawawenBodyModel.fromJson(json);
-    de.dawawen.forEach((dawawen) {
-      dawawen.kasaed = dawawen.kasaed
+    dewanBody!.dawawen.forEach((dawawen) {
+      dawawen.kasaed
           .where((kenashat) =>
               (kenashat.kaseyda.toLowerCase().contains(text.toLowerCase())) ||
               kenashat.purpose.toLowerCase().contains(text.toLowerCase()))
           .toList();
     });
 
-    return de.dawawen;
+    return dewanBody!.dawawen;
   }
 
   TextEditingController kasayedByGategoryController = TextEditingController();
@@ -231,15 +216,13 @@ class BaseProvider extends ChangeNotifier {
     restJson();
     String lowerCaseSearchValue = (searchValue ?? '').toLowerCase();
     if (lowerCaseSearchValue.isNotEmpty) {
-      groupedBy[groupByPurposeIndex].kenshat =
-          groupedByTemp[groupByPurposeIndex]
-              .kenshat
-              .where((element) =>
-                  element.purpose.toLowerCase().contains(lowerCaseSearchValue))
-              .toList();
+      groupedBy[groupByPurposeIndex]
+          .kenshat
+          .where((element) =>
+              element.purpose.toLowerCase().contains(lowerCaseSearchValue))
+          .toList();
     } else {
-      groupedBy[groupByPurposeIndex].kenshat =
-          groupedByTemp[groupByPurposeIndex].kenshat;
+      groupedBy[groupByPurposeIndex].kenshat;
     }
     notifyListeners();
   }
@@ -252,25 +235,14 @@ class BaseProvider extends ChangeNotifier {
 
   //!----------------------------------------------------------------------------
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
   TextEditingController searchController = TextEditingController();
   String searchValue = "";
 
   List<groupByPurpose> groupedBy = [];
-  List<groupByPurpose> groupedByTemp = [];
 
   DawawenBody? dewanBody;
-  DawawenBody? dewanBodyTemp;
 
   bool dewanBodyLoading = true;
-
-  List<Widget> screens = [
-    HomeScreen(),
-    DwaweenScreen(),
-    KasaedScreen(),
-    AboutScreen()
-  ];
 
   void changeLang({required BuildContext context}) {
     print('changeLang');
@@ -290,7 +262,7 @@ class BaseProvider extends ChangeNotifier {
 
   setKafya(int index) {
     _kafya.clear();
-    for (var element in dewanBodyTemp!.dawawen[index].kasaed) {
+    for (var element in dewanBody!.dawawen[index].kasaed) {
       if (!_kafya.contains(element.letter)) {
         _kafya.add(element.letter);
       }
@@ -343,17 +315,14 @@ class BaseProvider extends ChangeNotifier {
   }
 
   List<Dawawen> filterKaseydaByLetterOrText({String? text, int? index}) {
-    Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    var de = DawawenBodyModel.fromJson(json);
-
     if (text != null) {
-      de.dawawen[dewanIndex!].kasaed = de.dawawen[dewanIndex!].kasaed
+      dewanBody!.dawawen[dewanIndex!].kasaed
           .where((kenashat) => (kenashat.kaseyda.toLowerCase().contains(text)))
           .toList();
     }
 
     if (index != null) {
-      de.dawawen[dewanIndex!].kasaed = de.dawawen[dewanIndex!].kasaed
+      dewanBody!.dawawen[dewanIndex!].kasaed
           .where((kenashat) => (kenashat.letter
               .toLowerCase()
               .contains(kafya[index].toLowerCase())))
@@ -361,15 +330,6 @@ class BaseProvider extends ChangeNotifier {
     }
     // Use 1 as the index to access the first element in the list
 
-    return de.dawawen;
-  }
-
-  void setSelectedIndex({required int index, required bool x}) {
-    selectedIndex = index;
-    clearTextEditingController(x);
-    restJson();
-    notifyListeners();
+    return dewanBody!.dawawen;
   }
 }
-
-
