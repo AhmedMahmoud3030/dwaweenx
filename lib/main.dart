@@ -11,16 +11,17 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await EasyLocalization.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
-  
-  runApp(EasyLocalization(
+  runApp(
+    EasyLocalization(
       child: MyApp(),
       supportedLocales: [
         Locale('en'),
@@ -30,10 +31,9 @@ void main() async {
       path: 'assets/lang',
       fallbackLocale: Locale('ar'),
       useOnlyLangCode: true,
-    ),);
+    ),
+  );
 }
-
-
 
 class MyApp extends StatelessWidget {
   @override

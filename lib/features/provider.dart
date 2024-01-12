@@ -2,14 +2,17 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dwaweenx/core/dewan.dart';
+import 'package:dwaweenx/Data/Models/dewan_body_model.dart';
+import 'package:dwaweenx/Domain/Entities/dewan.dart';
+import 'package:dwaweenx/Domain/Entities/dewanBody.dart';
+import 'package:dwaweenx/Domain/Entities/groupByPurpose.dart';
+import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
 import 'package:dwaweenx/features/About/about.dart';
 import 'package:dwaweenx/features/Dwaween/view.dart';
 import 'package:dwaweenx/features/Home/view.dart';
 import 'package:dwaweenx/services/cloud_firestore_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'Kasaed/kasaed.dart';
 
@@ -18,7 +21,6 @@ class BaseProvider extends ChangeNotifier {
 
   FirestoreService service = FirestoreService(FirebaseFirestore.instance);
 
-  //!----------------------------------------------------------------------------
 
   //!-------------------------Base-----------------------------------------------
   int selectedIndex = 0;
@@ -33,7 +35,7 @@ class BaseProvider extends ChangeNotifier {
     homeController.clear();
     aboutController.clear();
     x ? dewanController.clear() : null;
-    groupByPurpose(dewanBody!.dawawen);
+    groupByPurposeMethod(dewanBody!.dawawen);
   }
 
   Future<void> readDwaweenData() async {
@@ -49,16 +51,16 @@ class BaseProvider extends ChangeNotifier {
         print(snapshot.data());
     final loadedData = snapshot.data() as Map<String, dynamic>;
 
-    dewanBody = await DawawenBody.fromJson(loadedData);
-    dewanBodyTemp = await DawawenBody.fromJson(loadedData);
+    dewanBody = await DawawenBodyModel.fromJson(loadedData);
+    dewanBodyTemp = await DawawenBodyModel.fromJson(loadedData);
 
     dewanBodyLoading = false;
-    groupByPurpose(dewanBody!.dawawen);
+    groupByPurposeMethod(dewanBody!.dawawen);
     notifyListeners();
   }
 
   // Future<void> readDwaweenData() async {
-  //   dewanBodyLoading = true;
+  //   dewanBodyLoading = true;   
   //   notifyListeners();
   //   final String res =
   //       await rootBundle.loadString('assets/json/dewanlist.json');
@@ -75,22 +77,22 @@ class BaseProvider extends ChangeNotifier {
 
   restJson() {
     Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    dewanBody = DawawenBody.fromJson(json);
-    groupByPurpose(dewanBody!.dawawen);
+    dewanBody = DawawenBodyModel.fromJson(json);
+    groupByPurposeMethod(dewanBody!.dawawen);
   }
 
   List<Dawawen> filterDawawenByName(String name) {
     Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    var de = DawawenBody.fromJson(json);
-    return de!.dawawen.where((d) {
+    var de = DawawenBodyModel.fromJson(json);
+    return de.dawawen.where((d) {
       return d.name.toLowerCase().contains(name.toLowerCase());
     }).toList();
   }
 
   List<Dawawen> filterKaseydaByText(String text) {
     Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    var de = DawawenBody.fromJson(json);
-    de!.dawawen.forEach((dawawen) {
+    var de = DawawenBodyModel.fromJson(json);
+    de.dawawen.forEach((dawawen) {
       dawawen.kasaed = dawawen.kasaed
           .where((kenashat) =>
               kenashat.kaseyda.toLowerCase().contains(text.toLowerCase()))
@@ -100,8 +102,8 @@ class BaseProvider extends ChangeNotifier {
     return de.dawawen;
   }
 
-  void groupByPurpose(List<Dawawen> dawawenList) {
-    Map<String, List<Kenashat>> grouped = {};
+  void groupByPurposeMethod(List<Dawawen> dawawenList) {
+    Map<String, List<KasydaBody>> grouped = {};
 
     for (var dawawen in dawawenList) {
       for (var kaseda in dawawen.kasaed) {
@@ -111,13 +113,13 @@ class BaseProvider extends ChangeNotifier {
     }
 
     groupedBy = grouped.entries.map((entry) {
-      return groupByClass(
+      return groupByPurpose(
         purpose: entry.key,
         kenshat: entry.value,
       );
     }).toList();
     groupedByTemp = grouped.entries.map((entry) {
-      return groupByClass(
+      return groupByPurpose(
         purpose: entry.key,
         kenshat: entry.value,
       );
@@ -149,7 +151,7 @@ class BaseProvider extends ChangeNotifier {
     } else {
       restJson();
     }
-    groupByPurpose(dewanBody!.dawawen);
+    groupByPurposeMethod(dewanBody!.dawawen);
     notifyListeners();
   }
 
@@ -177,7 +179,7 @@ class BaseProvider extends ChangeNotifier {
     } else {
       restJson();
     }
-    groupByPurpose(dewanBody!.dawawen);
+    groupByPurposeMethod(dewanBody!.dawawen);
     notifyListeners();
   }
 
@@ -203,14 +205,14 @@ class BaseProvider extends ChangeNotifier {
     } else {
       restJson();
     }
-    groupByPurpose(dewanBody!.dawawen);
+    groupByPurposeMethod(dewanBody!.dawawen);
     notifyListeners();
   }
 
   List<Dawawen> filterKaseydaByTextOrPurpose(String text) {
     Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    var de = DawawenBody.fromJson(json);
-    de!.dawawen.forEach((dawawen) {
+    var de = DawawenBodyModel.fromJson(json);
+    de.dawawen.forEach((dawawen) {
       dawawen.kasaed = dawawen.kasaed
           .where((kenashat) =>
               (kenashat.kaseyda.toLowerCase().contains(text.toLowerCase())) ||
@@ -255,8 +257,8 @@ class BaseProvider extends ChangeNotifier {
   TextEditingController searchController = TextEditingController();
   String searchValue = "";
 
-  List<groupByClass> groupedBy = [];
-  List<groupByClass> groupedByTemp = [];
+  List<groupByPurpose> groupedBy = [];
+  List<groupByPurpose> groupedByTemp = [];
 
   DawawenBody? dewanBody;
   DawawenBody? dewanBodyTemp;
@@ -320,7 +322,7 @@ class BaseProvider extends ChangeNotifier {
   }
 
   filterByKasyda() {
-    String lowerCaseSearchValue = (_kasydaScreenText ?? '').toLowerCase();
+    String lowerCaseSearchValue = (_kasydaScreenText).toLowerCase();
 
     if ((lowerCaseSearchValue.isEmpty) && kafyaIndex == null) {
       restJson();
@@ -342,7 +344,7 @@ class BaseProvider extends ChangeNotifier {
 
   List<Dawawen> filterKaseydaByLetterOrText({String? text, int? index}) {
     Map<String, dynamic> json = jsonDecode(jsonEncode(dewanBodyTemp));
-    var de = DawawenBody.fromJson(json);
+    var de = DawawenBodyModel.fromJson(json);
 
     if (text != null) {
       de.dawawen[dewanIndex!].kasaed = de.dawawen[dewanIndex!].kasaed
@@ -370,11 +372,4 @@ class BaseProvider extends ChangeNotifier {
   }
 }
 
-class groupByClass {
-  String purpose;
-  List<Kenashat> kenshat;
-  groupByClass({
-    required this.purpose,
-    required this.kenshat,
-  });
-}
+

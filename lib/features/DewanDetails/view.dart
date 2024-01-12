@@ -171,8 +171,7 @@ class DewanDetailsPage extends StatelessWidget {
                                       provider
                                               .dewanBody!
                                               .dawawen[provider.dewanIndex!]
-                                              .dec ??
-                                          '',
+                                              .dec,
                                       TextStyle(
                                         fontSize: 13,
                                         color: Colors.black54,
@@ -190,8 +189,7 @@ class DewanDetailsPage extends StatelessWidget {
                                                           .dewanBody!
                                                           .dawawen[provider
                                                               .dewanIndex!]
-                                                          .dec ??
-                                                      '',
+                                                          .dec,
                                                   child: SimpleDialog(
                                                     backgroundColor:
                                                         Colors.white,
@@ -205,8 +203,7 @@ class DewanDetailsPage extends StatelessWidget {
                                                                   .dewanBody!
                                                                   .dawawen[provider
                                                                       .dewanIndex!]
-                                                                  .dec ??
-                                                              '',
+                                                                  .dec,
                                                           textAlign:
                                                               TextAlign.center,
                                                         ),
@@ -223,8 +220,7 @@ class DewanDetailsPage extends StatelessWidget {
                                     provider
                                             .dewanBody!
                                             .dawawen[provider.dewanIndex!]
-                                            .dec ??
-                                        '',
+                                            .dec,
                                     style: TextStyle(
                                       fontSize: 13,
                                       color: Colors.black54,
@@ -466,8 +462,7 @@ class DewanDetailsPage extends StatelessWidget {
                                                                   .dawawen[provider
                                                                       .dewanIndex!]
                                                                   .kasaed[index]
-                                                                  .nameT ??
-                                                              '',
+                                                                  .nameT,
                                                           style: TextStyle(
                                                             color: Constants
                                                                 .primary2,
@@ -500,7 +495,7 @@ class DewanDetailsPage extends StatelessWidget {
                                                                             .dewanIndex!]
                                                                         .kasaed[
                                                                             index]
-                                                                        .kaseydaT!)
+                                                                        .kaseydaT)
                                                                     .first,
                                                                 style:
                                                                     TextStyle(
@@ -530,7 +525,7 @@ class DewanDetailsPage extends StatelessWidget {
                                                                             .dewanIndex!]
                                                                         .kasaed[
                                                                             index]
-                                                                        .kaseydaT!)
+                                                                        .kaseydaT)
                                                                     .last,
                                                                 style:
                                                                     TextStyle(

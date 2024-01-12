@@ -203,7 +203,7 @@ class DwaweenScreen extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Text(
-                                                      '${'number_of_poems'.tr()} ${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber((provider.dewanBody!.dawawen![index].kasaed!.length).toString()) : provider.dewanBody?.dawawen?[index].kasaed!.length} ${'poem'.tr()}',
+                                                      '${'number_of_poems'.tr()} ${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber((provider.dewanBody!.dawawen[index].kasaed.length).toString()) : provider.dewanBody?.dawawen?[index].kasaed.length} ${'poem'.tr()}',
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.normal,
