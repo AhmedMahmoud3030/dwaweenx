@@ -2,12 +2,12 @@ import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
 import 'package:equatable/equatable.dart';
 
 class Dawawen extends Equatable {
-   String id;
-   String name;
-   String nameT;
-   String dec;
-   String type;
-   List<KasydaBody> kasaed;
+   final String id;
+  final  String name;
+  final  String nameT;
+  final  String dec;
+ final   String type;
+ final   List<KasydaBody> kasaed;
 
   Dawawen({
     required this.id,

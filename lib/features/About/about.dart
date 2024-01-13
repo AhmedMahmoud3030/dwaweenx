@@ -84,7 +84,7 @@ class AboutScreen extends StatelessWidget {
                     provider.aboutController.clear();
                     provider.dewanController.text = value;
 
-                    provider.setSelectedIndex(index: 1, x: true);
+                    provider.setSelectedIndex(index: 1);
                     provider.searchDewanMethod(searchValue: value);
                   },
                 ),

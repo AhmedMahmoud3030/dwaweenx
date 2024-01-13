@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class Audio extends Equatable {
-   String sheikhAr;
-   String sheikhEn;
-   String url;
+   final String sheikhAr;
+   final String sheikhEn;
+   final String url;
 
   Audio({
     required this.sheikhAr,

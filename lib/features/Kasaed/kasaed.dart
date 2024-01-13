@@ -226,8 +226,8 @@ class KasaedScreen extends StatelessWidget {
                                             ),
                                           ),
                                           onTap: () {
-                                            provider.setGroupedByIndex(
-                                                index: index);
+                                            provider.setGroupByPurposeIndex(
+                                                 index);
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(

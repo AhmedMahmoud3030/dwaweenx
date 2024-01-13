@@ -221,9 +221,9 @@ class DwaweenScreen extends StatelessWidget {
                                             )),
                                       ),
                                       onTap: () {
-                                        provider.seDewanIndex(index);
+                                        provider.setDewanIndex(index);
 
-                                        provider.setKafya(index);
+                                        provider.calculateKafyaList(index);
 
                                         Navigator.push(
                                           context,

@@ -18,6 +18,14 @@ import 'Kasaed/kasaed.dart';
 
 class BaseProvider extends ChangeNotifier {
   //?============================GlobalData=================================================
+  FirestoreService service = FirestoreService(FirebaseFirestore.instance);
+
+  List<groupByPurpose> groupedBy = [];
+
+  DawawenBody? dewanBody;
+
+  bool dewanBodyLoading = true;
+
   Future<void> readDwaweenData() async {
     dewanBodyLoading = true;
     notifyListeners();
@@ -30,69 +38,11 @@ class BaseProvider extends ChangeNotifier {
     final loadedData = snapshot.data() as Map<String, dynamic>;
 
     dewanBody = await DawawenBodyModel.fromJson(loadedData);
+    HomeScreenData = dewanBody!.dawawen;
 
     dewanBodyLoading = false;
     groupByPurposeMethod(dewanBody!.dawawen);
     notifyListeners();
-  }
-
-  //?=======================================================================================
-  //?============================BaseScreen=================================================
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  int selectedIndex = 0;
-
-  List<Widget> screens = [
-    HomeScreen(),
-    DwaweenScreen(),
-    KasaedScreen(),
-    AboutScreen()
-  ];
-
-  void setSelectedIndex({required int index, required bool x}) {
-    selectedIndex = index;
-    clearTextEditingController(x);
-    restJson();
-    notifyListeners();
-  }
-  //?=============================================================================
-  //!-------------------------DataBase-------------------------------------------
-
-  FirestoreService service = FirestoreService(FirebaseFirestore.instance);
-
-  //!-------------------------Base-----------------------------------------------
-
-  List<String> _kafya = [];
-
-  List<String> get kafya => _kafya;
-  int? kafyaIndex;
-  int? dewanIndex;
-  clearTextEditingController(bool x) {
-    kasayedController.clear();
-    homeController.clear();
-    aboutController.clear();
-    x ? dewanController.clear() : null;
-    groupByPurposeMethod(dewanBody!.dawawen);
-  }
-
-  restJson() {
-    groupByPurposeMethod(dewanBody!.dawawen);
-  }
-
-  List<Dawawen> filterDawawenByName(String name) {
-    return dewanBody!.dawawen.where((d) {
-      return d.name.toLowerCase().contains(name.toLowerCase());
-    }).toList();
-  }
-
-  List<Dawawen> filterKaseydaByText(String text) {
-    dewanBody!.dawawen.forEach((dawawen) {
-      dawawen.kasaed
-          .where((kenashat) =>
-              kenashat.kaseyda.toLowerCase().contains(text.toLowerCase()))
-          .toList();
-    });
-
-    return dewanBody!.dawawen;
   }
 
   void groupByPurposeMethod(List<Dawawen> dawawenList) {
@@ -115,32 +65,88 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //!----------------------------------------------------------------------------
-  //!-----------------------HomeScreen-------------------------------------------
+  //?============================BaseScreen=================================================
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  int selectedIndex = 0;
+
+  List<Widget> screens = [
+    HomeScreen(),
+    DwaweenScreen(),
+    KasaedScreen(),
+    AboutScreen()
+  ];
+
+  void setSelectedIndex({required int index}) {
+    selectedIndex = index;
+    notifyListeners();
+  }
+
+  //?============================HomeScreen=================================================
   TextEditingController homeController = TextEditingController();
+  int? _dewanIndex;
+  int _groupByPurposeIndex = 0;
+
+  List<Dawawen> HomeScreenData = [];
+
+  List<String> _kafya = [];
+
+  int? get dewanIndex => _dewanIndex;
+  List<String> get kafya => _kafya;
+  int get groupByPurposeIndex => _groupByPurposeIndex;
+
+  setDewanIndex(int? value) {
+    _dewanIndex = value;
+    notifyListeners();
+  }
+
+  setkafya(List<String> value) {
+    _kafya = value;
+    notifyListeners();
+  }
+
+  setGroupByPurposeIndex(int value) {
+    _groupByPurposeIndex = value;
+    notifyListeners();
+  }
 
   searchHomeMethod({
     required String searchValue,
   }) {
     if (searchValue.isNotEmpty) {
       String lowerCaseSearchValue = (searchValue).toLowerCase();
-      List<Dawawen> filterDawawenByNameList =
-          filterDawawenByName(lowerCaseSearchValue);
-      if (filterDawawenByNameList.length > 0) {
-        dewanBody!.dawawen.clear();
-        dewanBody!.dawawen = filterDawawenByNameList;
-      } else {
-        List<Dawawen> filterKaseydaByTextList =
-            filterKaseydaByText(lowerCaseSearchValue);
-        dewanBody!.dawawen.clear();
-        dewanBody!.dawawen = filterKaseydaByTextList;
-      }
+      HomeScreenData =
+          searchDewanBodyByNameAndKaseyda(lowerCaseSearchValue, dewanBody!);
+      groupByPurposeMethod(HomeScreenData);
     } else {
-      restJson();
+      HomeScreenData = dewanBody!.dawawen;
+      groupByPurposeMethod(dewanBody!.dawawen);
     }
-    groupByPurposeMethod(dewanBody!.dawawen);
     notifyListeners();
   }
+
+  List<Dawawen> searchDewanBodyByNameAndKaseyda(
+      String query, DawawenBody dewanBody) {
+    return dewanBody.dawawen.where((dawawen) {
+      return dawawen.name.contains(query) ||
+          dawawen.kasaed.any((kasyda) => kasyda.kaseyda.contains(query));
+    }).toList();
+  }
+
+  calculateKafyaList(int index) {
+    _kafya.clear();
+    for (var element in dewanBody!.dawawen[index].kasaed) {
+      if (!_kafya.contains(element.letter)) {
+        _kafya.add(element.letter);
+      }
+    }
+    notifyListeners();
+  }
+
+  //!----------------------------------------------------------------------------
+
+  int? kafyaIndex;
+
+  //!----------------------------------------------------------------------------
 
 //!----------------------------------------------------------------------------
   //!-----------------------AboutScreen-------------------------------------------
@@ -155,19 +161,19 @@ class BaseProvider extends ChangeNotifier {
   }) {
     if (searchValue.isNotEmpty) {
       String lowerCaseSearchValue = (searchValue).toLowerCase();
-      List<Dawawen> filterDawawenByNameList =
-          filterDawawenByName(lowerCaseSearchValue);
-      if (filterDawawenByNameList.length > 0) {
-        dewanBody!.dawawen.clear();
-        dewanBody!.dawawen = filterDawawenByNameList;
-      } else {
-        dewanBody!.dawawen.clear();
-      }
+      HomeScreenData = searchDewanBodyByName(lowerCaseSearchValue, dewanBody!);
+      groupByPurposeMethod(HomeScreenData);
     } else {
-      restJson();
+      HomeScreenData = dewanBody!.dawawen;
+      groupByPurposeMethod(dewanBody!.dawawen);
     }
-    groupByPurposeMethod(dewanBody!.dawawen);
     notifyListeners();
+  }
+
+  List<Dawawen> searchDewanBodyByName(String query, DawawenBody dewanBody) {
+    return dewanBody.dawawen.where((dawawen) {
+      return dawawen.name.contains(query);
+    }).toList();
   }
 
   //!----------------------------------------------------------------------------
@@ -185,12 +191,12 @@ class BaseProvider extends ChangeNotifier {
       if (filterKaseydaByTextOrPurposeList.length > 0) {
         dewanBody!.dawawen.clear();
 
-        dewanBody!.dawawen = filterKaseydaByTextOrPurposeList;
+        // dewanBody!.dawawen = filterKaseydaByTextOrPurposeList;
       } else {
         dewanBody!.dawawen.clear();
       }
     } else {
-      restJson();
+      // restJson();
     }
     groupByPurposeMethod(dewanBody!.dawawen);
     notifyListeners();
@@ -213,7 +219,7 @@ class BaseProvider extends ChangeNotifier {
   searchKasayedByGategoryMethod({
     required String? searchValue,
   }) {
-    restJson();
+    // restJson();
     String lowerCaseSearchValue = (searchValue ?? '').toLowerCase();
     if (lowerCaseSearchValue.isNotEmpty) {
       groupedBy[groupByPurposeIndex]
@@ -227,22 +233,10 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int groupByPurposeIndex = 0;
-  setGroupedByIndex({required int index}) {
-    groupByPurposeIndex = index;
-    notifyListeners();
-  }
-
   //!----------------------------------------------------------------------------
 
   TextEditingController searchController = TextEditingController();
   String searchValue = "";
-
-  List<groupByPurpose> groupedBy = [];
-
-  DawawenBody? dewanBody;
-
-  bool dewanBodyLoading = true;
 
   void changeLang({required BuildContext context}) {
     print('changeLang');
@@ -252,23 +246,6 @@ class BaseProvider extends ChangeNotifier {
     } else {
       EasyLocalization.of(context)!.setLocale(Locale('ar'));
     }
-    notifyListeners();
-  }
-
-  seDewanIndex(int index) {
-    dewanIndex = index;
-    notifyListeners();
-  }
-
-  setKafya(int index) {
-    _kafya.clear();
-    for (var element in dewanBody!.dawawen[index].kasaed) {
-      if (!_kafya.contains(element.letter)) {
-        _kafya.add(element.letter);
-      }
-    }
-    print('_kafya.length  ${_kafya.length}');
-
     notifyListeners();
   }
 
@@ -297,7 +274,7 @@ class BaseProvider extends ChangeNotifier {
     String lowerCaseSearchValue = (_kasydaScreenText).toLowerCase();
 
     if ((lowerCaseSearchValue.isEmpty) && kafyaIndex == null) {
-      restJson();
+      // restJson();
     }
     if ((lowerCaseSearchValue.isNotEmpty) || kafyaIndex != null) {
       List<Dawawen> filterKaseydaByLetterOrTextList =
@@ -306,7 +283,7 @@ class BaseProvider extends ChangeNotifier {
       if (filterKaseydaByLetterOrTextList.length > 0) {
         dewanBody!.dawawen.clear();
 
-        dewanBody!.dawawen = filterKaseydaByLetterOrTextList;
+        // dewanBody!.dawawen = filterKaseydaByLetterOrTextList;
       } else {
         dewanBody!.dawawen.clear();
       }
