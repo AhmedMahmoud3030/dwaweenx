@@ -26,4 +26,6 @@ class KasydaBodyModel extends KasydaBody {
         kaseydaT: json["kaseydaT"],
         letter: json["letter"],
       );
+
+  
 }

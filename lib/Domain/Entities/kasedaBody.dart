@@ -26,6 +26,20 @@ final   String letter;
     required this.letter,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'audio': audio.map((audio) => audio.toMap()).toList(),
+      'purpose': purpose,
+      'type': type,
+      'name': name,
+      'nameT': nameT,
+      'kaseyda': kaseyda,
+      'kaseydaT': kaseydaT,
+      'letter': letter,
+    };
+  }
+
   KasydaBody copyWith({
     String? id,
     List<Audio>? audio,

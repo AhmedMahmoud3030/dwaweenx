@@ -22,6 +22,14 @@ class Audio extends Equatable {
         url: url ?? this.url,
       );
 
+      Map<String, dynamic> toMap() {
+  return {
+    'sheikhAr': sheikhAr,
+    'sheikhEn': sheikhEn,
+    'url': url,
+  };
+}
+
   @override
   List<Object?> get props => [
         sheikhAr,

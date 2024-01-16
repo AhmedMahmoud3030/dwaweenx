@@ -113,11 +113,7 @@ class _FavDataBaseState extends State<FavDataBase> {
                                   navigateTo(
                                       context,
                                       KasydaDetails(
-                                        DName: '',
-                                        KName: allFav[index].kName,
-                                        kasyeda: allFav[index].kText,
-                                        KNameT: allFav[index].kNameT,
-                                        kasyedaTRepeat: allFav[index].kTextT,
+                                       
                                       ));
                                 },
                                 leading: Icon(

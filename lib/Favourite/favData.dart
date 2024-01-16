@@ -104,9 +104,7 @@ class _favDataState extends State<favData> {
                                   navigateTo(
                                       context,
                                       KasydaDetails(
-                                        DName: '',
-                                        kasyeda: fa.Kname,
-                                        KName: fa.Dname,
+                                       
                                       ));
                                 },
                                 leading: Icon(

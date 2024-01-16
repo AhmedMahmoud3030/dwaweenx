@@ -1,5 +1,4 @@
 import 'package:dwaweenx/core/constants.dart';
-import 'package:dwaweenx/core/nav.dart';
 import 'package:flutter/material.dart';
 
 class AboutUs extends StatefulWidget {
@@ -17,7 +16,6 @@ class _AboutUsState extends State<AboutUs> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Directionality(
       textDirection: TextDirection.rtl,

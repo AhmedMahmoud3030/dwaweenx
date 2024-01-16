@@ -13,7 +13,7 @@ import '../provider.dart';
 class DwaweenScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
+    var mediaQuery = MediaQuery.of(context).size;
 
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) =>
@@ -26,14 +26,14 @@ class DwaweenScreen extends StatelessWidget {
             SvgPicture.asset(
               "assets/images/paintings/img_head_internal.svg",
               alignment: Alignment.topCenter,
-              width: MediaQuery.of(context).size.width * 4,
-              height: MediaQuery.of(context).size.height / 2,
+              width: mediaQuery.width * 4,
+              height: mediaQuery.height / 2,
             ),
             Column(
               children: [
                 Container(
                   color: Colors.transparent,
-                  height: mediaQuery.size.height * .09,
+                  height: mediaQuery.height * .09,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -47,8 +47,8 @@ class DwaweenScreen extends StatelessWidget {
                       children: [
                         SvgPicture.asset(
                           "assets/images/icons/ic_dwawen2.svg",
-                          height: mediaQuery.size.width / 12,
-                          width: mediaQuery.size.width / 12,
+                          height: mediaQuery.width / 12,
+                          width: mediaQuery.width / 12,
                         )
                       ],
                     ),
@@ -62,7 +62,7 @@ class DwaweenScreen extends StatelessWidget {
                           "dwaween".tr(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaQuery.size.width / 25,
+                            fontSize: mediaQuery.width / 25,
                             fontFamily: "Cairo",
                             fontWeight: FontWeight.bold,
                           ),
@@ -71,7 +71,7 @@ class DwaweenScreen extends StatelessWidget {
                           'search_all_dwaween'.tr(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaQuery.size.width / 25,
+                            fontSize: mediaQuery.width / 25,
                             fontFamily: "Cairo",
                             fontWeight: FontWeight.normal,
                           ),
@@ -81,7 +81,7 @@ class DwaweenScreen extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  height: mediaQuery.size.height * .02,
+                  height: mediaQuery.height * .02,
                 ),
                 CustomTextFormFiled(
                   mediaQuery: mediaQuery,
@@ -100,22 +100,22 @@ class DwaweenScreen extends StatelessWidget {
                   height: 10,
                 ),
                 Container(
-                  // height: mediaQuery.size.height / 1.55,
-                  width: mediaQuery.size.height,
+                  // height: mediaQuery.height / 1.55,
+                  width: mediaQuery.height,
                   child: provider.dewanBodyLoading
                       ? Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height,
+                          width: mediaQuery.width,
+                          height: mediaQuery.height,
                           child: Center(
                               child: SpinKitCircle(
                             color: Constants.primary,
                           )),
                         )
-                      : provider.dewanBody!.dawawen.isEmpty
+                      : provider.DewanScreenData.isEmpty
                           ? Container(
-                              width: mediaQuery.size.width,
+                              width: mediaQuery.width,
                               margin: EdgeInsets.symmetric(
-                                  horizontal: mediaQuery.size.width / 30),
+                                  horizontal: mediaQuery.width / 30),
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Container(
@@ -144,7 +144,7 @@ class DwaweenScreen extends StatelessWidget {
                                   physics: BouncingScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount:
-                                      provider.dewanBody?.dawawen.length ?? 0,
+                                      provider.DewanScreenData.length,
                                   itemBuilder: (BuildContext context, index) {
                                     return InkWell(
                                       child: Padding(
@@ -152,7 +152,7 @@ class DwaweenScreen extends StatelessWidget {
                                         child: Container(
                                             margin: EdgeInsets.symmetric(
                                                 horizontal:
-                                                    mediaQuery.size.width / 40),
+                                                    mediaQuery.width / 40),
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10.0),
@@ -168,9 +168,9 @@ class DwaweenScreen extends StatelessWidget {
                                                 SvgPicture.asset(
                                                   "assets/images/icons/ic_dwawen.svg",
                                                   height:
-                                                      mediaQuery.size.width /
+                                                      mediaQuery.width /
                                                           12,
-                                                  width: mediaQuery.size.width /
+                                                  width: mediaQuery.width /
                                                       12,
                                                 ),
                                                 SizedBox(
@@ -197,20 +197,20 @@ class DwaweenScreen extends StatelessWidget {
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         fontSize: mediaQuery
-                                                                .size.width /
+                                                                .width /
                                                             20,
                                                         fontFamily: "Cairo",
                                                       ),
                                                     ),
                                                     Text(
-                                                      '${'number_of_poems'.tr()} ${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber((provider.dewanBody!.dawawen[index].kasaed.length).toString()) : provider.dewanBody?.dawawen?[index].kasaed.length} ${'poem'.tr()}',
+                                                      '${'number_of_poems'.tr()} ${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber((provider.dewanBody!.dawawen[index].kasaed.length).toString()) : provider.dewanBody?.dawawen[index].kasaed.length} ${'poem'.tr()}',
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.normal,
                                                         color:
                                                             Constants.primary,
                                                         fontSize: mediaQuery
-                                                                .size.width /
+                                                                .width /
                                                             27,
                                                         fontFamily: "Cairo",
                                                       ),

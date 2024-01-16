@@ -111,11 +111,7 @@ class _noteDataState extends State<noteData> {
                                   navigateTo(
                                       context,
                                       KasydaDetails(
-                                        DName: '',
-                                        KName: allNotes[index].kName,
-                                        kasyeda: allNotes[index].kText,
-                                        KNameT: allNotes[index].kNameT,
-                                        kasyedaTRepeat: allNotes[index].kTextT,
+                                       
                                       ));
                                 },
                                 leading: Icon(

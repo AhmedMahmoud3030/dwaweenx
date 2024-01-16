@@ -27,7 +27,7 @@ Future getkasyed() async {
 }
 
 var a = ["0"];
-var b = ["0"];
+var b = ["0"];  
 
 class _kasyedaAreaState extends State<kasyedaArea> {
   @override

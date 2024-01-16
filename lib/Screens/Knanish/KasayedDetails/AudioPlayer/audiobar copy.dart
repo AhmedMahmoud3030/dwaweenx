@@ -1,7 +1,6 @@
 import 'package:dwaweenx/Screens/Knanish/KasayedDetails/AudioPlayer/audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:just_audio/just_audio.dart';
 
 class Audiobar extends StatefulWidget {
   const Audiobar({super.key});
@@ -11,11 +10,9 @@ class Audiobar extends StatefulWidget {
 }
 
 class _AudiobarState extends State<Audiobar> {
-  late AudioPlayer _audioPlayer;
   @override
   void initState() {
     super.initState();
-    _audioPlayer = AudioPlayer()..setAsset('assets/tone.mp3');
   }
 
   void dispose() {

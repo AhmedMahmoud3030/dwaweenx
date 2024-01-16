@@ -17,6 +17,9 @@ class BaseScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         key: provider.scaffoldKey,
         drawer: DrawerFb1(),
+        floatingActionButton: FloatingActionButton(onPressed: () async {
+          await provider.uploadDataMethod();
+        }),
         body: Container(
             decoration: BoxDecoration(
               color: Constants.bgColor,
@@ -49,7 +52,7 @@ class BaseScreen extends StatelessWidget {
                 "Main".tr(),
                 style: TextStyle(fontFamily: "Cairo", color: Colors.white),
               ),
-              activeColor: Color(0xff1AA386),
+              activeColor: Constants.primary,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(

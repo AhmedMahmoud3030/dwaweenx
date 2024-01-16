@@ -2,12 +2,12 @@ import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
 import 'package:equatable/equatable.dart';
 
 class Dawawen extends Equatable {
-   final String id;
-  final  String name;
-  final  String nameT;
-  final  String dec;
- final   String type;
- final   List<KasydaBody> kasaed;
+  final String id;
+  final String name;
+  final String nameT;
+  final String dec;
+  final String type;
+  final List<KasydaBody> kasaed;
 
   Dawawen({
     required this.id,
@@ -34,6 +34,17 @@ class Dawawen extends Equatable {
         type: type ?? this.type,
         kasaed: kasaed ?? this.kasaed,
       );
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'nameT': nameT,
+      'dec': dec,
+      'type': type,
+      'kasaed': kasaed.map((x) => x.toMap()).toList(),
+    };
+  }
 
   @override
   List<Object?> get props => [

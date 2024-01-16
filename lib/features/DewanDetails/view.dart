@@ -1,4 +1,5 @@
 import 'package:dwaweenx/core/constants.dart';
+import 'package:dwaweenx/features/KasydaDetails/kasyda_details.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -9,10 +10,22 @@ import '../../core/utils.dart';
 import '../../core/widgits/customTextFormField.dart';
 import '../provider.dart';
 
-class DewanDetailsPage extends StatelessWidget {
+class DewanDetailsPage extends StatefulWidget {
+  @override
+  State<DewanDetailsPage> createState() => _DewanDetailsPageState();
+}
+
+class _DewanDetailsPageState extends State<DewanDetailsPage> {
+  @override
+  void initState() {
+    var x = Provider.of<BaseProvider>(context, listen: false);
+    x.KasaedDetailsScreenData = x.DewanDetailsScreenData[x.dewanIndex!].kasaed;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
+    var mediaQuery = MediaQuery.of(context).size;
 
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) {
@@ -36,14 +49,14 @@ class DewanDetailsPage extends StatelessWidget {
                     SvgPicture.asset(
                       "assets/img/banner2.svg",
                       alignment: Alignment.topCenter,
-                      width: MediaQuery.of(context).size.width * 4,
-                      height: MediaQuery.of(context).size.height / 2,
+                      width: mediaQuery.width * 4,
+                      height: mediaQuery.height / 2,
                     ),
                     Column(
                       children: [
                         Container(
                           color: Colors.transparent,
-                          height: mediaQuery.size.height * .09,
+                          height: mediaQuery.height * .09,
                         ),
                         Row(
                           children: [
@@ -55,7 +68,7 @@ class DewanDetailsPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  ' ${'dewan'.tr()} ${provider.dewanBody!.dawawen[provider.dewanIndex!].nameT}',
+                                  ' ${'dewan'.tr()} ${provider.DewanDetailsScreenData[provider.dewanIndex!].nameT}',
                                   style: TextStyle(
                                     fontSize: 14,
                                     // fontFamily: "Cairo",
@@ -64,7 +77,7 @@ class DewanDetailsPage extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                    ' ${'number_of_poems'.tr()} ${provider.dewanBody!.dawawen[provider.dewanIndex!].kasaed.length} ${'poem'.tr()}',
+                                    ' ${'number_of_poems'.tr()} ${provider.DewanDetailsScreenData[provider.dewanIndex!].kasaed.length} ${'poem'.tr()}',
                                     style: TextStyle(
                                       fontSize: 14,
                                       // fontFamily: "Cairo",
@@ -78,7 +91,6 @@ class DewanDetailsPage extends StatelessWidget {
                               onTap: () {
                                 Navigator.pop(context);
                                 provider.setKafyaIndex(null);
-                                provider.filterByKasyda();
                               },
                               child: Icon(
                                 Icons.arrow_forward_ios,
@@ -98,13 +110,11 @@ class DewanDetailsPage extends StatelessWidget {
                           mediaQuery: mediaQuery,
                           textEditingController: provider.kafyaController,
                           onChanged: (value) {
-                            provider.setkasydaScreenText(value);
                             provider.filterByKasyda();
                           },
                           searchText: 'search_in_poems',
                           onPressed: () {
                             provider.kafyaController.clear();
-                            provider.setkasydaScreenText('');
                             provider.filterByKasyda();
                           },
                           onFieldSubmitted: (String) {},
@@ -119,8 +129,8 @@ class DewanDetailsPage extends StatelessWidget {
                         ),
                         Container(
                           padding: EdgeInsets.all(15),
-                          width: mediaQuery.size.width * .9,
-                          height: mediaQuery.size.height * .17,
+                          width: mediaQuery.width * .9,
+                          height: mediaQuery.height * .17,
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
@@ -169,9 +179,9 @@ class DewanDetailsPage extends StatelessWidget {
                                   onPressed: () {
                                     Utils().hasTextOverflow(
                                       provider
-                                              .dewanBody!
-                                              .dawawen[provider.dewanIndex!]
-                                              .dec,
+                                          .DewanDetailsScreenData[
+                                              provider.dewanIndex!]
+                                          .dec,
                                       TextStyle(
                                         fontSize: 13,
                                         color: Colors.black54,
@@ -186,10 +196,9 @@ class DewanDetailsPage extends StatelessWidget {
                                               return Center(
                                                 child: Hero(
                                                   tag: provider
-                                                          .dewanBody!
-                                                          .dawawen[provider
-                                                              .dewanIndex!]
-                                                          .dec,
+                                                      .DewanDetailsScreenData[
+                                                          provider.dewanIndex!]
+                                                      .dec,
                                                   child: SimpleDialog(
                                                     backgroundColor:
                                                         Colors.white,
@@ -200,10 +209,10 @@ class DewanDetailsPage extends StatelessWidget {
                                                                 .all(16.0),
                                                         child: Text(
                                                           provider
-                                                                  .dewanBody!
-                                                                  .dawawen[provider
+                                                              .DewanDetailsScreenData[
+                                                                  provider
                                                                       .dewanIndex!]
-                                                                  .dec,
+                                                              .dec,
                                                           textAlign:
                                                               TextAlign.center,
                                                         ),
@@ -218,9 +227,9 @@ class DewanDetailsPage extends StatelessWidget {
                                   },
                                   child: Text(
                                     provider
-                                            .dewanBody!
-                                            .dawawen[provider.dewanIndex!]
-                                            .dec,
+                                        .DewanDetailsScreenData[
+                                            provider.dewanIndex!]
+                                        .dec,
                                     style: TextStyle(
                                       fontSize: 13,
                                       color: Colors.black54,
@@ -272,8 +281,8 @@ class DewanDetailsPage extends StatelessWidget {
                         ),
                         Container(
                           // padding: EdgeI nsets.symmetric(horizontal: 8, vertical: 6),
-                          height: mediaQuery.size.height * .18,
-                          width: mediaQuery.size.width * .9,
+                          height: mediaQuery.height * .18,
+                          width: mediaQuery.width * .9,
                           child: GridView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.zero,
@@ -356,27 +365,22 @@ class DewanDetailsPage extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          height: mediaQuery.size.height / 1.55,
-                          width: mediaQuery.size.height,
+                          height: mediaQuery.height / 1.55,
+                          width: mediaQuery.height,
                           child: provider.dewanBodyLoading
                               ? Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height,
+                                  width: mediaQuery.width,
+                                  height: mediaQuery.height,
                                   child: Center(
                                       child: SpinKitCircle(
                                     color: Constants.primary,
                                   )),
                                 )
-                              : provider
-                                      .dewanBody!
-                                      .dawawen[provider.dewanIndex!]
-                                      .kasaed
-                                      .isEmpty
+                              : provider.KasaedDetailsScreenData.isEmpty
                                   ? Container(
-                                      width: mediaQuery.size.width,
+                                      width: mediaQuery.width,
                                       margin: EdgeInsets.symmetric(
-                                          horizontal:
-                                              mediaQuery.size.width / 30),
+                                          horizontal: mediaQuery.width / 30),
                                       child: Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Container(
@@ -405,10 +409,7 @@ class DewanDetailsPage extends StatelessWidget {
                                       physics: BouncingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: provider
-                                          .dewanBody!
-                                          .dawawen[provider.dewanIndex!]
-                                          .kasaed
-                                          .length,
+                                          .KasaedDetailsScreenData.length,
                                       itemBuilder:
                                           (BuildContext context, index) {
                                         return InkWell(
@@ -417,8 +418,7 @@ class DewanDetailsPage extends StatelessWidget {
                                             child: Container(
                                               margin: EdgeInsets.symmetric(
                                                   horizontal:
-                                                      mediaQuery.size.width /
-                                                          40),
+                                                      mediaQuery.width / 40),
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
@@ -433,11 +433,9 @@ class DewanDetailsPage extends StatelessWidget {
                                                   SvgPicture.asset(
                                                     "assets/images/icons/ic_ksaed.svg",
                                                     height:
-                                                        mediaQuery.size.width /
-                                                            16,
+                                                        mediaQuery.width / 16,
                                                     width:
-                                                        mediaQuery.size.width /
-                                                            16,
+                                                        mediaQuery.width / 16,
                                                   ),
                                                   SizedBox(
                                                     width: 10,
@@ -458,18 +456,15 @@ class DewanDetailsPage extends StatelessWidget {
                                                       children: [
                                                         Text(
                                                           provider
-                                                                  .dewanBody!
-                                                                  .dawawen[provider
-                                                                      .dewanIndex!]
-                                                                  .kasaed[index]
-                                                                  .nameT,
+                                                              .KasaedDetailsScreenData[
+                                                                  index]
+                                                              .nameT,
                                                           style: TextStyle(
                                                             color: Constants
                                                                 .primary2,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                             fontSize: mediaQuery
-                                                                    .size
                                                                     .width /
                                                                 20,
                                                             fontFamily: "Cairo",
@@ -490,10 +485,7 @@ class DewanDetailsPage extends StatelessWidget {
                                                                     .9,
                                                                 Utils()
                                                                     .splitToGetFirstTwoWords(provider
-                                                                        .dewanBody!
-                                                                        .dawawen[provider
-                                                                            .dewanIndex!]
-                                                                        .kasaed[
+                                                                        .KasaedDetailsScreenData[
                                                                             index]
                                                                         .kaseydaT)
                                                                     .first,
@@ -511,7 +503,6 @@ class DewanDetailsPage extends StatelessWidget {
                                                               ),
                                                               SizedBox(
                                                                 width: mediaQuery
-                                                                        .size
                                                                         .width *
                                                                     .06,
                                                               ),
@@ -520,10 +511,7 @@ class DewanDetailsPage extends StatelessWidget {
                                                                     .9,
                                                                 Utils()
                                                                     .splitToGetFirstTwoWords(provider
-                                                                        .dewanBody!
-                                                                        .dawawen[provider
-                                                                            .dewanIndex!]
-                                                                        .kasaed[
+                                                                        .KasaedDetailsScreenData[
                                                                             index]
                                                                         .kaseydaT)
                                                                     .last,
@@ -550,7 +538,16 @@ class DewanDetailsPage extends StatelessWidget {
                                             ),
                                           ),
                                           onTap: () {
-                                            // provider.setKafya(index);
+                                            provider.setKasydaDetailsBody( provider
+                                                .KasaedDetailsScreenData[index]).then((value) => provider.splitKasyda()
+);
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    KasydaDetails(),
+                                              ),
+                                            );
                                           },
                                         );
                                       },
@@ -569,82 +566,3 @@ class DewanDetailsPage extends StatelessWidget {
     );
   }
 }
-
-// class ExpandableText extends StatefulWidget {
-//   const ExpandableText(
-//     this.text, {
-//     Key? key,
-//     this.trimLines = 2,
-//   }) : super(key: key);
-
-//   final String text;
-//   final int trimLines;
-
-//   @override
-//   ExpandableTextState createState() => ExpandableTextState();
-// }
-
-// class ExpandableTextState extends State<ExpandableText> {
-//   bool _readMore = true;
-//   void _onTapLink() {
-//     setState(() => _readMore = !_readMore);
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final colorClickableText = Colors.blue;
-//     final widgetColor = Colors.black;
-//     TextSpan link = TextSpan(
-//         text: _readMore ? "... اقرأ المزيد" : "  اقرأ أقل",
-//         style: TextStyle(color: colorClickableText, fontFamily: "Cairo"),
-//         recognizer: TapGestureRecognizer()..onTap = _onTapLink);
-//     Widget result = LayoutBuilder(
-//       builder: (BuildContext context, BoxConstraints constraints) {
-//         assert(constraints.hasBoundedWidth);
-//         final double maxWidth = constraints.maxWidth;
-//         // Create a TextSpan with data
-//         final text = TextSpan(
-//           text: widget.text,
-//         );
-//         // Layout and measure link
-//         TextPainter textPainter = TextPainter(
-//           text: link,
-//           maxLines: widget.trimLines,
-//           ellipsis: '...',
-//         );
-//         textPainter.layout(minWidth: constraints.minWidth, maxWidth: maxWidth);
-//         final linkSize = textPainter.size;
-//         // Layout and measure text
-//         textPainter.text = text;
-//         textPainter.layout(minWidth: constraints.minWidth, maxWidth: maxWidth);
-//         final textSize = textPainter.size;
-//         // Get the endIndex of data
-//         int endIndex;
-//         final pos = textPainter.getPositionForOffset(Offset(
-//           textSize.width - linkSize.width,
-//           textSize.height,
-//         ));
-//         endIndex = textPainter.getOffsetBefore(pos.offset)!;
-//         var textSpan;
-//         if (textPainter.didExceedMaxLines) {
-//           textSpan = TextSpan(
-//             text: _readMore ? widget.text.substring(0, endIndex) : widget.text,
-//             style: TextStyle(color: widgetColor, fontFamily: "Cairo"),
-//             children: <TextSpan>[link],
-//           );
-//         } else {
-//           textSpan = TextSpan(
-//             text: widget.text,
-//           );
-//         }
-//         return RichText(
-//           softWrap: true,
-//           overflow: TextOverflow.clip,
-//           text: textSpan,
-//           textAlign: TextAlign.right,
-//         );
-//       },
-//     );
-//     return result;
-//   }
-// }

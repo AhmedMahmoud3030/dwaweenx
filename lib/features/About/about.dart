@@ -10,7 +10,7 @@ import '../provider.dart';
 class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
+    var mediaQuery = MediaQuery.of(context).size;
 
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) =>
@@ -23,14 +23,14 @@ class AboutScreen extends StatelessWidget {
             SvgPicture.asset(
               "assets/images/paintings/img_head_internal.svg",
               alignment: Alignment.topCenter,
-              width: MediaQuery.of(context).size.width * 4,
-              height: MediaQuery.of(context).size.height / 2,
+              width: mediaQuery.width * 4,
+              height: mediaQuery.height / 2,
             ),
             Column(
               children: [
                 Container(
                   color: Colors.transparent,
-                  height: mediaQuery.size.height * .09,
+                  height: mediaQuery.height * .09,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -50,7 +50,7 @@ class AboutScreen extends StatelessWidget {
                           "shikkh".tr(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaQuery.size.width / 25,
+                            fontSize: mediaQuery.width / 25,
                             fontFamily: "Cairo",
                             fontWeight: FontWeight.bold,
                           ),
@@ -59,7 +59,7 @@ class AboutScreen extends StatelessWidget {
                           'shikkh_name'.tr(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaQuery.size.width / 25,
+                            fontSize: mediaQuery.width / 25,
                             fontFamily: "Cairo",
                             fontWeight: FontWeight.normal,
                           ),
@@ -69,7 +69,7 @@ class AboutScreen extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  height: mediaQuery.size.height * .02,
+                  height: mediaQuery.height * .02,
                 ),
                 CustomTextFormFiled(
                   mediaQuery: mediaQuery,
@@ -78,7 +78,6 @@ class AboutScreen extends StatelessWidget {
                   searchText: 'search_in_dwaween',
                   onPressed: () {
                     provider.aboutController.clear();
-                    provider.searchDewanMethod(searchValue: '');
                   },
                   onFieldSubmitted: (value) {
                     provider.aboutController.clear();
