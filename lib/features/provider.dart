@@ -17,6 +17,7 @@ import 'package:dwaweenx/features/Home/view.dart';
 import 'package:dwaweenx/services/cloud_firestore_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:screenshot/screenshot.dart';
@@ -37,7 +38,16 @@ class BaseProvider extends ChangeNotifier {
           KasydaBody(
             id: 'K1',
             audio: [
-              Audio(sheikhAr: 'sheikhAr', sheikhEn: 'sheikhEn', url: 'url')
+              Audio(
+                  sheikhAr: 'Youssra1',
+                  sheikhEn: 'Youssra1en',
+                  url:
+                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Youssra%20El%20Hawary%20-%20Bas%20Kollo%20Yehoon%20%EF%BD%9C%20%D9%8A%D8%B3%D8%B1%D8%A7%20%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%B1%D9%8A%20-%20%D8%A8%D8%B3%20%D9%83%D9%8F%D9%84%D9%91%D9%87%20%D9%8A%D9%87%D9%88%D9%86.mp3?alt=media&token=55690100-9dd6-442c-b402-3adbede98486'),
+              Audio(
+                  sheikhAr: 'Aziz1',
+                  sheikhEn: 'sAzizen1',
+                  url:
+                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033')
             ],
             purpose: 'purpose',
             type: 'Kasyda',
@@ -52,7 +62,11 @@ class BaseProvider extends ChangeNotifier {
           KasydaBody(
             id: 'K2',
             audio: [
-              Audio(sheikhAr: 'sheikhAr', sheikhEn: 'sheikhEn', url: 'url')
+              Audio(
+                  sheikhAr: 'sheikhAr',
+                  sheikhEn: 'sheikhEn',
+                  url:
+                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033')
             ],
             purpose: 'purpose',
             type: 'Kasyda',
@@ -372,21 +386,26 @@ class BaseProvider extends ChangeNotifier {
   KasydaBody? _KasydaDetailsBody;
   KasydaBody? get KasydaDetailsBody => _KasydaDetailsBody;
 
-  Future<void> setKasydaDetailsBody(KasydaBody? value) async {
+  Future<void> setKasydaDetailsBody(KasydaBody? value, String local) async {
     _KasydaDetailsBody = value;
+    _audioPlayer..setUrl(_KasydaDetailsBody!.audio.first.url);
+    _sheikh = local == 'ar'
+        ? _KasydaDetailsBody!.audio.first.sheikhAr
+        : _KasydaDetailsBody!.audio.first.sheikhEn;
+
+    notifyListeners();
   }
 
   List<String> K = [];
   List<String> KT = [];
 
-    double _fontSize=20;
+  double _fontSize = 20;
 
   double get fontSize => _fontSize;
 
   setFontSize(double value) {
     _fontSize = value;
   }
-
 
   Color _fontColor = Colors.black;
 
@@ -397,7 +416,6 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
   Color _BGColor = Constants.bgColor;
 
   Color get BGColor => _BGColor;
@@ -407,40 +425,68 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //////////////////////////////////////////////
+  AudioPlayer _audioPlayer = AudioPlayer();
+  AudioPlayer get audioPlayer => _audioPlayer;
 
   int _audioIndex = 0;
   int get audioIndex => _audioIndex;
 
-  setAudioIndex(int value) {
-    _audioIndex = value;
+  String _sheikh = '';
+  String get sheikh => _sheikh;
+
+  // Stream<PositionData> get postionDataStream =>
+  //   Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
+  //       _audioPlayer.positionStream,
+  //       _audioPlayer.bufferedPositionStream,
+  //       _audioPlayer.durationStream,
+  //       (position, bufferedPosition, duration) => PositionData(
+  //             position,
+  //             bufferedPosition,
+  //             duration ?? Duration.zero,
+  //           ));
+
+  setVocalist({required int audioIndex, required String local}) {
+    _audioPlayer.dispose();
+    setIsPlaying(false);
+
+    _audioPlayer = AudioPlayer()
+      ..setUrl(_KasydaDetailsBody!.audio[audioIndex].url);
+    _sheikh = local == 'ar'
+        ? _KasydaDetailsBody!.audio[audioIndex].sheikhAr
+        : _KasydaDetailsBody!.audio[audioIndex].sheikhEn;
+
     notifyListeners();
   }
 
-  bool isPlaying = false;
+  bool _loobMode = false;
+
+  bool get loobMode => _loobMode;
+
+  setLoobMode(bool value) {
+    _loobMode = value;
+    notifyListeners();
+  }
+
+  bool _isPlaying = false;
+
+  bool get isPlaying => _isPlaying;
+
+  setIsPlaying(bool value) {
+    print(KasydaDetailsBody!.audio.first.url);
+    _isPlaying = value;
+    notifyListeners();
+  }
+
+  //////////////////////////////////////////////
+
   DatabaseHelperNotificarion dbNotify = new DatabaseHelperNotificarion();
   DatabaseHelperFavourite dbFav = new DatabaseHelperFavourite();
-
-  AudioPlayer _audioPlayer = AudioPlayer()..setAsset('assets/tone10.mp3');
-  Stream<PositionData> get postionDataStream =>
-      Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
-          _audioPlayer.positionStream,
-          _audioPlayer.bufferedPositionStream,
-          _audioPlayer.durationStream,
-          (position, bufferedPosition, duration) => PositionData(
-                position,
-                bufferedPosition,
-                duration ?? Duration.zero,
-              ));
-
-  String color = "";
 
   TextEditingController tc_title = TextEditingController();
   TextEditingController tc_body = TextEditingController();
   Color textcolor = Colors.teal;
   Color backColor = Color.fromARGB(255, 253, 253, 234);
   double textsize = 20;
-  bool loobMode = false;
 
   ScreenshotController screenshotController = ScreenshotController();
   List<FavModel> allFav = <FavModel>[];

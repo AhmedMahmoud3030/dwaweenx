@@ -250,7 +250,7 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                             .setKasydaDetailsBody(provider
                                                 .groupedBy[provider
                                                     .groupByPurposeIndex]
-                                                .kenshat[index])
+                                                .kenshat[index],context.locale.languageCode,)
                                             .then((value) =>
                                                 provider.splitKasyda());
                                         Navigator.push(
