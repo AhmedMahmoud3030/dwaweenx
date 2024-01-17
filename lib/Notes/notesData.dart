@@ -255,10 +255,10 @@ class _noteDataState extends State<noteData> {
 
   void EditZikr(BuildContext context, NoteModel note) {
     if (controllerTitle.text.trim().isEmpty) {
-      displayToastMessage("من فضلك ادخل العنوان");
+      // displayToastMessage("من فضلك ادخل العنوان");
       return;
     } else if (controllerDesc.text.trim().isEmpty) {
-      displayToastMessage("من فضلك ادخل الوصف");
+      // displayToastMessage("من فضلك ادخل الوصف");
       return;
     }
 
@@ -279,13 +279,13 @@ class _noteDataState extends State<noteData> {
     }))
         .then((_) {
       Navigator.pop(context);
-      displayToastMessage("تم التعديل");
+      // displayToastMessage("تم التعديل");
     });
   }
 
   void deleteFav(NoteModel currentNote) async {
     await dbNotify.deleteDuaa(currentNote.id);
-    displayToastMessage("تم الحذف");
+    // displayToastMessage("تم الحذف");
     getAllData();
   }
 }

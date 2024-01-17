@@ -173,7 +173,7 @@ class _FavDataBaseState extends State<FavDataBase> {
 
   void deleteFav(FavModel currentNote) async {
     await dbFav.deleteFav(currentNote.id);
-    displayToastMessage("تم الحذف");
+    // displayToastMessage("تم الحذف");
     getAllData();
   }
 }

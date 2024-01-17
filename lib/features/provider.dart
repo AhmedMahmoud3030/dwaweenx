@@ -1,4 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dwaweenx/Data/Models/dewan_body_model.dart';
 import 'package:dwaweenx/Domain/Entities/audio.dart';
@@ -7,20 +11,22 @@ import 'package:dwaweenx/Domain/Entities/dewanBody.dart';
 import 'package:dwaweenx/Domain/Entities/groupByPurpose.dart';
 import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
 import 'package:dwaweenx/Models/FavModel.dart';
-import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/help/database_helper_fav.dart';
 import 'package:dwaweenx/core/help/database_helper_notification.dart';
-import 'package:dwaweenx/core/widgits/audio_card.dart';
+import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/features/About/about.dart';
 import 'package:dwaweenx/features/Dwaween/view.dart';
 import 'package:dwaweenx/features/Home/view.dart';
+import 'package:dwaweenx/features/KasydaDetails/kasydaShareScreen.dart';
 import 'package:dwaweenx/services/cloud_firestore_service.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'Kasaed/kasaed.dart';
 
@@ -171,7 +177,9 @@ class BaseProvider extends ChangeNotifier {
   List<String> _kafya = [];
 
   int? get dewanIndex => _dewanIndex;
+
   List<String> get kafya => _kafya;
+
   int get groupByPurposeIndex => _groupByPurposeIndex;
 
   setDewanIndex(int? value) {
@@ -267,6 +275,7 @@ class BaseProvider extends ChangeNotifier {
       return dawawen.name.contains(query);
     }).toList();
   }
+
   //?============================KasayedScreen=================================================
 
   TextEditingController kasayedController = TextEditingController();
@@ -317,6 +326,7 @@ class BaseProvider extends ChangeNotifier {
 
   //?============================AboutScreen=================================================
   TextEditingController aboutController = TextEditingController();
+
   void changeLang({required BuildContext context}) {
     print('changeLang');
     print(context.locale.languageCode);
@@ -384,6 +394,7 @@ class BaseProvider extends ChangeNotifier {
   //?============================KasydaDetailsScreen=================================================
   TextEditingController KasydaDetailsController = TextEditingController();
   KasydaBody? _KasydaDetailsBody;
+
   KasydaBody? get KasydaDetailsBody => _KasydaDetailsBody;
 
   Future<void> setKasydaDetailsBody(KasydaBody? value, String local) async {
@@ -399,58 +410,172 @@ class BaseProvider extends ChangeNotifier {
   List<String> K = [];
   List<String> KT = [];
 
-  double _fontSize = 20;
+  int _fontSize = 20;
 
-  double get fontSize => _fontSize;
+  int get fontSize => _fontSize;
 
-  setFontSize(double value) {
+  increaseFontSize() {
+    fontTransactionEffect = true;
+    notifyListeners();
+
+    if (_fontSize < 98) {
+      _fontSize = _fontSize + 2;
+      notifyListeners();
+    }
+
+    Future.delayed(Duration(milliseconds: 1500))
+        .then((value) => fontTransactionEffect = false)
+        .then((value) => notifyListeners());
+  }
+
+  decreaseFontSize() {
+    fontTransactionEffect = true;
+    notifyListeners();
+
+    if (_fontSize > 2) {
+      _fontSize = _fontSize - 2;
+      notifyListeners();
+    }
+
+    Future.delayed(Duration(milliseconds: 1000))
+        .then((value) => fontTransactionEffect = false)
+        .then((value) => notifyListeners());
+  }
+
+  setFontSize(int value) {
+    fontTransactionEffect = true;
+    notifyListeners();
+
     _fontSize = value;
+    notifyListeners();
+
+    Future.delayed(Duration(milliseconds: 1000))
+        .then((value) => fontTransactionEffect = false)
+        .then((value) => notifyListeners());
   }
 
-  Color _fontColor = Colors.black;
+  bool fontTransactionEffect = false;
 
-  Color get fontColor => _fontColor;
+  List<Color> fontColors = [
+    Colors.black,
+    Color(0xff1AA386),
+    Color(0xff0E264C),
+    Color(0xff0E264C),
+    Color(0xff51DECF),
+  ];
 
-  setFontColor(Color value) {
-    _fontColor = value;
+  List<Color> BGColors = [
+    Colors.white,
+    Color(0xffFFF8E9),
+    Color(0xffDFDFDF),
+    Color(0xffE6DBD0),
+    Color(0xffDBEDF1),
+  ];
+
+  int _fontColorIndex = 0;
+  int _BGColorIndex = 1;
+
+  int get fontColorIndex => _fontColorIndex;
+
+  int get BGColorIndex => _BGColorIndex;
+
+  setFontColor(int index) {
+    _fontColorIndex = index;
     notifyListeners();
   }
 
-  Color _BGColor = Constants.bgColor;
-
-  Color get BGColor => _BGColor;
-
-  setBGColor(Color value) {
-    _BGColor = value;
+  setBGColor(int index) {
+    _BGColorIndex = index;
     notifyListeners();
+  }
+
+  List<String> versesToShareList = [];
+
+  setVersesToShareList(String value) {
+    print('before');
+    print(value);
+    print(versesToShareList.length);
+
+    if (versesToShareList.contains(value)) {
+      versesToShareList.remove(value);
+    } else {
+      if (versesToShareList.length < 4) {
+        versesToShareList.add(value);
+      } else {
+        Utils().displayToastMessage('limit_verses'.tr());
+      }
+    }
+
+    print('before');
+    print(value);
+    print(versesToShareList.length);
+    notifyListeners();
+  }
+
+  int _shareDialogIndex = 0;
+
+  int get shareDialogIndex => _shareDialogIndex;
+
+  setShareDialogIndex(int value) {
+    _shareDialogIndex = value;
+
+    notifyListeners();
+  }
+
+  final CarouselController carouselController = CarouselController();
+
+  int _carouselIndex = 0;
+
+  int get carouselIndex => _carouselIndex;
+
+  setCarouselIndex(int value) {
+    _carouselIndex = value;
+
+    notifyListeners();
+  }
+
+  final storage = FirebaseStorage.instance;
+  ListResult? result;
+  List<String> urls = [];
+  List<Future<String>> xurls = [];
+
+  getListOfImages() async {
+    var directoryRef = storage.ref().child('imagesToShare/');
+
+    result = await directoryRef.listAll();
+
+    if (result != null) {
+      xurls = result!.items.map((item) {
+        return item.getDownloadURL();
+      }).toList();
+    }
+
+    urls = await Future.wait(xurls);
+    print(urls.length);
+    print("urls.length");
   }
 
   AudioPlayer _audioPlayer = AudioPlayer();
+
   AudioPlayer get audioPlayer => _audioPlayer;
 
   int _audioIndex = 0;
+
   int get audioIndex => _audioIndex;
 
   String _sheikh = '';
+
   String get sheikh => _sheikh;
 
-  // Stream<PositionData> get postionDataStream =>
-  //   Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
-  //       _audioPlayer.positionStream,
-  //       _audioPlayer.bufferedPositionStream,
-  //       _audioPlayer.durationStream,
-  //       (position, bufferedPosition, duration) => PositionData(
-  //             position,
-  //             bufferedPosition,
-  //             duration ?? Duration.zero,
-  //           ));
-
   setVocalist({required int audioIndex, required String local}) {
+    _audioIndex = audioIndex;
     _audioPlayer.dispose();
     setIsPlaying(false);
 
     _audioPlayer = AudioPlayer()
       ..setUrl(_KasydaDetailsBody!.audio[audioIndex].url);
+    _audioPlayer.play();
+    setIsPlaying(true);
     _sheikh = local == 'ar'
         ? _KasydaDetailsBody!.audio[audioIndex].sheikhAr
         : _KasydaDetailsBody!.audio[audioIndex].sheikhEn;
@@ -458,11 +583,11 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool _loobMode = false;
+  int _loobMode = 0;
 
-  bool get loobMode => _loobMode;
+  int get loobMode => _loobMode;
 
-  setLoobMode(bool value) {
+  setLoobMode(int value) {
     _loobMode = value;
     notifyListeners();
   }
@@ -477,6 +602,35 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  shareText(BuildContext context) async {
+    final box = context.findRenderObject() as RenderBox;
+    await Share.share(versesToShareList.join('\n'),
+        subject: KasydaDetailsBody?.name ?? '',
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+  }
+
+  void captureScreenShot(
+      BuildContext context, String image, String text) async {
+    final directory = await getTemporaryDirectory();
+    Uint8List? imageBytes = await screenshotController.captureFromWidget(
+      KasydaShareScreen(
+        image: image,
+        text: text,
+      ),
+    );
+    String dateTime = DateTime.now().year.toString() +
+        DateTime.now().month.toString() +
+        DateTime.now().day.toString() +
+        DateTime.now().hour.toString() +
+        DateTime.now().minute.toString() +
+        DateTime.now().second.toString();
+    String filePath = '${directory.path}/screenshot$dateTime.png';
+    await File(filePath).writeAsBytes(imageBytes!);
+    // File tempFile = File(filePath);
+    await Share.shareXFiles([XFile(filePath)], text: '', subject: '');
+    // saveImageToGallery(context,imageBytes);
+  }
+
   //////////////////////////////////////////////
 
   DatabaseHelperNotificarion dbNotify = new DatabaseHelperNotificarion();
@@ -484,9 +638,6 @@ class BaseProvider extends ChangeNotifier {
 
   TextEditingController tc_title = TextEditingController();
   TextEditingController tc_body = TextEditingController();
-  Color textcolor = Colors.teal;
-  Color backColor = Color.fromARGB(255, 253, 253, 234);
-  double textsize = 20;
 
   ScreenshotController screenshotController = ScreenshotController();
   List<FavModel> allFav = <FavModel>[];
@@ -551,5 +702,5 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //!----------------------------------------------------------------------------
+//!----------------------------------------------------------------------------
 }

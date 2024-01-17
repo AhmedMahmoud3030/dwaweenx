@@ -199,7 +199,7 @@ class HomeScreen extends StatelessWidget {
                                               color: Colors.white,
                                             ),
                                             child: ListTile(
-                                              trailing: SvgPicture.asset(
+                                              leading: SvgPicture.asset(
                                                 "assets/images/icons/ic_ksaed.svg",
                                                 height: 25,
                                                 width: 25,

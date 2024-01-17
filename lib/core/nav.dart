@@ -27,12 +27,5 @@ void navigateFinish(context, widget) => Navigator.pushAndRemoveUntil(
       return false;
     });
 
-void displayToastMessage(var toastMessage) {
-  Fluttertoast.showToast(
-      msg: toastMessage.toString(),
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      textColor: Colors.white,
-      fontSize:16.0);
-}
+
 

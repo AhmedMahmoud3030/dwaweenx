@@ -1,36 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:path_provider/path_provider.dart';
 
-
-class CustomDialog extends StatefulWidget {
-  final String kasedaName;
-  final String kaseda;
-  final List<String> allText;
-
-
-  CustomDialog({Key? key, required this.kasedaName, required this.kaseda, required this.allText}) : super(key: key);
-
-  @override
-  _CustomDialogState createState() => _CustomDialogState();
-}
-
-class _CustomDialogState extends State<CustomDialog> {
+class ShareDialogStep2 extends StatelessWidget {
   bool shareTextSelected = false;
+
+  ShareDialogStep2({
+    Key? key,
+    required this.shareTextSelected,
+  }) : super(key: key);
   ScreenshotController screenshotController = ScreenshotController();
 
-  int currentImageIndex=0;
   @override
   Widget build(BuildContext context) {
-    var k = widget.kaseda.toString().split(".");
-
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
-
       ),
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -47,22 +37,24 @@ class _CustomDialogState extends State<CustomDialog> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      shareTextSelected = true;
-                    });
+                    shareTextSelected = true;
                   },
-                  style:
-                  ElevatedButton.styleFrom(
+                  style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     padding: EdgeInsets.symmetric(horizontal: 8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      side: BorderSide(color:shareTextSelected? Colors.black: Colors.white),
+                      side: BorderSide(
+                          color:
+                              shareTextSelected ? Colors.black : Colors.white),
                     ),
                   ),
                   child: Row(
                     children: [
-                      Text('مشاركة كنص',style: TextStyle(fontFamily: 'Cairo'),),
+                      Text(
+                        'مشاركة كنص',
+                        style: TextStyle(fontFamily: 'Cairo'),
+                      ),
                       SizedBox(width: 8),
                       Icon(Icons.text_fields),
                     ],
@@ -70,21 +62,24 @@ class _CustomDialogState extends State<CustomDialog> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      shareTextSelected = false;
-                    });
+                    shareTextSelected = false;
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     padding: EdgeInsets.symmetric(horizontal: 8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      side: BorderSide(color:!shareTextSelected? Colors.black: Colors.white),
+                      side: BorderSide(
+                          color:
+                              !shareTextSelected ? Colors.black : Colors.white),
                     ),
                   ),
                   child: Row(
                     children: [
-                      Text('مشاركة كصورة',style: TextStyle(fontFamily: 'Cairo'),),
+                      Text(
+                        'مشاركة كصورة',
+                        style: TextStyle(fontFamily: 'Cairo'),
+                      ),
                       SizedBox(width: 8),
                       Icon(Icons.image),
                     ],
@@ -94,42 +89,36 @@ class _CustomDialogState extends State<CustomDialog> {
             ),
             SizedBox(height: 16),
 
-
             //قائمة الصور
             Visibility(
               visible: !shareTextSelected,
               child: Container(
-                  height: 100,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4, // Replace with the actual number of images
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: (){
-                          currentImageIndex=index;
-                          setState(() {});
-                        },
-                        child: Container(
-                          margin: EdgeInsets.all(8),
-                          width: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.black),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10)
-                            ),
-                            child: Image.asset(
-                              'assets/img/imageShareList$index.jpg',fit: BoxFit.fill,
-
-                            ),
+                height: 100,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 4, // Replace with the actual number of images
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {},
+                      child: Container(
+                        margin: EdgeInsets.all(8),
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.black),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          child: Image.asset(
+                            'assets/img/imageShareList$index.jpg',
+                            fit: BoxFit.fill,
                           ),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
+              ),
             ),
             SizedBox(height: 8),
             Screenshot(
@@ -146,7 +135,8 @@ class _CustomDialogState extends State<CustomDialog> {
                         width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Image.asset(
-                          'assets/img/imageShareList${currentImageIndex}.jpg', // Replace with actual asset path
+                          'assets/img/imageShareList.jpg',
+                          // Replace with actual asset path
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -156,10 +146,10 @@ class _CustomDialogState extends State<CustomDialog> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(widget.allText[0],style: TextStyle(fontFamily: 'Cairo'),),
-                        Text(widget.allText[1],style: TextStyle(fontFamily: 'Cairo'),),
-                        Text(widget.allText[2],style: TextStyle(fontFamily: 'Cairo'),),
-                        Text(widget.allText[3],style: TextStyle(fontFamily: 'Cairo'),),
+                        // Text(allText[0],style: TextStyle(fontFamily: 'Cairo'),),
+                        // Text(allText[1],style: TextStyle(fontFamily: 'Cairo'),),
+                        // Text(allText[2],style: TextStyle(fontFamily: 'Cairo'),),
+                        // Text(allText[3],style: TextStyle(fontFamily: 'Cairo'),),
                       ],
                     ),
 
@@ -167,10 +157,27 @@ class _CustomDialogState extends State<CustomDialog> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text('شبكة تراث الفيضة التجارية',style: TextStyle(fontFamily: 'Cairo',fontSize: 10,fontWeight: FontWeight.w300,color: Colors.black54)),
+                        Text('شبكة تراث الفيضة التجارية',
+                            style: TextStyle(
+                                fontFamily: 'Cairo',
+                                fontSize: 10,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.black54)),
 
-                        Image.asset('assets/img/splash.png',width: 30,height: 30,), // Replace with actual asset path
-                        Text('تطبيق دواوين الشيخ إبراهيم نياس',style: TextStyle(fontFamily: 'Cairo',fontSize: 10,fontWeight: FontWeight.w300,color: Colors.black54),),
+                        Image.asset(
+                          'assets/img/splash.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        // Replace with actual asset path
+                        Text(
+                          'تطبيق دواوين الشيخ إبراهيم نياس',
+                          style: TextStyle(
+                              fontFamily: 'Cairo',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.black54),
+                        ),
                       ],
                     ),
                     SizedBox(height: 16),
@@ -181,13 +188,16 @@ class _CustomDialogState extends State<CustomDialog> {
 
             ElevatedButton(
               onPressed: () {
-                if(shareTextSelected){
+                if (shareTextSelected) {
                   shareText();
-                }else{
+                } else {
                   captureScreenShot(context);
                 }
               },
-              child: Text('مشاركة',style: TextStyle(fontFamily: 'Cairo'),),
+              child: Text(
+                'مشاركة',
+                style: TextStyle(fontFamily: 'Cairo'),
+              ),
             ),
             SizedBox(height: 16),
           ],
@@ -195,29 +205,30 @@ class _CustomDialogState extends State<CustomDialog> {
       ),
     );
   }
-  shareText()async{
-    final box = context.findRenderObject() as RenderBox;
-    await Share.share("\n${widget.kasedaName}\n\n${widget.kaseda}\n\n",
-        subject: "",
-        sharePositionOrigin:
-        box.localToGlobal(Offset.zero) &
-        box.size);
+
+  shareText() async {
+    // final box = context.findRenderObject() as RenderBox;
+    // await Share.share("\n\n\n\n\n",
+    //     subject: "",
+    //     sharePositionOrigin:
+    //     box.localToGlobal(Offset.zero) &
+    //     box.size);
   }
 
-
   //التقاط الصورة
-  void captureScreenShot(BuildContext context) async{
+  void captureScreenShot(BuildContext context) async {
     final directory = await getTemporaryDirectory();
     Uint8List? imageBytes = await screenshotController.capture();
-    String dateTime=DateTime.now().year.toString()+DateTime.now().month.toString()+DateTime.now().day.toString()+DateTime.now().hour.toString()+DateTime.now().minute.toString()+DateTime.now().second.toString();
+    String dateTime = DateTime.now().year.toString() +
+        DateTime.now().month.toString() +
+        DateTime.now().day.toString() +
+        DateTime.now().hour.toString() +
+        DateTime.now().minute.toString() +
+        DateTime.now().second.toString();
     String filePath = '${directory.path}/screenshot$dateTime.png';
     await File(filePath).writeAsBytes(imageBytes!);
     // File tempFile = File(filePath);
-    await Share.shareFiles([filePath],
-        text: '${widget.kasedaName}',
-        subject: '');
+    await Share.shareXFiles([XFile(filePath)], text: '', subject: '');
     // saveImageToGallery(context,imageBytes);
-
   }
-
 }
