@@ -1148,25 +1148,24 @@ class ShareDialog extends StatelessWidget {
                           if (provider.versesToShareList.isEmpty) {
                             Utils().displayToastMessage(
                                 'select_some_verses_to_share'.tr());
-                          } else {}
-
-                          Future(
-                            () {
-                              Navigator.of(context).pop();
-
-                              return showDialog(
-                                barrierColor: Colors.transparent,
-                                context: context,
-                                builder: (context) => FractionallySizedBox(
-                                  widthFactor: .9,
-                                  heightFactor: .8,
-                                  child: ShareDialog2(
-                                    mediaQuery: mediaQuery,
+                          } else {
+                            Future(
+                              () {
+                                Navigator.of(context).pop();
+                                return showDialog(
+                                  barrierColor: Colors.transparent,
+                                  context: context,
+                                  builder: (context) => FractionallySizedBox(
+                                    widthFactor: .9,
+                                    heightFactor: .8,
+                                    child: ShareDialog2(
+                                      mediaQuery: mediaQuery,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          );
+                                );
+                              },
+                            );
+                          }
                         },
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
