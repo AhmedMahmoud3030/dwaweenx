@@ -56,8 +56,7 @@ class HomeScreen extends StatelessWidget {
                         ? Center(
                             child: Container(
                               padding: EdgeInsets.only(
-                                  bottom:
-                                      mediaQuery.height / 2),
+                                  bottom: mediaQuery.height / 2),
                               width: mediaQuery.width,
                               height: mediaQuery.height,
                               child: Center(
@@ -128,8 +127,7 @@ class HomeScreen extends StatelessWidget {
                                         "view_all".tr(),
                                         style: TextStyle(
                                             color: Colors.teal,
-                                            fontSize:
-                                                mediaQuery.width / 25,
+                                            fontSize: mediaQuery.width / 25,
                                             fontFamily: "Cairo",
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -187,8 +185,7 @@ class HomeScreen extends StatelessWidget {
                                     return Container(
                                       width: mediaQuery.width,
                                       margin: EdgeInsets.symmetric(
-                                          horizontal:
-                                              mediaQuery.width / 30),
+                                          horizontal: mediaQuery.width / 30),
                                       child: InkWell(
                                         child: Padding(
                                           padding: const EdgeInsets.all(4.0),
@@ -209,7 +206,7 @@ class HomeScreen extends StatelessWidget {
                                                     Alignment.centerRight,
                                                 child: Text(
                                                   provider.HomeScreenData[index]
-                                                          .name,
+                                                      .name,
                                                   style: TextStyle(
                                                       color: Colors.teal,
                                                       fontFamily: "Cairo"),
@@ -236,18 +233,19 @@ class HomeScreen extends StatelessWidget {
                                                       context.locale
                                                                   .languageCode ==
                                                               'ar'
-                                                          ? Utils().convertToArabicNumber(provider
+                                                          ? Utils().convertToArabicNumber(
+                                                              provider
                                                                   .HomeScreenData[
                                                                       index]
                                                                   .kasaed
                                                                   .length
                                                                   .toString())
                                                           : provider
-                                                                  .HomeScreenData[
-                                                                      index]
-                                                                  .kasaed
-                                                                  .length
-                                                                  .toString() ,
+                                                              .HomeScreenData[
+                                                                  index]
+                                                              .kasaed
+                                                              .length
+                                                              .toString(),
                                                       style: TextStyle(
                                                         color: Colors.teal,
                                                         fontFamily: "Cairo",
@@ -345,8 +343,7 @@ class HomeScreen extends StatelessWidget {
                                         "view_all".tr(),
                                         style: TextStyle(
                                             color: Colors.teal,
-                                            fontSize:
-                                                mediaQuery.width / 25,
+                                            fontSize: mediaQuery.width / 25,
                                             fontFamily: "Cairo",
                                             fontWeight: FontWeight.bold),
                                       ),

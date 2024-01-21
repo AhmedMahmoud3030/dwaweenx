@@ -4,15 +4,14 @@ import 'audio.dart';
 
 class KasydaBody extends Equatable {
   final String id;
- final  List<Audio> audio;
-
-final   String purpose;
-final   String type;
-final   String name;
-final   String nameT;
-final   String kaseyda;
-final   String kaseydaT;
-final   String letter;
+  final List<Audio> audio;
+  final String purpose;
+  final String type;
+  final String name;
+  final String nameT;
+  final String kaseyda;
+  final String kaseydaT;
+  final String letter;
 
   KasydaBody({
     required this.id,

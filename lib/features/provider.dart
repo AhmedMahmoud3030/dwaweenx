@@ -10,9 +10,6 @@ import 'package:dwaweenx/Domain/Entities/dewan.dart';
 import 'package:dwaweenx/Domain/Entities/dewanBody.dart';
 import 'package:dwaweenx/Domain/Entities/groupByPurpose.dart';
 import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
-import 'package:dwaweenx/Models/FavModel.dart';
-import 'package:dwaweenx/core/help/database_helper_fav.dart';
-import 'package:dwaweenx/core/help/database_helper_notification.dart';
 import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/features/About/about.dart';
 import 'package:dwaweenx/features/Dwaween/view.dart';
@@ -48,12 +45,14 @@ class BaseProvider extends ChangeNotifier {
                   sheikhAr: 'Youssra1',
                   sheikhEn: 'Youssra1en',
                   url:
-                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Youssra%20El%20Hawary%20-%20Bas%20Kollo%20Yehoon%20%EF%BD%9C%20%D9%8A%D8%B3%D8%B1%D8%A7%20%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%B1%D9%8A%20-%20%D8%A8%D8%B3%20%D9%83%D9%8F%D9%84%D9%91%D9%87%20%D9%8A%D9%87%D9%88%D9%86.mp3?alt=media&token=55690100-9dd6-442c-b402-3adbede98486'),
+                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Youssra%20El%20Hawary%20-%20Bas%20Kollo%20Yehoon%20%EF%BD%9C%20%D9%8A%D8%B3%D8%B1%D8%A7%20%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%B1%D9%8A%20-%20%D8%A8%D8%B3%20%D9%83%D9%8F%D9%84%D9%91%D9%87%20%D9%8A%D9%87%D9%88%D9%86.mp3?alt=media&token=55690100-9dd6-442c-b402-3adbede98486',
+                  id: 'audio1.mp3'),
               Audio(
                   sheikhAr: 'Aziz1',
                   sheikhEn: 'sAzizen1',
                   url:
-                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033')
+                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033',
+                  id: 'audio1.mp3')
             ],
             purpose: 'purpose',
             type: 'Kasyda',
@@ -72,7 +71,8 @@ class BaseProvider extends ChangeNotifier {
                   sheikhAr: 'sheikhAr',
                   sheikhEn: 'sheikhEn',
                   url:
-                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033')
+                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033',
+                  id: 'audio1.mp3')
             ],
             purpose: 'purpose',
             type: 'Kasyda',
@@ -393,6 +393,10 @@ class BaseProvider extends ChangeNotifier {
 
   //?============================KasydaDetailsScreen=================================================
   TextEditingController KasydaDetailsController = TextEditingController();
+  ScreenshotController screenshotController = ScreenshotController();
+
+  FirebaseStorage storage = FirebaseStorage.instance;
+
   KasydaBody? _KasydaDetailsBody;
 
   KasydaBody? get KasydaDetailsBody => _KasydaDetailsBody;
@@ -534,7 +538,6 @@ class BaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final storage = FirebaseStorage.instance;
   ListResult? result;
   List<String> urls = [];
   List<Future<String>> xurls = [];
@@ -631,53 +634,13 @@ class BaseProvider extends ChangeNotifier {
     // saveImageToGallery(context,imageBytes);
   }
 
-  //////////////////////////////////////////////
-
-  DatabaseHelperNotificarion dbNotify = new DatabaseHelperNotificarion();
-  DatabaseHelperFavourite dbFav = new DatabaseHelperFavourite();
-
-  TextEditingController tc_title = TextEditingController();
-  TextEditingController tc_body = TextEditingController();
-
-  ScreenshotController screenshotController = ScreenshotController();
-  List<FavModel> allFav = <FavModel>[];
-  FavModel favModel = FavModel('', '', '', '');
-
-  List<String> allTexts = [];
-
-  List<String> selectedTexts = [];
-
   splitKasyda() {
     K = KasydaDetailsBody!.kaseyda.toString().split(".");
     KT = KasydaDetailsBody!.kaseydaT.toString().split(".");
     notifyListeners();
   }
 
-  // void saveNote(String title, String body, String kName, String kasyeda,
-  //     String kNameT, String kasyedaT) async {
-  //   await dbNotify.saveDuaa(NoteModel(
-  //       "$title", "$body", "$kName", "$kasyeda", "$kNameT", "$kasyedaT"));
-  // }
-
-  void saveFav(
-      String kName, String kasyeda, String kNameT, String kasyedaT) async {
-    await dbFav.saveFav(FavModel("$kName", "$kasyeda", "$kNameT", "$kasyedaT"));
-  }
-
-  void deleteFav(FavModel currentNote) async {
-    await dbFav.deleteFav(currentNote.id);
-    // getAllData();
-  }
-
-  String formatTime(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final hours = twoDigits(duration.inHours);
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return [if (duration.inHours > 0) hours, minutes, seconds].join(':');
-  }
-
-  searchKasydaDetails() {
+  Future<void> downloadFile() async {
     notifyListeners();
   }
 

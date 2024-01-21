@@ -356,18 +356,56 @@ class KasydaDetails extends StatelessWidget {
                                     iconSize: 30,
                                     padding: EdgeInsets.zero,
                                     onPressed: () {
-                                      if (provider.loobMode == 0) {
-                                        provider.audioPlayer
-                                            .setLoopMode(LoopMode.one);
-                                        provider.setLoobMode(1);
-                                      } else if (provider.loobMode == 1) {
-                                        provider.audioPlayer
-                                            .setLoopMode(LoopMode.all);
-                                        provider.setLoobMode(2);
-                                      } else if (provider.loobMode == 2) {
-                                        provider.audioPlayer
-                                            .setLoopMode(LoopMode.off);
-                                        provider.setLoobMode(0);
+                                      if (provider.audioPlayer.position
+                                                  .inSeconds >=
+                                              0 &&
+                                          provider.audioPlayer.position
+                                                  .inSeconds <
+                                              10) {
+                                        provider.audioPlayer.seek(Duration(
+                                            seconds: provider.audioPlayer
+                                                    .position.inSeconds -
+                                                provider.audioPlayer.position
+                                                    .inSeconds));
+                                      } else {
+                                        provider.audioPlayer.seek(
+                                          Duration(
+                                            seconds: provider.audioPlayer
+                                                    .position.inSeconds -
+                                                10,
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    icon: SvgPicture.asset(
+                                      width: 30,
+                                      height: 30,
+                                      "assets/img/ic_p.svg",
+                                    ),
+                                  ),
+                                  IconButton(
+                                    iconSize: 30,
+                                    padding: EdgeInsets.zero,
+                                    onPressed: () {
+                                      if (provider.audioPlayer.position
+                                                  .inSeconds >=
+                                              0 &&
+                                          provider.audioPlayer.position
+                                                  .inSeconds <
+                                              60) {
+                                        provider.audioPlayer.seek(Duration(
+                                            seconds: provider.audioPlayer
+                                                    .position.inSeconds -
+                                                provider.audioPlayer.position
+                                                    .inSeconds));
+                                      } else {
+                                        provider.audioPlayer.seek(
+                                          Duration(
+                                            seconds: provider.audioPlayer
+                                                    .position.inSeconds -
+                                                60,
+                                          ),
+                                        );
                                       }
                                     },
                                     icon: SvgPicture.asset(
@@ -375,32 +413,6 @@ class KasydaDetails extends StatelessWidget {
                                         height: 30,
                                         "assets/img/ic_pspeed.svg"),
                                   ),
-                                  IconButton(
-                                      iconSize: 30,
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        if (provider.audioPlayer.position
-                                                    .inSeconds >=
-                                                0 &&
-                                            provider.audioPlayer.position
-                                                    .inSeconds <
-                                                10) {
-                                          provider.audioPlayer.seek(Duration(
-                                              seconds: provider.audioPlayer
-                                                      .position.inSeconds -
-                                                  provider.audioPlayer.position
-                                                      .inSeconds));
-                                        } else {
-                                          provider.audioPlayer.seek(Duration(
-                                              seconds: provider.audioPlayer
-                                                      .position.inSeconds -
-                                                  10));
-                                        }
-                                      },
-                                      icon: SvgPicture.asset(
-                                          width: 30,
-                                          height: 30,
-                                          "assets/img/ic_p.svg")),
                                 ],
                               ),
                               IconButton(
@@ -428,6 +440,17 @@ class KasydaDetails extends StatelessWidget {
                       ),
                     )
                   ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: TextButton(
+                    onPressed: () {
+                      provider.downloadFile();
+                    },
+                    child: Text(
+                      'helllllllllo',
+                    ),
+                  ),
                 )
               ],
             ),
@@ -1134,7 +1157,6 @@ class ShareDialog extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-
             Row(
               children: [
                 Expanded(
@@ -1189,24 +1211,6 @@ class ShareDialog extends StatelessWidget {
                 ),
               ],
             ),
-
-            // Future(
-            //   () {
-            //     Provider.of<BaseProvider>(context, listen: false)
-            //         .getListOfImages();
-            //     return showDialog(
-            //       barrierColor: Colors.transparent,
-            //       context: context,
-            //       builder: (context) => FractionallySizedBox(
-            //         widthFactor: .9,
-            //         heightFactor: .55,
-            //         child: ShareDialog(
-            //           mediaQuery: mediaQuery,
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // );
             SizedBox(
               height: 10,
             ),

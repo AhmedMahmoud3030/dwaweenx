@@ -539,7 +539,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                           ),
                                           onTap: () {
                                             provider.setKasydaDetailsBody( provider
-                                                .KasaedDetailsScreenData[index],context.locale.languageCode,).then((value) => provider.splitKasyda()
+                                                .KasaedDetailsScreenData[index],context.locale.languageCode).then((value) => provider.splitKasyda()
 );
                                             Navigator.push(
                                               context,
