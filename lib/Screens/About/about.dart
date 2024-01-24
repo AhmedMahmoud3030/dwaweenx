@@ -12,7 +12,6 @@ class about extends StatefulWidget {
 }
 
 final TextEditingController _searchController = TextEditingController();
-int _selectedIndex = 0;
 String SearchValue = "";
 var filtared;
 var items;

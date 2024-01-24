@@ -628,7 +628,7 @@ class BaseProvider extends ChangeNotifier {
         DateTime.now().minute.toString() +
         DateTime.now().second.toString();
     String filePath = '${directory.path}/screenshot$dateTime.png';
-    await File(filePath).writeAsBytes(imageBytes!);
+    await File(filePath).writeAsBytes(imageBytes);
     // File tempFile = File(filePath);
     await Share.shareXFiles([XFile(filePath)], text: '', subject: '');
     // saveImageToGallery(context,imageBytes);
@@ -641,6 +641,19 @@ class BaseProvider extends ChangeNotifier {
   }
 
   Future<void> downloadFile() async {
+    var childPath =
+        'Audios/${dewanBody!.dawawen[_dewanIndex!].id}/${KasydaDetailsBody!.id}/${KasydaDetailsBody!.audio[_audioIndex].id}';
+
+    var directoryRef = storage.ref().child(childPath);
+    try {
+      String x = await directoryRef.getDownloadURL();
+      print('hahahahahhahahahahhaahahahhahahhahaha');
+      print(x);
+    } catch (e) {
+      print("Error downloading file: $e");
+      throw e;
+    }
+
     notifyListeners();
   }
 
