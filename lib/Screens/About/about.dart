@@ -13,7 +13,7 @@ class about extends StatefulWidget {
 
 final TextEditingController _searchController = TextEditingController();
 String SearchValue = "";
-var filtared;
+var filtared;   
 var items;
 
 Future getData() async {
