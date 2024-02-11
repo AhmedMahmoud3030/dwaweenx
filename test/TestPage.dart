@@ -23,18 +23,18 @@ class _TestPageState extends State<TestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Test Page'),
+        title: const Text('Test Page'),
       ),
       body: Screenshot(
         controller: screenshotController,
         child: Center(
           child: Container(
             color: Colors.blue,
-            child: Text(
+            child: const Text(
               'This is a test page for screenshots',
               style: TextStyle(color: Colors.white, fontSize: 20.0),
             ),
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
           ),
         ),
       ),
@@ -52,7 +52,7 @@ class _TestPageState extends State<TestPage> {
               subject: 'Screenshot Shared');
 
           },
-        child: Icon(Icons.share),
+        child: const Icon(Icons.share),
       ),
     );
   }
@@ -70,7 +70,6 @@ class _TestPageState extends State<TestPage> {
 
       return filePath;
     } catch (e) {
-      print('Error saving image: $e');
       return '';
     }
   }

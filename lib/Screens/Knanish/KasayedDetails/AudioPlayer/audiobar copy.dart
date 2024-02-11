@@ -24,7 +24,7 @@ class _AudiobarState extends State<Audiobar> {
     return SafeArea(
       child: Container(
         height: 125,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 27, 161, 134),
         ),
         child: Column(
@@ -35,15 +35,15 @@ class _AudiobarState extends State<Audiobar> {
                 SizedBox(
                   height: 40,
                   width: 50,
-                  child: SvgPicture.asset("assets/img/ic_mnshed.svg"),
+                  child: SvgPicture.asset('assets/img/ic_mnshed.svg'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                   width: 300,
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      "Voice name",
+                      'Voice name',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -52,13 +52,13 @@ class _AudiobarState extends State<Audiobar> {
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 SizedBox(
                     height: 25,
                     width: 350,
-                    child: SvgPicture.asset("assets/img/load.svg")),
+                    child: SvgPicture.asset('assets/img/load.svg')),
               ],
             ),
             Row(
@@ -69,21 +69,21 @@ class _AudiobarState extends State<Audiobar> {
                   width: 55,
                   child: IconButton(
                       onPressed: null,
-                      icon: SvgPicture.asset("assets/img/ic_downlod.svg")),
+                      icon: SvgPicture.asset('assets/img/ic_downlod.svg')),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
                       onPressed: null,
-                      icon: SvgPicture.asset("assets/img/ic_pspeed.svg")),
+                      icon: SvgPicture.asset('assets/img/ic_pspeed.svg')),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
                       onPressed: null,
-                      icon: SvgPicture.asset("assets/img/ic_p.svg")),
+                      icon: SvgPicture.asset('assets/img/ic_p.svg')),
                 ),
                 SizedBox(
                   height: 45,
@@ -93,30 +93,30 @@ class _AudiobarState extends State<Audiobar> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => audioplayerx()));
+                                builder: (context) => const audioplayerx()));
                       },
-                      icon: SvgPicture.asset("assets/img/ic_play.svg")),
+                      icon: SvgPicture.asset('assets/img/ic_play.svg')),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
                       onPressed: null,
-                      icon: SvgPicture.asset("assets/img/ic_next.svg")),
+                      icon: SvgPicture.asset('assets/img/ic_next.svg')),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
                       onPressed: null,
-                      icon: SvgPicture.asset("assets/img/ic_nspeed.svg")),
+                      icon: SvgPicture.asset('assets/img/ic_nspeed.svg')),
                 ),
                 SizedBox(
                   height: 55,
                   width: 55,
                   child: IconButton(
                       onPressed: null,
-                      icon: SvgPicture.asset("assets/img/ic_repeat.svg")),
+                      icon: SvgPicture.asset('assets/img/ic_repeat.svg')),
                 ),
               ],
             ),

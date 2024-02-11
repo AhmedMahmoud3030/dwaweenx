@@ -26,13 +26,13 @@ Future getkasyed() async {
   return data;
 }
 
-var a = ["0"];
-var b = ["0"];  
+var a = ['0'];
+var b = ['0'];
 
 class _kasyedaAreaState extends State<kasyedaArea> {
   @override
   Widget build(BuildContext context) {
-    var k = widget.kasyeda.toString().split(".");
+    var k = widget.kasyeda.toString().split('.');
     return SafeArea(
       child: Align(
         alignment: Alignment.center,
@@ -61,7 +61,7 @@ class _kasyedaAreaState extends State<kasyedaArea> {
                                     k[index],
                                     style: TextStyle(
                                         color: Colors.black87,
-                                        fontFamily: "Amiri Regular",
+                                        fontFamily: 'Amiri Regular',
                                         fontSize: widget.size),
                                     textAlign: TextAlign.right,
                                   ),
@@ -75,7 +75,7 @@ class _kasyedaAreaState extends State<kasyedaArea> {
                             k[index],
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontFamily: "Amiri Regular",
+                                fontFamily: 'Amiri Regular',
                                 fontSize: widget.size),
                             textAlign: TextAlign.left,
                           ),
@@ -129,7 +129,7 @@ class ColoredText extends StatelessWidget {
           TextSpan(
             text: '$word ',
             style: TextStyle(
-                color: textcolor, fontFamily: "Amiri Regular", fontSize: size),
+                color: textcolor, fontFamily: 'Amiri Regular', fontSize: size),
           ),
         );
       } else {
@@ -138,7 +138,7 @@ class ColoredText extends StatelessWidget {
             text: '$word ',
             style: TextStyle(
                 color: Colors.teal,
-                fontFamily: "Amiri Regular",
+                fontFamily: 'Amiri Regular',
                 fontSize: size),
           ),
         );

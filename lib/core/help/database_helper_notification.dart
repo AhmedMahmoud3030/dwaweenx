@@ -46,7 +46,7 @@ class DatabaseHelperNotificarion {
   Future<List> getAllDuaa() async {
     var dbClient = await db;
     var result = await dbClient!
-        .query(tableDuaaFav, orderBy: "$columnId DESC", columns: [
+        .query(tableDuaaFav, orderBy: '$columnId DESC', columns: [
       columnId,
       columnTitle,
       columnBody,

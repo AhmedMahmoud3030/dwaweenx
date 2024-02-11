@@ -45,7 +45,7 @@ class _AudiobarState extends State<Audiobar> {
         return SafeArea(
           child: Container(
             height: 125,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(255, 27, 161, 134),
             ),
             child: Column(
@@ -57,25 +57,25 @@ class _AudiobarState extends State<Audiobar> {
                       height: 40,
                       width: 50,
                       child: IconButton(
-                        icon: SvgPicture.asset("assets/img/ic_mnshed.svg"),
+                        icon: SvgPicture.asset('assets/img/ic_mnshed.svg'),
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Container(
-                                padding: EdgeInsets.all(16),
+                                padding: const EdgeInsets.all(16),
                                 height: 250,
                                 width: MediaQuery.of(context).size.width,
-                                child: Column(
+                                child: const Column(
                                   children: [
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Text(
-                                          "المفضلة",
+                                          'المفضلة',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
                                               color: Colors.teal,
-                                              fontFamily: "Amiri Regular"),
+                                              fontFamily: 'Amiri Regular'),
                                         )
                                       ],
                                     ),
@@ -90,11 +90,11 @@ class _AudiobarState extends State<Audiobar> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Text(
-                                          "أضف ملاحظة",
+                                          'أضف ملاحظة',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
                                               color: Colors.teal,
-                                              fontFamily: "Amiri Regular"),
+                                              fontFamily: 'Amiri Regular'),
                                         )
                                       ],
                                     ),
@@ -118,8 +118,8 @@ class _AudiobarState extends State<Audiobar> {
                                         SizedBox(
                                           width: 35.0,
                                           height: 35.0,
-                                          child: const DecoratedBox(
-                                            decoration: const BoxDecoration(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
                                                 color: Colors.grey,
                                                 shape: BoxShape.circle),
                                           ),
@@ -130,8 +130,8 @@ class _AudiobarState extends State<Audiobar> {
                                         SizedBox(
                                           width: 35.0,
                                           height: 35.0,
-                                          child: const DecoratedBox(
-                                            decoration: const BoxDecoration(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
                                                 color: Colors.blue,
                                                 shape: BoxShape.circle),
                                           ),
@@ -142,8 +142,8 @@ class _AudiobarState extends State<Audiobar> {
                                         SizedBox(
                                           width: 35.0,
                                           height: 35.0,
-                                          child: const DecoratedBox(
-                                            decoration: const BoxDecoration(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
                                                 color: Colors.teal,
                                                 shape: BoxShape.circle),
                                           ),
@@ -154,8 +154,8 @@ class _AudiobarState extends State<Audiobar> {
                                         SizedBox(
                                           width: 35.0,
                                           height: 35.0,
-                                          child: const DecoratedBox(
-                                            decoration: const BoxDecoration(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
                                                 color: Colors.black,
                                                 shape: BoxShape.circle),
                                           ),
@@ -164,11 +164,11 @@ class _AudiobarState extends State<Audiobar> {
                                           width: 20,
                                         ),
                                         Text(
-                                          "لون الخط",
+                                          'لون الخط',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
                                               color: Colors.teal,
-                                              fontFamily: "Amiri Regular"),
+                                              fontFamily: 'Amiri Regular'),
                                         ),
                                       ],
                                     ),
@@ -185,8 +185,8 @@ class _AudiobarState extends State<Audiobar> {
                                         SizedBox(
                                           width: 35.0,
                                           height: 35.0,
-                                          child: const DecoratedBox(
-                                            decoration: const BoxDecoration(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
                                                 color: Colors.grey,
                                                 shape: BoxShape.circle),
                                           ),
@@ -197,8 +197,8 @@ class _AudiobarState extends State<Audiobar> {
                                         SizedBox(
                                           width: 35.0,
                                           height: 35.0,
-                                          child: const DecoratedBox(
-                                            decoration: const BoxDecoration(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
                                                 color: Colors.blue,
                                                 shape: BoxShape.circle),
                                           ),
@@ -209,8 +209,8 @@ class _AudiobarState extends State<Audiobar> {
                                         SizedBox(
                                           width: 35.0,
                                           height: 35.0,
-                                          child: const DecoratedBox(
-                                            decoration: const BoxDecoration(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
                                                 color: Colors.teal,
                                                 shape: BoxShape.circle),
                                           ),
@@ -221,8 +221,8 @@ class _AudiobarState extends State<Audiobar> {
                                         SizedBox(
                                           width: 35.0,
                                           height: 35.0,
-                                          child: const DecoratedBox(
-                                            decoration: const BoxDecoration(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
                                                 color: Colors.black,
                                                 shape: BoxShape.circle),
                                           ),
@@ -231,11 +231,11 @@ class _AudiobarState extends State<Audiobar> {
                                           width: 10,
                                         ),
                                         Text(
-                                          "لون الخلفية",
+                                          'لون الخلفية',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
                                               color: Colors.teal,
-                                              fontFamily: "Amiri Regular"),
+                                              fontFamily: 'Amiri Regular'),
                                         ),
                                       ],
                                     )
@@ -250,15 +250,15 @@ class _AudiobarState extends State<Audiobar> {
                         },
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                       width: 300,
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: Text(
-                          "صوت القصيدة أبرق بدا نحو المرابع يلمع",
+                          'صوت القصيدة أبرق بدا نحو المرابع يلمع',
                           style: TextStyle(
-                              color: Colors.white, fontFamily: "Amiri Regular"),
+                              color: Colors.white, fontFamily: 'Amiri Regular'),
                         ),
                       ),
                     ),
@@ -266,7 +266,7 @@ class _AudiobarState extends State<Audiobar> {
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     SizedBox(
@@ -302,9 +302,9 @@ class _AudiobarState extends State<Audiobar> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Container(
-                                  padding: EdgeInsets.all(16),
+                                  padding: const EdgeInsets.all(16),
                                   height: 90,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Colors.teal,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20)),
@@ -316,7 +316,7 @@ class _AudiobarState extends State<Audiobar> {
                               ),
                             );
                           },
-                          icon: SvgPicture.asset("assets/img/ic_downlod.svg")),
+                          icon: SvgPicture.asset('assets/img/ic_downlod.svg')),
                     ),
                     SizedBox(
                       height: 45,
@@ -326,7 +326,7 @@ class _AudiobarState extends State<Audiobar> {
                             _audioPlayer.seek(Duration(
                                 seconds: _audioPlayer.position.inSeconds - 60));
                           },
-                          icon: SvgPicture.asset("assets/img/ic_pspeed.svg")),
+                          icon: SvgPicture.asset('assets/img/ic_pspeed.svg')),
                     ),
                     SizedBox(
                       height: 45,
@@ -336,7 +336,7 @@ class _AudiobarState extends State<Audiobar> {
                             _audioPlayer.seek(Duration(
                                 seconds: _audioPlayer.position.inSeconds - 10));
                           },
-                          icon: SvgPicture.asset("assets/img/ic_p.svg")),
+                          icon: SvgPicture.asset('assets/img/ic_p.svg')),
                     ),
                     SizedBox(
                       height: 45,
@@ -352,8 +352,8 @@ class _AudiobarState extends State<Audiobar> {
                             }
                           },
                           icon: !p
-                              ? SvgPicture.asset("assets/img/ic_play.svg")
-                              : SvgPicture.asset("assets/img/ic_pause.svg")),
+                              ? SvgPicture.asset('assets/img/ic_play.svg')
+                              : SvgPicture.asset('assets/img/ic_pause.svg')),
                     ),
                     SizedBox(
                       height: 45,
@@ -363,7 +363,7 @@ class _AudiobarState extends State<Audiobar> {
                             _audioPlayer.seek(Duration(
                                 seconds: _audioPlayer.position.inSeconds + 10));
                           },
-                          icon: SvgPicture.asset("assets/img/ic_next.svg")),
+                          icon: SvgPicture.asset('assets/img/ic_next.svg')),
                     ),
                     SizedBox(
                       height: 45,
@@ -373,7 +373,7 @@ class _AudiobarState extends State<Audiobar> {
                             _audioPlayer.seek(Duration(
                                 seconds: _audioPlayer.position.inSeconds + 60));
                           },
-                          icon: SvgPicture.asset("assets/img/ic_nspeed.svg")),
+                          icon: SvgPicture.asset('assets/img/ic_nspeed.svg')),
                     ),
                     SizedBox(
                       height: 55,
@@ -382,7 +382,7 @@ class _AudiobarState extends State<Audiobar> {
                           onPressed: () {
                             _audioPlayer.speed;
                           },
-                          icon: SvgPicture.asset("assets/img/ic_repeat.svg")),
+                          icon: SvgPicture.asset('assets/img/ic_repeat.svg')),
                     ),
                   ],
                 ),

@@ -24,7 +24,7 @@ class ShareDialogStep2 extends StatelessWidget {
       ),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -41,7 +41,7 @@ class ShareDialogStep2 extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       side: BorderSide(
@@ -49,7 +49,7 @@ class ShareDialogStep2 extends StatelessWidget {
                               shareTextSelected ? Colors.black : Colors.white),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Text(
                         'مشاركة كنص',
@@ -66,7 +66,7 @@ class ShareDialogStep2 extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       side: BorderSide(
@@ -74,7 +74,7 @@ class ShareDialogStep2 extends StatelessWidget {
                               !shareTextSelected ? Colors.black : Colors.white),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Text(
                         'مشاركة كصورة',
@@ -87,7 +87,7 @@ class ShareDialogStep2 extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             //قائمة الصور
             Visibility(
@@ -101,14 +101,14 @@ class ShareDialogStep2 extends StatelessWidget {
                     return InkWell(
                       onTap: () {},
                       child: Container(
-                        margin: EdgeInsets.all(8),
+                        margin: const EdgeInsets.all(8),
                         width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: Colors.black),
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius: const BorderRadius.all(Radius.circular(10)),
                           child: Image.asset(
                             'assets/img/imageShareList$index.jpg',
                             fit: BoxFit.fill,
@@ -120,7 +120,7 @@ class ShareDialogStep2 extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Screenshot(
               controller: screenshotController,
               child: Container(
@@ -133,7 +133,7 @@ class ShareDialogStep2 extends StatelessWidget {
                       child: Container(
                         height: 200,
                         width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Image.asset(
                           'assets/img/imageShareList.jpg',
                           // Replace with actual asset path
@@ -141,9 +141,9 @@ class ShareDialogStep2 extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     //النصوص
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // Text(allText[0],style: TextStyle(fontFamily: 'Cairo'),),
@@ -153,11 +153,11 @@ class ShareDialogStep2 extends StatelessWidget {
                       ],
                     ),
 
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text('شبكة تراث الفيضة التجارية',
+                        const Text('شبكة تراث الفيضة التجارية',
                             style: TextStyle(
                                 fontFamily: 'Cairo',
                                 fontSize: 10,
@@ -170,7 +170,7 @@ class ShareDialogStep2 extends StatelessWidget {
                           height: 30,
                         ),
                         // Replace with actual asset path
-                        Text(
+                        const Text(
                           'تطبيق دواوين الشيخ إبراهيم نياس',
                           style: TextStyle(
                               fontFamily: 'Cairo',
@@ -180,7 +180,7 @@ class ShareDialogStep2 extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -194,12 +194,12 @@ class ShareDialogStep2 extends StatelessWidget {
                   captureScreenShot(context);
                 }
               },
-              child: Text(
+              child: const Text(
                 'مشاركة',
                 style: TextStyle(fontFamily: 'Cairo'),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
           ],
         ),
       ),

@@ -30,16 +30,16 @@ class share2 extends StatelessWidget {
                     itemBuilder: (context, index) => Container(
                         width: MediaQuery.of(context).size.width / 3,
                         height: MediaQuery.of(context).size.height / 7,
-                        margin: EdgeInsets.all(2),
+                        margin: const EdgeInsets.all(2),
                         child: Center(
-                          child: Image.asset("assets/img/share-img$index.jpg"),
+                          child: Image.asset('assets/img/share-img$index.jpg'),
                         ),
                         color: Colors.white)),
               ),
             ),
             Text(
               kasyeda,
-              style: TextStyle(color: Constants.primary, fontFamily: "Cairo"),
+              style: const TextStyle(color: Constants.primary, fontFamily: 'Cairo'),
               textAlign: TextAlign.right,
             ),
             const SizedBox(height: 10),

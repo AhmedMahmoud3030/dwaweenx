@@ -15,16 +15,16 @@ class KasydaBodyModel extends KasydaBody {
 
   factory KasydaBodyModel.fromJson(Map<String, dynamic> json) =>
       KasydaBodyModel(
-        id: json["id"],
+        id: json['id'],
         audio: List<AudioModel>.from(
-            json["audio"].map((x) => AudioModel.fromJson(x))),
-        purpose: json["purpose"],
-        type: json["type"],
-        name: json["name"],
-        nameT: json["nameT"],
-        kaseyda: json["kaseyda"],
-        kaseydaT: json["kaseydaT"],
-        letter: json["letter"],
+            json['audio'].map((x) => AudioModel.fromJson(x))),
+        purpose: json['purpose'],
+        type: json['type'],
+        name: json['name'],
+        nameT: json['nameT'],
+        kaseyda: json['kaseyda'],
+        kaseydaT: json['kaseydaT'],
+        letter: json['letter'],
       );
 
   

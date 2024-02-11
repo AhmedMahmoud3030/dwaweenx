@@ -1,5 +1,4 @@
 import 'package:dwaweenx/core/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -30,7 +29,7 @@ class _CommentState extends State<Comment> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.white, //change your color here
           ),
           title: Row(
@@ -39,7 +38,7 @@ class _CommentState extends State<Comment> {
                   child: Text(
                 'تواصل معنا',
                 style: TextStyle(
-                  fontFamily: "Cairo",
+                  fontFamily: 'Cairo',
                   color: Colors.white,
                   fontSize: MediaQuery.of(context).size.width / 22,
                   shadows: [
@@ -67,7 +66,7 @@ class _CommentState extends State<Comment> {
               ),
               Container(
                 child: Image.asset(
-                  "assets/img/message.png",
+                  'assets/img/message.png',
                   width: MediaQuery.of(context).size.width / 10,
                   height: MediaQuery.of(context).size.width / 10,
                 ),
@@ -77,7 +76,7 @@ class _CommentState extends State<Comment> {
           backgroundColor: Constants.primary,
         ),
         body: Container(
-          color: Color(0xfff8f9f9),
+          color: const Color(0xfff8f9f9),
           child: ListView(
             children: <Widget>[
               Container(
@@ -85,11 +84,11 @@ class _CommentState extends State<Comment> {
                 alignment: Alignment.center,
                 margin: EdgeInsets.all(MediaQuery.of(context).size.width / 12),
                 child: Text(
-                    "يمكنك ارسال استفساراتك أو اقتراحاتك عن طريق البريد الإلكترونى",
+                    'يمكنك ارسال استفساراتك أو اقتراحاتك عن طريق البريد الإلكترونى',
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width / 25,
                         color: Colors.black,
-                        fontFamily: "Cairo")),
+                        fontFamily: 'Cairo')),
               ),
               Container(
                 margin: EdgeInsets.all(MediaQuery.of(context).size.width / 20),
@@ -110,7 +109,7 @@ class _CommentState extends State<Comment> {
                             spreadRadius: 2,
                             //مدى تقلة
                             blurRadius: 5,
-                            offset: Offset(0, 2), // changes position of shadow
+                            offset: const Offset(0, 2), // changes position of shadow
                           ),
                         ],
                       ),
@@ -210,7 +209,7 @@ class DefaultElevatedButton extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: titleSize,
-              fontFamily: "Cairo"),
+              fontFamily: 'Cairo'),
         ),
       ),
     );

@@ -49,7 +49,7 @@ class DatabaseHelperFavourite{
     var dbClient = await db;
     var result = await dbClient!.query(
         tableDuaaFav ,
-        orderBy: "$columnId DESC",
+        orderBy: '$columnId DESC',
         columns: [columnId,columNkName,columnKText,columNkNameT,columnKTextT]
     );
     return result.toList();

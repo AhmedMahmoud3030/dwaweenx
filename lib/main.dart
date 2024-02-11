@@ -25,13 +25,13 @@ void main() async {
   runApp(
     EasyLocalization(
       child: MyApp(),
-      supportedLocales: [
+      supportedLocales: const [
         Locale('en'),
         Locale('ar'),
       ],
-      startLocale: Locale('ar'),
+      startLocale: const Locale('ar'),
       path: 'assets/lang',
-      fallbackLocale: Locale('ar'),
+      fallbackLocale: const Locale('ar'),
       useOnlyLangCode: true,
     ),
   );
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: EasyLocalization.of(context)!.supportedLocales,
         locale: EasyLocalization.of(context)!.locale,
         debugShowCheckedModeBanner: false,
-        home: Splash(),
+        home: const Splash(),
       ),
     );
   }

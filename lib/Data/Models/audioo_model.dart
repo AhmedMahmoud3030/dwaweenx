@@ -8,9 +8,9 @@ class AudioModel extends Audio {
       required super.url});
 
   factory AudioModel.fromJson(Map<String, dynamic> json) => AudioModel(
-        id: json["id"] ?? '',
-        sheikhAr: json["sheikhAr"],
-        sheikhEn: json["sheikhEn"],
-        url: json["url"],
+        id: json['id'] ?? '',
+        sheikhAr: json['sheikhAr'],
+        sheikhEn: json['sheikhEn'],
+        url: json['url'],
       );
 }

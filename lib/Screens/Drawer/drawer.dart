@@ -28,21 +28,21 @@ class _DrawerFb1State extends State<DrawerFb1> {
 
     return Drawer(
       child: Material(
-        color: Color.fromARGB(255, 255, 255, 255),
+        color: const Color.fromARGB(255, 255, 255, 255),
         child: ListView(
           children: <Widget>[
             SizedBox(
               height: 250,
               width: 500,
               child: SvgPicture.asset(
-                "assets/img/sidemenu.svg",
+                'assets/img/sidemenu.svg',
                 alignment: Alignment.topCenter,
                 //width: 500,
                 height: MediaQuery.of(context).size.height,
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 8.0),
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -55,19 +55,19 @@ class _DrawerFb1State extends State<DrawerFb1> {
                       children: [
                         const Spacer(),
                         Text(
-                          "المفضلة",
+                          'المفضلة',
                           //AppLocale.of(context).getTranslated("المفضلة"),
-                          key: ObjectKey("Favourit"),
+                          key: const ObjectKey('Favourit'),
                           style: TextStyle(
                               color: Constants.primary,
-                              fontFamily: "Cairo",
+                              fontFamily: 'Cairo',
                               fontSize: d3),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          "assets/img/fav.png",
+                          'assets/img/fav.png',
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -87,19 +87,19 @@ class _DrawerFb1State extends State<DrawerFb1> {
                       children: [
                         const Spacer(),
                         Text(
-                          "الملاحظات",
+                          'الملاحظات',
                           //AppLocale.of(context).getTranslated("الملاحظات"),
-                          key: ObjectKey("Notes"),
+                          key: const ObjectKey('Notes'),
                           style: TextStyle(
                               color: Constants.primary,
-                              fontFamily: "Cairo",
+                              fontFamily: 'Cairo',
                               fontSize: d3),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          "assets/img/notes.png",
+                          'assets/img/notes.png',
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -119,19 +119,19 @@ class _DrawerFb1State extends State<DrawerFb1> {
                       children: [
                         const Spacer(),
                         Text(
-                          "مشاركه",
+                          'مشاركه',
                           //AppLocale.of(context).getTranslated("مشاركه"),
-                          key: ObjectKey("Share"),
+                          key: const ObjectKey('Share'),
                           style: TextStyle(
                               color: Constants.primary,
-                              fontFamily: "Cairo",
+                              fontFamily: 'Cairo',
                               fontSize: d3),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          "assets/img/share.png",
+                          'assets/img/share.png',
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -153,19 +153,19 @@ class _DrawerFb1State extends State<DrawerFb1> {
                         children: [
                           const Spacer(),
                           Text(
-                            "اللغه",
+                            'اللغه',
                             // AppLocale.of(context).getTranslated("اللغه"),
-                            key: ObjectKey("Language"),
+                            key: const ObjectKey('Language'),
                             style: TextStyle(
                                 color: Constants.primary,
-                                fontFamily: "Cairo",
+                                fontFamily: 'Cairo',
                                 fontSize: d3),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Image.asset(
-                            "assets/img/lang.png",
+                            'assets/img/lang.png',
                             width: d1,
                             height: d1,
                             fit: BoxFit.fill,
@@ -186,19 +186,19 @@ class _DrawerFb1State extends State<DrawerFb1> {
                       children: [
                         const Spacer(),
                         Text(
-                          "تواصل معنا",
+                          'تواصل معنا',
                           //AppLocale.of(context).getTranslated("تواصل معنا"),
-                          key: ObjectKey("ContactUs"),
+                          key: const ObjectKey('ContactUs'),
                           style: TextStyle(
                               color: Constants.primary,
-                              fontFamily: "Cairo",
+                              fontFamily: 'Cairo',
                               fontSize: d3),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          "assets/img/contactus.png",
+                          'assets/img/contactus.png',
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -218,19 +218,19 @@ class _DrawerFb1State extends State<DrawerFb1> {
                       children: [
                         const Spacer(),
                         Text(
-                          "حول التطبيق",
+                          'حول التطبيق',
                           //AppLocale.of(context).getTranslated("تواصل معنا"),
-                          key: ObjectKey("AboutUs"),
+                          key: const ObjectKey('AboutUs'),
                           style: TextStyle(
                               color: Constants.primary,
-                              fontFamily: "Cairo",
+                              fontFamily: 'Cairo',
                               fontSize: d3),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          "assets/img/about.png",
+                          'assets/img/about.png',
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -257,10 +257,10 @@ class _DrawerFb1State extends State<DrawerFb1> {
     Navigator.of(context).pop();
     switch (index) {
       case 0:
-        navigateTo(context, FavDataBase());
+        navigateTo(context, const FavDataBase());
         break;
       case 1:
-        navigateTo(context, noteData());
+        navigateTo(context, const noteData());
         break;
       case 2:
         shareText();
@@ -269,7 +269,7 @@ class _DrawerFb1State extends State<DrawerFb1> {
         navigateTo(context, Comment());
         break;
       case 5:
-        navigateTo(context, AboutUs());
+        navigateTo(context, const AboutUs());
         break;
     }
   }
@@ -277,8 +277,8 @@ class _DrawerFb1State extends State<DrawerFb1> {
   shareText() async {
     final box = context.findRenderObject() as RenderBox;
     await Share.share(
-        "\nرابط التطبيق للاندرويد : \n # \nرابط التطبيق للايفون : \n #\n\n",
-        subject: "",
+        '\nرابط التطبيق للاندرويد : \n # \nرابط التطبيق للايفون : \n #\n\n',
+        subject: '',
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
 }

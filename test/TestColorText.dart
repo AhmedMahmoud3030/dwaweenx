@@ -7,7 +7,7 @@ class TestColorText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Colored Text Example'),
+        title: const Text('Colored Text Example'),
       ),
       body: Center(
         child: Column(
@@ -51,14 +51,14 @@ class ColoredText extends StatelessWidget {
         spans.add(
           TextSpan(
             text: '$word ',
-            style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+            style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
           ),
         );
       } else {
         spans.add(
           TextSpan(
             text: '$word ',
-            style: TextStyle(color: Colors.blue),
+            style: const TextStyle(color: Colors.blue),
           ),
         );
       }

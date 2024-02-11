@@ -48,20 +48,20 @@ class _AudioCardState extends State<AudioCard> {
         final positionData = snapshot.data;
         return Container(
           decoration: BoxDecoration(
-              color: Color(0xff51DECF),
+              color: const Color(0xff51DECF),
               borderRadius: BorderRadius.circular(10)),
           height: height / 4.06,
           width: width * .92,
           child: Stack(
             children: <Widget>[
               Image.asset(
-                "assets/images/paintings/banner.png",
+                'assets/images/paintings/banner.png',
                 height: height / 4.1,
                 width: width,
                 fit: BoxFit.fill,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Column(
                   children: [
                     Row(
@@ -71,24 +71,24 @@ class _AudioCardState extends State<AudioCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Audible_poems".tr(),
-                              style: TextStyle(
+                              'Audible_poems'.tr(),
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: "Cairo"),
+                                  fontFamily: 'Cairo'),
                             ),
-                            Text(
-                              " مدح الرسول صلى الله عليه وسلم",
+                            const Text(
+                              ' مدح الرسول صلى الله عليه وسلم',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.normal,
-                                  fontFamily: "Cairo"),
+                                  fontFamily: 'Cairo'),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
                         Expanded(
@@ -117,20 +117,20 @@ class _AudioCardState extends State<AudioCard> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           child: Text(
-                            "الشيخ إبراهيم إنياس",
+                            'الشيخ إبراهيم إنياس',
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: () {
@@ -144,12 +144,12 @@ class _AudioCardState extends State<AudioCard> {
                           },
                           icon: !p
                               ? SvgPicture.asset(
-                                  "assets/images/icons/ic_play.svg",
+                                  'assets/images/icons/ic_play.svg',
                                   width: 40,
                                   height: 40,
                                 )
                               : SvgPicture.asset(
-                                  "assets/images/icons/ic_pause.svg",
+                                  'assets/images/icons/ic_pause.svg',
                                   width: 40,
                                   height: 40,
                                 ),

@@ -14,13 +14,12 @@ class FavDataBase extends StatefulWidget {
   State<FavDataBase> createState() => _FavDataBaseState();
 }
 
-String SearchValue = "";
+String SearchValue = '';
 var filtared;
 var items;
 
 final scaffoldKey = GlobalKey<ScaffoldState>();
 
-int _selectedIndex = 0;
 
 TextEditingController controllerTitle = TextEditingController();
 TextEditingController controllerDesc = TextEditingController();
@@ -52,13 +51,13 @@ class _FavDataBaseState extends State<FavDataBase> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          color: Color.fromARGB(255, 250, 250, 234),
+          color: const Color.fromARGB(255, 250, 250, 234),
           child: Stack(
             children: [
               Stack(
                 children: [
                   SvgPicture.asset(
-                    "assets/images/paintings/img_head_home.svg",
+                    'assets/images/paintings/img_head_home.svg',
                     alignment: Alignment.topCenter,
                     width: MediaQuery.of(context).size.width * 4,
                     height: MediaQuery.of(context).size.height / 2,
@@ -71,20 +70,20 @@ class _FavDataBaseState extends State<FavDataBase> {
                       Container(
                         height: 60,
                         width: width,
-                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(horizontal: 12.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(color: Colors.grey, spreadRadius: 0.3),
                           ],
                         ),
                         child: Text(
                           'قائمة المفضلة',
                           style: TextStyle(
-                              fontFamily: "Cairo", fontSize: width / 25),
+                              fontFamily: 'Cairo', fontSize: width / 25),
                         ),
                       ),
                     ],
@@ -93,11 +92,11 @@ class _FavDataBaseState extends State<FavDataBase> {
               ),
               Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 250,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: allFav.length,
@@ -116,7 +115,7 @@ class _FavDataBaseState extends State<FavDataBase> {
                                        
                                       ));
                                 },
-                                leading: Icon(
+                                leading: const Icon(
                                   Icons.book,
                                   color: Constants.primary,
                                 ),
@@ -124,17 +123,17 @@ class _FavDataBaseState extends State<FavDataBase> {
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     allFav[index].kName,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.teal,
-                                        fontFamily: "Cairo"),
+                                        fontFamily: 'Cairo'),
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                   ),
                                 ),
                                 subtitle: Text(
                                   allFav[index].kNameT,
-                                  style: TextStyle(
-                                      color: Colors.teal, fontFamily: "Cairo"),
+                                  style: const TextStyle(
+                                      color: Colors.teal, fontFamily: 'Cairo'),
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                 ),
@@ -148,7 +147,7 @@ class _FavDataBaseState extends State<FavDataBase> {
                                           onTap: () {
                                             deleteFav(allFav[index]);
                                           },
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.delete,
                                             color: Colors.red,
                                           )),

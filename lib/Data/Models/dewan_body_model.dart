@@ -7,7 +7,7 @@ class DawawenBodyModel extends DawawenBody {
   DawawenBodyModel({required super.dawawen});
   factory DawawenBodyModel.fromJson(Map<String, dynamic> json) => DawawenBodyModel(
         dawawen:
-            List<DawawenModel>.from(json["Dawawen"].map((x) => DawawenModel.fromJson(x))),
+            List<DawawenModel>.from(json['Dawawen'].map((x) => DawawenModel.fromJson(x))),
       );
    
 }

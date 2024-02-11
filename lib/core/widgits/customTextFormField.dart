@@ -30,29 +30,29 @@ class CustomTextFormFiled extends StatelessWidget {
       width: mediaQuery.width * .9,
       child: TextFormField(
         onFieldSubmitted: onFieldSubmitted,
-        cursorRadius: Radius.circular(10),
+        cursorRadius: const Radius.circular(10),
         controller: textEditingController,
         onChanged: onChanged,
         cursorColor: Constants.primary,
         decoration: InputDecoration(
-          prefixIconColor: Color(0xff8C8C8C),
+          prefixIconColor: const Color(0xff8C8C8C),
           hintText: searchText.tr(),
           filled: true,
           fillColor: Colors.white,
           focusColor: Constants.primary,
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 3, color: Colors.white),
+            borderSide: const BorderSide(width: 3, color: Colors.white),
             borderRadius: BorderRadius.circular(10.0),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 3, color: Colors.white),
+            borderSide: const BorderSide(width: 3, color: Colors.white),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: Color(0xff8C8C8C),
             fontFamily: 'Cairo',
           ),
-          prefixIcon: Icon(
+          prefixIcon: const Icon(
             Icons.search,
             size: 30,
           ),
