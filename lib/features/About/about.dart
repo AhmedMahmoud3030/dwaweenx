@@ -1,4 +1,5 @@
 import 'package:dwaweenx/core/constants.dart';
+import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,7 +22,7 @@ class AboutScreen extends StatelessWidget {
         child: Stack(
           children: [
             SvgPicture.asset(
-              "assets/images/paintings/img_head_internal.svg",
+              Assets.paintingsImgHeadInternal,
               alignment: Alignment.topCenter,
               width: mediaQuery.width * 4,
               height: mediaQuery.height / 2,
@@ -33,25 +34,22 @@ class AboutScreen extends StatelessWidget {
                   height: mediaQuery.height * .09,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "shikkh".tr(),
+                          'shikkh'.tr(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: mediaQuery.width / 25,
-                            fontFamily: "Cairo",
+                            fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -60,7 +58,7 @@ class AboutScreen extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: mediaQuery.width / 25,
-                            fontFamily: "Cairo",
+                            fontFamily: 'Cairo',
                             fontWeight: FontWeight.normal,
                           ),
                         ),
@@ -87,242 +85,258 @@ class AboutScreen extends StatelessWidget {
                     provider.searchDewanMethod(searchValue: value);
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
-                  child: Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 20, left: 20),
-                      child: ListView(
-                        padding: EdgeInsets.zero,
-                        physics: BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      'his_birth_and_upbringing'.tr(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Constants.primary2,
-                                          fontSize: 18,
-                                          fontFamily: "Cairo"),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      height: .8,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 20, left: 20),
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    'his_birth_and_upbringing'.tr(),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
                                       color: Constants.primary2,
+                                      fontSize: 18,
+                                      fontFamily: 'Cairo',
                                     ),
-                                    Text(
-                                      'brief_about_him'.tr(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          color: Colors.black54,
-                                          fontSize: 14,
-                                          fontFamily: "Cairo"),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    height: .8,
+                                    color: Constants.primary2,
+                                  ),
+                                  Text(
+                                    'brief_about_him'.tr(),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.black54,
+                                      fontSize: 14,
+                                      fontFamily: 'Cairo',
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                width: 20,
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                              child: Image.asset(
+                                Assets.paintingsShikh,
                               ),
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  child: Image.asset(
-                                      "assets/images/paintings/shikh.png"),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'his_elders'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Constants.primary2,
-                                    fontSize: 18,
-                                    fontFamily: "Cairo"),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: .8,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'his_elders'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
                                 color: Constants.primary2,
+                                fontSize: 18,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'his_elders_brief'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: .8,
+                              color: Constants.primary2,
+                            ),
+                            Text(
+                              'his_elders_brief'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                'scholars_granted_him_permission'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Constants.primary2,
-                                    fontSize: 18,
-                                    fontFamily: "Cairo"),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: .8,
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              'scholars_granted_him_permission'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
                                 color: Constants.primary2,
+                                fontSize: 18,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'there_are_very_many'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: .8,
+                              color: Constants.primary2,
+                            ),
+                            Text(
+                              'there_are_very_many'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_1'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_1'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_2'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_2'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_3'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_3'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_4'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_4'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_5'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_5'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_6'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_6'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_7'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_7'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_8'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_8'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_9'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_9'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_10'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_10'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_11'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_11'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_12'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_12'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_13'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_13'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              Text(
-                                'scholars_14'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontFamily: "Cairo"),
+                            ),
+                            Text(
+                              'scholars_14'.tr(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black54,
+                                fontSize: 14,
+                                fontFamily: 'Cairo',
                               ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

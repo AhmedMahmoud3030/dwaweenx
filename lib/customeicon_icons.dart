@@ -19,16 +19,10 @@ class Customeicon {
   Customeicon._();
 
   static const _kFontFam = 'Customeicon';
-  static const String? _kFontPkg = null;
 
-  static const IconData ic_dwawen =
-      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData ic_home =
-      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData ic_ksaed =
-      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData ic_shaikh =
-      IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData ic_more =
-      IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData ic_dwawen = IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData ic_home = IconData(0xe801, fontFamily: _kFontFam);
+  static const IconData ic_ksaed = IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData ic_shaikh = IconData(0xe803, fontFamily: _kFontFam);
+  static const IconData ic_more = IconData(0xe804, fontFamily: _kFontFam);
 }

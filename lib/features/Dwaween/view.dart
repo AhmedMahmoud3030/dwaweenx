@@ -2,6 +2,7 @@ import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/core/widgits/customTextFormField.dart';
 import 'package:dwaweenx/features/DewanDetails/view.dart';
+import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -24,7 +25,7 @@ class DwaweenScreen extends StatelessWidget {
         child: Stack(
           children: [
             SvgPicture.asset(
-              "assets/images/paintings/img_head_internal.svg",
+              Assets.paintingsImgHeadInternal,
               alignment: Alignment.topCenter,
               width: mediaQuery.width * 4,
               height: mediaQuery.height / 2,
@@ -36,34 +37,31 @@ class DwaweenScreen extends StatelessWidget {
                   height: mediaQuery.height * .09,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
                       children: [
                         SvgPicture.asset(
-                          "assets/images/icons/ic_dwawen2.svg",
+                          Assets.iconsIcDwawen2,
                           height: mediaQuery.width / 12,
                           width: mediaQuery.width / 12,
-                        )
+                        ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "dwaween".tr(),
+                          'dwaween'.tr(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: mediaQuery.width / 25,
-                            fontFamily: "Cairo",
+                            fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -72,7 +70,7 @@ class DwaweenScreen extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: mediaQuery.width / 25,
-                            fontFamily: "Cairo",
+                            fontFamily: 'Cairo',
                             fontWeight: FontWeight.normal,
                           ),
                         ),
@@ -96,30 +94,32 @@ class DwaweenScreen extends StatelessWidget {
                   },
                   onFieldSubmitted: (String) {},
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   // height: mediaQuery.height / 1.55,
                   width: mediaQuery.height,
                   child: provider.dewanBodyLoading
-                      ? Container(
+                      ? SizedBox(
                           width: mediaQuery.width,
                           height: mediaQuery.height,
-                          child: Center(
-                              child: SpinKitCircle(
-                            color: Constants.primary,
-                          )),
+                          child: const Center(
+                            child: SpinKitCircle(
+                              color: Constants.primary,
+                            ),
+                          ),
                         )
                       : provider.DewanScreenData.isEmpty
                           ? Container(
                               width: mediaQuery.width,
                               margin: EdgeInsets.symmetric(
-                                  horizontal: mediaQuery.width / 30),
+                                horizontal: mediaQuery.width / 30,
+                              ),
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Container(
-                                  padding: EdgeInsets.all(8),
+                                  padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
                                     color: Colors.white,
@@ -128,10 +128,10 @@ class DwaweenScreen extends StatelessWidget {
                                     alignment: Alignment.centerRight,
                                     child: Text(
                                       'there_is_no_Dwaween'.tr(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.teal,
-                                        fontFamily: "Cairo",
+                                        fontFamily: 'Cairo',
                                       ),
                                     ),
                                   ),
@@ -140,105 +140,92 @@ class DwaweenScreen extends StatelessWidget {
                             )
                           : Expanded(
                               child: ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  physics: BouncingScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount:
-                                      provider.DewanScreenData.length,
-                                  itemBuilder: (BuildContext context, index) {
-                                    return InkWell(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Container(
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal:
-                                                    mediaQuery.width / 40),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              color: Colors.white,
+                                padding: EdgeInsets.zero,
+                                physics: const BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: provider.DewanScreenData.length,
+                                itemBuilder: (BuildContext context, index) {
+                                  return InkWell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Container(
+                                        margin: EdgeInsets.symmetric(
+                                          horizontal: mediaQuery.width / 40,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          color: Colors.white,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            SvgPicture.asset(
+                                              Assets.iconsIcDwawen,
+                                              height: mediaQuery.width / 12,
+                                              width: mediaQuery.width / 12,
                                             ),
-                                            child: Row(
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Column(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                  MainAxisAlignment.spaceAround,
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                                  CrossAxisAlignment.start,
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                SvgPicture.asset(
-                                                  "assets/images/icons/ic_dwawen.svg",
-                                                  height:
-                                                      mediaQuery.width /
-                                                          12,
-                                                  width: mediaQuery.width /
-                                                      12,
+                                                Text(
+                                                  provider
+                                                          .dewanBody
+                                                          ?.dawawen[index]
+                                                          .name ??
+                                                      '',
+                                                  style: TextStyle(
+                                                    color: Constants.primary,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize:
+                                                        mediaQuery.width / 20,
+                                                    fontFamily: 'Cairo',
+                                                  ),
                                                 ),
-                                                SizedBox(
-                                                  width: 10,
+                                                Text(
+                                                  '${'number_of_poems'.tr()} ${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber((provider.dewanBody!.dawawen[index].kasaed.length).toString()) : provider.dewanBody?.dawawen[index].kasaed.length} ${'poem'.tr()}',
+                                                  style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: Constants.primary,
+                                                    fontSize:
+                                                        mediaQuery.width / 27,
+                                                    fontFamily: 'Cairo',
+                                                  ),
                                                 ),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    Text(
-                                                      provider
-                                                              .dewanBody
-                                                              ?.dawawen[index]
-                                                              .name ??
-                                                          '',
-                                                      style: TextStyle(
-                                                        color:
-                                                            Constants.primary,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: mediaQuery
-                                                                .width /
-                                                            20,
-                                                        fontFamily: "Cairo",
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      '${'number_of_poems'.tr()} ${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber((provider.dewanBody!.dawawen[index].kasaed.length).toString()) : provider.dewanBody?.dawawen[index].kasaed.length} ${'poem'.tr()}',
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        color:
-                                                            Constants.primary,
-                                                        fontSize: mediaQuery
-                                                                .width /
-                                                            27,
-                                                        fontFamily: "Cairo",
-                                                      ),
-                                                    )
-                                                  ],
-                                                )
                                               ],
-                                            )),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      onTap: () {
-                                        provider.setDewanIndex(index);
+                                    ),
+                                    onTap: () {
+                                      provider.setDewanIndex(index);
 
-                                        provider.calculateKafyaList(index);
+                                      provider.calculateKafyaList(index);
 
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                DewanDetailsPage(),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  }),
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              DewanDetailsPage(),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                             ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -4,16 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class kasyedaArea extends StatefulWidget {
-  kasyedaArea(
-      {super.key,
-      required this.kasyeda,
-      required this.textcolor,
-      required this.size,
-      required this.value});
+  kasyedaArea({
+    super.key,
+    required this.kasyeda,
+    required this.textcolor,
+    required this.size,
+    required this.value,
+  });
+
   String value;
   String kasyeda;
   Color textcolor;
   double size;
+
   @override
   State<kasyedaArea> createState() => _kasyedaAreaState();
 }
@@ -35,7 +38,6 @@ class _kasyedaAreaState extends State<kasyedaArea> {
     var k = widget.kasyeda.toString().split('.');
     return SafeArea(
       child: Align(
-        alignment: Alignment.center,
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width * 2,
@@ -60,9 +62,10 @@ class _kasyedaAreaState extends State<kasyedaArea> {
                                 : Text(
                                     k[index],
                                     style: TextStyle(
-                                        color: Colors.black87,
-                                        fontFamily: 'Amiri Regular',
-                                        fontSize: widget.size),
+                                      color: Colors.black87,
+                                      fontFamily: 'Amiri Regular',
+                                      fontSize: widget.size,
+                                    ),
                                     textAlign: TextAlign.right,
                                   ),
                           ),
@@ -74,9 +77,10 @@ class _kasyedaAreaState extends State<kasyedaArea> {
                           title: Text(
                             k[index],
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontFamily: 'Amiri Regular',
-                                fontSize: widget.size),
+                              color: Colors.black87,
+                              fontFamily: 'Amiri Regular',
+                              fontSize: widget.size,
+                            ),
                             textAlign: TextAlign.left,
                           ),
                         ),
@@ -129,7 +133,10 @@ class ColoredText extends StatelessWidget {
           TextSpan(
             text: '$word ',
             style: TextStyle(
-                color: textcolor, fontFamily: 'Amiri Regular', fontSize: size),
+              color: textcolor,
+              fontFamily: 'Amiri Regular',
+              fontSize: size,
+            ),
           ),
         );
       } else {
@@ -137,9 +144,10 @@ class ColoredText extends StatelessWidget {
           TextSpan(
             text: '$word ',
             style: TextStyle(
-                color: Colors.teal,
-                fontFamily: 'Amiri Regular',
-                fontSize: size),
+              color: Colors.teal,
+              fontFamily: 'Amiri Regular',
+              fontSize: size,
+            ),
           ),
         );
       }

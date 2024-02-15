@@ -30,7 +30,6 @@ class _AudiobarState extends State<Audiobar> {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 40,
@@ -56,9 +55,10 @@ class _AudiobarState extends State<Audiobar> {
                   width: 20,
                 ),
                 SizedBox(
-                    height: 25,
-                    width: 350,
-                    child: SvgPicture.asset('assets/img/load.svg')),
+                  height: 25,
+                  width: 350,
+                  child: SvgPicture.asset('assets/img/load.svg'),
+                ),
               ],
             ),
             Row(
@@ -68,55 +68,64 @@ class _AudiobarState extends State<Audiobar> {
                   height: 55,
                   width: 55,
                   child: IconButton(
-                      onPressed: null,
-                      icon: SvgPicture.asset('assets/img/ic_downlod.svg')),
+                    onPressed: null,
+                    icon: SvgPicture.asset('assets/img/ic_downlod.svg'),
+                  ),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
-                      onPressed: null,
-                      icon: SvgPicture.asset('assets/img/ic_pspeed.svg')),
+                    onPressed: null,
+                    icon: SvgPicture.asset('assets/img/ic_pspeed.svg'),
+                  ),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
-                      onPressed: null,
-                      icon: SvgPicture.asset('assets/img/ic_p.svg')),
+                    onPressed: null,
+                    icon: SvgPicture.asset('assets/img/ic_p.svg'),
+                  ),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const audioplayerx()));
-                      },
-                      icon: SvgPicture.asset('assets/img/ic_play.svg')),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const audioplayerx(),
+                        ),
+                      );
+                    },
+                    icon: SvgPicture.asset('assets/img/ic_play.svg'),
+                  ),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
-                      onPressed: null,
-                      icon: SvgPicture.asset('assets/img/ic_next.svg')),
+                    onPressed: null,
+                    icon: SvgPicture.asset('assets/img/ic_next.svg'),
+                  ),
                 ),
                 SizedBox(
                   height: 45,
                   width: 45,
                   child: IconButton(
-                      onPressed: null,
-                      icon: SvgPicture.asset('assets/img/ic_nspeed.svg')),
+                    onPressed: null,
+                    icon: SvgPicture.asset('assets/img/ic_nspeed.svg'),
+                  ),
                 ),
                 SizedBox(
                   height: 55,
                   width: 55,
                   child: IconButton(
-                      onPressed: null,
-                      icon: SvgPicture.asset('assets/img/ic_repeat.svg')),
+                    onPressed: null,
+                    icon: SvgPicture.asset('assets/img/ic_repeat.svg'),
+                  ),
                 ),
               ],
             ),

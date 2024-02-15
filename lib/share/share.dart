@@ -16,36 +16,42 @@ class share extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height / 3.5,
           width: MediaQuery.of(context).size.width,
-          child: Column(children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
-              height: MediaQuery.of(context).size.height / 6,
-              child: ListView.builder(
+          child: Column(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 2,
+                height: MediaQuery.of(context).size.height / 6,
+                child: ListView.builder(
                   itemCount: 3,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 7,
-                      margin: const EdgeInsets.all(10),
-                      child: Center(
-                        child: Image.asset('assets/img/share-img$index.jpg'),
-                      ),
-                      color: Colors.white)),
-            ),
-            Text(
-              _content,
-              style: const TextStyle(color: Constants.primary, fontFamily: 'Cairo'),
-              textAlign: TextAlign.right,
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton.icon(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 7,
+                    margin: const EdgeInsets.all(10),
+                    child: Center(
+                      child: Image.asset('assets/img/share-img$index.jpg'),
+                    ),
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Text(
+                _content,
+                style: const TextStyle(
+                    color: Constants.primary, fontFamily: 'Cairo'),
+                textAlign: TextAlign.right,
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton.icon(
                 onPressed: _shareContent,
                 icon: const Icon(Icons.share),
-                label: const Text('شارك الاصدقاء'))
-          ]),
+                label: const Text('شارك الاصدقاء'),
+              ),
+            ],
+          ),
         ),
       ),
     );

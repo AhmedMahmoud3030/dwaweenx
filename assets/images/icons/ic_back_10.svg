@@ -6,8 +6,8 @@
         </clipPath>
     </defs>
     <g clip-path="url(#clip-path)" id="ic_previous">
-        <path d="M15,0,30,23H0Z" data-name="Polygon 22" fill="#fff"
-            id="Polygon_22" transform="translate(41 63) rotate(-90)" />
+        <path d="M15,0,30,23H0Z" data-name="Polygon 22" fill="#fff" id="Polygon_22"
+            transform="translate(41 63) rotate(-90)" />
         <rect data-name="Rectangle 12827" fill="#fff" height="30" id="Rectangle_12827"
             transform="translate(31 33)" width="10" />
     </g>

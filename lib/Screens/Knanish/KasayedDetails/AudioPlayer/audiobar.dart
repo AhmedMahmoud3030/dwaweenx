@@ -15,16 +15,18 @@ bool p = false;
 
 class _AudiobarState extends State<Audiobar> {
   late AudioPlayer _audioPlayer;
+
   Stream<PositionData> get _postionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
-          _audioPlayer.positionStream,
-          _audioPlayer.bufferedPositionStream,
-          _audioPlayer.durationStream,
-          (position, bufferedPosition, duration) => PositionData(
-                position,
-                bufferedPosition,
-                duration ?? Duration.zero,
-              ));
+        _audioPlayer.positionStream,
+        _audioPlayer.bufferedPositionStream,
+        _audioPlayer.durationStream,
+        (position, bufferedPosition, duration) => PositionData(
+          position,
+          bufferedPosition,
+          duration ?? Duration.zero,
+        ),
+      );
 
   @override
   void initState() {
@@ -51,7 +53,6 @@ class _AudiobarState extends State<Audiobar> {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 40,
@@ -74,9 +75,10 @@ class _AudiobarState extends State<Audiobar> {
                                           'المفضلة',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
-                                              color: Colors.teal,
-                                              fontFamily: 'Amiri Regular'),
-                                        )
+                                            color: Colors.teal,
+                                            fontFamily: 'Amiri Regular',
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     Row(
@@ -93,9 +95,10 @@ class _AudiobarState extends State<Audiobar> {
                                           'أضف ملاحظة',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
-                                              color: Colors.teal,
-                                              fontFamily: 'Amiri Regular'),
-                                        )
+                                            color: Colors.teal,
+                                            fontFamily: 'Amiri Regular',
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     Row(
@@ -120,8 +123,9 @@ class _AudiobarState extends State<Audiobar> {
                                           height: 35.0,
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                                color: Colors.grey,
-                                                shape: BoxShape.circle),
+                                              color: Colors.grey,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -132,8 +136,9 @@ class _AudiobarState extends State<Audiobar> {
                                           height: 35.0,
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                                color: Colors.blue,
-                                                shape: BoxShape.circle),
+                                              color: Colors.blue,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -144,8 +149,9 @@ class _AudiobarState extends State<Audiobar> {
                                           height: 35.0,
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                                color: Colors.teal,
-                                                shape: BoxShape.circle),
+                                              color: Colors.teal,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -156,8 +162,9 @@ class _AudiobarState extends State<Audiobar> {
                                           height: 35.0,
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                                color: Colors.black,
-                                                shape: BoxShape.circle),
+                                              color: Colors.black,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -167,8 +174,9 @@ class _AudiobarState extends State<Audiobar> {
                                           'لون الخط',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
-                                              color: Colors.teal,
-                                              fontFamily: 'Amiri Regular'),
+                                            color: Colors.teal,
+                                            fontFamily: 'Amiri Regular',
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -187,8 +195,9 @@ class _AudiobarState extends State<Audiobar> {
                                           height: 35.0,
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                                color: Colors.grey,
-                                                shape: BoxShape.circle),
+                                              color: Colors.grey,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -199,8 +208,9 @@ class _AudiobarState extends State<Audiobar> {
                                           height: 35.0,
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                                color: Colors.blue,
-                                                shape: BoxShape.circle),
+                                              color: Colors.blue,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -211,8 +221,9 @@ class _AudiobarState extends State<Audiobar> {
                                           height: 35.0,
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                                color: Colors.teal,
-                                                shape: BoxShape.circle),
+                                              color: Colors.teal,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -223,8 +234,9 @@ class _AudiobarState extends State<Audiobar> {
                                           height: 35.0,
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                                color: Colors.black,
-                                                shape: BoxShape.circle),
+                                              color: Colors.black,
+                                              shape: BoxShape.circle,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -234,11 +246,12 @@ class _AudiobarState extends State<Audiobar> {
                                           'لون الخلفية',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
-                                              color: Colors.teal,
-                                              fontFamily: 'Amiri Regular'),
+                                            color: Colors.teal,
+                                            fontFamily: 'Amiri Regular',
+                                          ),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -258,7 +271,9 @@ class _AudiobarState extends State<Audiobar> {
                         child: Text(
                           'صوت القصيدة أبرق بدا نحو المرابع يلمع',
                           style: TextStyle(
-                              color: Colors.white, fontFamily: 'Amiri Regular'),
+                            color: Colors.white,
+                            fontFamily: 'Amiri Regular',
+                          ),
                         ),
                       ),
                     ),
@@ -298,91 +313,110 @@ class _AudiobarState extends State<Audiobar> {
                       height: 55,
                       width: 55,
                       child: IconButton(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Container(
-                                  padding: const EdgeInsets.all(16),
-                                  height: 90,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.teal,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                  ),
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Container(
+                                padding: const EdgeInsets.all(16),
+                                height: 90,
+                                decoration: const BoxDecoration(
+                                  color: Colors.teal,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
                                 ),
-                                behavior: SnackBarBehavior.floating,
-                                backgroundColor: Colors.transparent,
-                                elevation: 0,
                               ),
-                            );
-                          },
-                          icon: SvgPicture.asset('assets/img/ic_downlod.svg')),
+                              behavior: SnackBarBehavior.floating,
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                            ),
+                          );
+                        },
+                        icon: SvgPicture.asset('assets/img/ic_downlod.svg'),
+                      ),
                     ),
                     SizedBox(
                       height: 45,
                       width: 45,
                       child: IconButton(
-                          onPressed: () {
-                            _audioPlayer.seek(Duration(
-                                seconds: _audioPlayer.position.inSeconds - 60));
-                          },
-                          icon: SvgPicture.asset('assets/img/ic_pspeed.svg')),
+                        onPressed: () {
+                          _audioPlayer.seek(
+                            Duration(
+                              seconds: _audioPlayer.position.inSeconds - 60,
+                            ),
+                          );
+                        },
+                        icon: SvgPicture.asset('assets/img/ic_pspeed.svg'),
+                      ),
                     ),
                     SizedBox(
                       height: 45,
                       width: 45,
                       child: IconButton(
-                          onPressed: () {
-                            _audioPlayer.seek(Duration(
-                                seconds: _audioPlayer.position.inSeconds - 10));
-                          },
-                          icon: SvgPicture.asset('assets/img/ic_p.svg')),
+                        onPressed: () {
+                          _audioPlayer.seek(
+                            Duration(
+                              seconds: _audioPlayer.position.inSeconds - 10,
+                            ),
+                          );
+                        },
+                        icon: SvgPicture.asset('assets/img/ic_p.svg'),
+                      ),
                     ),
                     SizedBox(
                       height: 45,
                       width: 45,
                       child: IconButton(
-                          onPressed: () {
-                            if (p == false) {
-                              _audioPlayer.play();
-                              p = true;
-                            } else {
-                              _audioPlayer.pause();
-                              p = false;
-                            }
-                          },
-                          icon: !p
-                              ? SvgPicture.asset('assets/img/ic_play.svg')
-                              : SvgPicture.asset('assets/img/ic_pause.svg')),
+                        onPressed: () {
+                          if (p == false) {
+                            _audioPlayer.play();
+                            p = true;
+                          } else {
+                            _audioPlayer.pause();
+                            p = false;
+                          }
+                        },
+                        icon: !p
+                            ? SvgPicture.asset('assets/img/ic_play.svg')
+                            : SvgPicture.asset('assets/img/ic_pause.svg'),
+                      ),
                     ),
                     SizedBox(
                       height: 45,
                       width: 45,
                       child: IconButton(
-                          onPressed: () {
-                            _audioPlayer.seek(Duration(
-                                seconds: _audioPlayer.position.inSeconds + 10));
-                          },
-                          icon: SvgPicture.asset('assets/img/ic_next.svg')),
+                        onPressed: () {
+                          _audioPlayer.seek(
+                            Duration(
+                              seconds: _audioPlayer.position.inSeconds + 10,
+                            ),
+                          );
+                        },
+                        icon: SvgPicture.asset('assets/img/ic_next.svg'),
+                      ),
                     ),
                     SizedBox(
                       height: 45,
                       width: 45,
                       child: IconButton(
-                          onPressed: () {
-                            _audioPlayer.seek(Duration(
-                                seconds: _audioPlayer.position.inSeconds + 60));
-                          },
-                          icon: SvgPicture.asset('assets/img/ic_nspeed.svg')),
+                        onPressed: () {
+                          _audioPlayer.seek(
+                            Duration(
+                              seconds: _audioPlayer.position.inSeconds + 60,
+                            ),
+                          );
+                        },
+                        icon: SvgPicture.asset('assets/img/ic_nspeed.svg'),
+                      ),
                     ),
                     SizedBox(
                       height: 55,
                       width: 55,
                       child: IconButton(
-                          onPressed: () {
-                            _audioPlayer.speed;
-                          },
-                          icon: SvgPicture.asset('assets/img/ic_repeat.svg')),
+                        onPressed: () {
+                          _audioPlayer.speed;
+                        },
+                        icon: SvgPicture.asset('assets/img/ic_repeat.svg'),
+                      ),
                     ),
                   ],
                 ),
@@ -401,6 +435,7 @@ class PositionData {
     this.bufferedPosition,
     this.duration,
   );
+
   final Duration position;
   final Duration bufferedPosition;
   final Duration duration;

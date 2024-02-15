@@ -12,8 +12,8 @@ dependencies:
     sdk: flutter
 
 
-  cupertino_icons: ^1.0.2
-  firebase_core: ^2.24.2
+  cupertino_icons: ^1.0.6
+  firebase_core: ^2.25.4
   cloud_firestore: ^4.14.0
   equatable: ^2.0.5
   flutter_svg: ^2.0.7
@@ -33,10 +33,10 @@ dependencies:
   firebase_storage: ^11.6.0
   carousel_slider: ^4.2.1
   shimmer: ^3.0.0
-  # sqflite: ^2.3.0
-  # path: ^1.8.3
-  # path_provider: ^2.1.2
-  # dio: ^5.4.0
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  path_provider: ^2.1.2
+  dio: ^5.4.0
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +48,7 @@ dev_dependencies:
   #flutter pub get
   #flutter pub run flutter_launcher_icons
   flutter_launcher_icons: ^0.13.1
+  flutter_lints: any
 
 launcher_name:
   default: "Dawaween"
@@ -65,12 +66,14 @@ flutter:
 
   assets:
     - assets/
+    - assets/images/
     - assets/images/paintings/
     - assets/images/icons/
-    - assets/img/
-    - assets/ico/
-    - assets/img/download.png
     - assets/lang/
+    - assets/fonts/
+    - assets/images/launcher/
+    - assets/flutter-icons-9b19fc1a/
+    - assets/flutter-icons-9b19fc1a/fonts/
 
   fonts:
     - family: Amiri Regular

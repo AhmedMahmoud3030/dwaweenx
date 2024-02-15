@@ -1,11 +1,11 @@
-import 'package:dwaweenx/features/KasydaDetails/kasyda_details.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:dwaweenx/Models/FavModel.dart';
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/help/database_helper_fav.dart';
 import 'package:dwaweenx/core/nav.dart';
+import 'package:dwaweenx/features/KasydaDetails/kasyda_details.dart';
+import 'package:dwaweenx/generated/assets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class FavDataBase extends StatefulWidget {
   const FavDataBase({super.key});
@@ -20,12 +20,11 @@ var items;
 
 final scaffoldKey = GlobalKey<ScaffoldState>();
 
-
 TextEditingController controllerTitle = TextEditingController();
 TextEditingController controllerDesc = TextEditingController();
 
 class _FavDataBaseState extends State<FavDataBase> {
-  DatabaseHelperFavourite dbFav = new DatabaseHelperFavourite();
+  DatabaseHelperFavourite dbFav = DatabaseHelperFavourite();
   List<FavModel> allFav = <FavModel>[];
 
   @override
@@ -57,7 +56,7 @@ class _FavDataBaseState extends State<FavDataBase> {
               Stack(
                 children: [
                   SvgPicture.asset(
-                    'assets/images/paintings/img_head_home.svg',
+                    Assets.paintingsImgHeadHome,
                     alignment: Alignment.topCenter,
                     width: MediaQuery.of(context).size.width * 4,
                     height: MediaQuery.of(context).size.height / 2,
@@ -83,11 +82,13 @@ class _FavDataBaseState extends State<FavDataBase> {
                         child: Text(
                           'قائمة المفضلة',
                           style: TextStyle(
-                              fontFamily: 'Cairo', fontSize: width / 25),
+                            fontFamily: 'Cairo',
+                            fontSize: width / 25,
+                          ),
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
               Column(
@@ -110,10 +111,9 @@ class _FavDataBaseState extends State<FavDataBase> {
                               child: ListTile(
                                 onTap: () {
                                   navigateTo(
-                                      context,
-                                      KasydaDetails(
-                                       
-                                      ));
+                                    context,
+                                    KasydaDetails(),
+                                  );
                                 },
                                 leading: const Icon(
                                   Icons.book,
@@ -124,8 +124,9 @@ class _FavDataBaseState extends State<FavDataBase> {
                                   child: Text(
                                     allFav[index].kName,
                                     style: const TextStyle(
-                                        color: Colors.teal,
-                                        fontFamily: 'Cairo'),
+                                      color: Colors.teal,
+                                      fontFamily: 'Cairo',
+                                    ),
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                   ),
@@ -133,7 +134,9 @@ class _FavDataBaseState extends State<FavDataBase> {
                                 subtitle: Text(
                                   allFav[index].kNameT,
                                   style: const TextStyle(
-                                      color: Colors.teal, fontFamily: 'Cairo'),
+                                    color: Colors.teal,
+                                    fontFamily: 'Cairo',
+                                  ),
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                 ),
@@ -144,13 +147,14 @@ class _FavDataBaseState extends State<FavDataBase> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
-                                          onTap: () {
-                                            deleteFav(allFav[index]);
-                                          },
-                                          child: const Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
-                                          )),
+                                        onTap: () {
+                                          deleteFav(allFav[index]);
+                                        },
+                                        child: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -162,7 +166,7 @@ class _FavDataBaseState extends State<FavDataBase> {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -176,126 +180,3 @@ class _FavDataBaseState extends State<FavDataBase> {
     getAllData();
   }
 }
-
-/*
-  @override
-  Widget build(BuildContext context) {
-    print("${boxFavourite.length}");
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: Color.fromARGB(255, 250, 250, 234),
-          child: Stack(
-            children: [
-              Stack(
-                children: [
-                  SvgPicture.asset(
-                    "assets/images/paintings/img_head_home.svg",
-                    alignment: Alignment.topCenter,
-                    width: MediaQuery.of(context).size.width * 4,
-                    height: MediaQuery.of(context).size.height / 2,
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        height: 210,
-                      ),
-                      Container(
-                        height: 60,
-                        color: Color.fromARGB(255, 250, 250, 234),
-                        // Add padding around the search bar
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        // Use a Material design search bar
-                        child: TextField(
-                          controller: _searchController,
-                          onChanged: (value) {
-
-                          },
-                          textAlign: TextAlign.right,
-                          decoration: InputDecoration(
-                            hintText: 'البحث فى الديوان',
-                            filled: true, //<-- SEE HERE
-                            fillColor: Colors.white,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide:
-                              BorderSide(width: 3, color: Colors.white),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-
-                            // Add a clear button to the search bar
-                            suffixIcon: IconButton(
-                              icon: const Icon(Icons.search),
-                              onPressed: () {},
-                            ),
-                            // Add a search icon or button to the search bar
-                            prefixIcon: IconButton(
-                              icon: const Icon(Icons.clear),
-                              onPressed: () => _searchController.clear(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 250,
-                  ),
-                  Container(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: boxFavourite.length,
-                      itemBuilder: (BuildContext context, index) {
-                        Notes note = boxNotes.getAt(index);
-                        return Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Container(
-                              color: Colors.white,
-                              child: ListTile(
-                                onTap: (){
-                                  navigateTo(context,KasydaDetails(
-                                    DName: '',KName :  note.kName, kasyeda: note.kText,
-                                  ));
-                                },
-                                leading: Icon(Icons.book,color: Constants.primary,),
-                                title: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    note.title,
-                                    style: TextStyle(
-                                        color: Colors.teal,
-                                        fontFamily: "Cairo"
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                  ),
-                                ),
-                                subtitle:  Text(
-                                  note.body,
-                                  style: TextStyle(color: Colors.teal,
-                                      fontFamily: "Cairo"
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
- */

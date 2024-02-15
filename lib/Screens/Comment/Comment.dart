@@ -34,8 +34,7 @@ class _CommentState extends State<Comment> {
           ),
           title: Row(
             children: <Widget>[
-              Container(
-                  child: Text(
+              Text(
                 'تواصل معنا',
                 style: TextStyle(
                   fontFamily: 'Cairo',
@@ -43,34 +42,36 @@ class _CommentState extends State<Comment> {
                   fontSize: MediaQuery.of(context).size.width / 22,
                   shadows: [
                     Shadow(
-                        // bottomLeft
-                        offset: Offset(-shadow, -shadow),
-                        color: Colors.black38),
+                      // bottomLeft
+                      offset: Offset(-shadow, -shadow),
+                      color: Colors.black38,
+                    ),
                     Shadow(
-                        // bottomLeft
-                        offset: Offset(shadow, shadow),
-                        color: Colors.black38),
+                      // bottomLeft
+                      offset: Offset(shadow, shadow),
+                      color: Colors.black38,
+                    ),
                     Shadow(
-                        // bottomLeft
-                        offset: Offset(-shadow, shadow),
-                        color: Colors.black38),
+                      // bottomLeft
+                      offset: Offset(-shadow, shadow),
+                      color: Colors.black38,
+                    ),
                     Shadow(
-                        // bottomLeft
-                        offset: Offset(shadow, -shadow),
-                        color: Colors.black38),
+                      // bottomLeft
+                      offset: Offset(shadow, -shadow),
+                      color: Colors.black38,
+                    ),
                   ],
                 ),
-              )),
+              ),
               Expanded(
                 child: Container(),
               ),
-              Container(
-                child: Image.asset(
-                  'assets/img/message.png',
-                  width: MediaQuery.of(context).size.width / 10,
-                  height: MediaQuery.of(context).size.width / 10,
-                ),
-              )
+              Image.asset(
+                'assets/img/message.png',
+                width: MediaQuery.of(context).size.width / 10,
+                height: MediaQuery.of(context).size.width / 10,
+              ),
             ],
           ),
           backgroundColor: Constants.primary,
@@ -84,11 +85,13 @@ class _CommentState extends State<Comment> {
                 alignment: Alignment.center,
                 margin: EdgeInsets.all(MediaQuery.of(context).size.width / 12),
                 child: Text(
-                    'يمكنك ارسال استفساراتك أو اقتراحاتك عن طريق البريد الإلكترونى',
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width / 25,
-                        color: Colors.black,
-                        fontFamily: 'Cairo')),
+                  'يمكنك ارسال استفساراتك أو اقتراحاتك عن طريق البريد الإلكترونى',
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width / 25,
+                    color: Colors.black,
+                    fontFamily: 'Cairo',
+                  ),
+                ),
               ),
               Container(
                 margin: EdgeInsets.all(MediaQuery.of(context).size.width / 20),
@@ -109,7 +112,8 @@ class _CommentState extends State<Comment> {
                             spreadRadius: 2,
                             //مدى تقلة
                             blurRadius: 5,
-                            offset: const Offset(0, 2), // changes position of shadow
+                            offset: const Offset(
+                                0, 2), // changes position of shadow
                           ),
                         ],
                       ),
@@ -120,20 +124,22 @@ class _CommentState extends State<Comment> {
                       children: <Widget>[
                         Container(
                           margin: EdgeInsets.all(
-                              MediaQuery.of(context).size.width / 20),
+                            MediaQuery.of(context).size.width / 20,
+                          ),
                           child: TextField(
                             controller: tECComment,
                             decoration: InputDecoration(
                               hintText: 'أضف سؤال أو استفسار...',
                               hintStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize:
-                                      MediaQuery.of(context).size.width / 25),
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 25,
+                              ),
                             ),
                             cursorColor: Constants.primary,
                             maxLines: 6,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],
@@ -176,7 +182,7 @@ class DefaultElevatedButton extends StatelessWidget {
   final double? width;
 
   const DefaultElevatedButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.titleSize,
     required this.title,
@@ -184,7 +190,8 @@ class DefaultElevatedButton extends StatelessWidget {
     required this.borderRadius,
     required this.height,
     required this.width,
-  }) : super(key: key);
+  });
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -206,10 +213,11 @@ class DefaultElevatedButton extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: titleSize,
-              fontFamily: 'Cairo'),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: titleSize,
+            fontFamily: 'Cairo',
+          ),
         ),
       ),
     );

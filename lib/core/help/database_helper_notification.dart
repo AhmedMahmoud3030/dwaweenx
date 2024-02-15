@@ -1,7 +1,8 @@
 import 'dart:async';
+
 import 'package:dwaweenx/models/NoteModel.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelperNotificarion {
   final String tableDuaaFav = 'tableNotify';
@@ -45,39 +46,45 @@ class DatabaseHelperNotificarion {
 
   Future<List> getAllDuaa() async {
     var dbClient = await db;
-    var result = await dbClient!
-        .query(tableDuaaFav, orderBy: '$columnId DESC', columns: [
-      columnId,
-      columnTitle,
-      columnBody,
-      columNkName,
-      columnKText,
-      columNkNameT,
-      columnKTextT
-    ]);
+    var result = await dbClient!.query(
+      tableDuaaFav,
+      orderBy: '$columnId DESC',
+      columns: [
+        columnId,
+        columnTitle,
+        columnBody,
+        columNkName,
+        columnKText,
+        columNkNameT,
+        columnKTextT,
+      ],
+    );
     return result.toList();
   }
 
   Future<int?> getCountDuaa() async {
     var dbClient = await db;
     return Sqflite.firstIntValue(
-        await dbClient!.rawQuery('SELECT COUNT(*) FROM $tableDuaaFav'));
+      await dbClient!.rawQuery('SELECT COUNT(*) FROM $tableDuaaFav'),
+    );
   }
 
   Future<NoteModel?> getsDuaa(int id) async {
     var dbClient = await db;
-    List<Map<String, dynamic>> result = await dbClient!.query(tableDuaaFav,
-        columns: [
-          columnId,
-          columnTitle,
-          columnBody,
-          columNkName,
-          columnKText,
-          columNkNameT,
-          columnKTextT
-        ],
-        where: '$columnId = ?',
-        whereArgs: ['id']);
+    List<Map<String, dynamic>> result = await dbClient!.query(
+      tableDuaaFav,
+      columns: [
+        columnId,
+        columnTitle,
+        columnBody,
+        columNkName,
+        columnKText,
+        columNkNameT,
+        columnKTextT,
+      ],
+      where: '$columnId = ?',
+      whereArgs: ['id'],
+    );
 
     if (result.isNotEmpty) {
       return NoteModel.fromMap(result.first);
@@ -88,8 +95,12 @@ class DatabaseHelperNotificarion {
 
   Future<int> updateDuaa(NoteModel duaaModel) async {
     var dbClient = await db;
-    return await dbClient!.update(tableDuaaFav, duaaModel.toMap(),
-        where: '$columnId = ?', whereArgs: [duaaModel.id]);
+    return await dbClient!.update(
+      tableDuaaFav,
+      duaaModel.toMap(),
+      where: '$columnId = ?',
+      whereArgs: [duaaModel.id],
+    );
   }
 
   Future<int> deleteDuaa(int id) async {

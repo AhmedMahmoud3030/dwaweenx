@@ -11,9 +11,10 @@ class ShareDialogStep2 extends StatelessWidget {
   bool shareTextSelected = false;
 
   ShareDialogStep2({
-    Key? key,
+    super.key,
     required this.shareTextSelected,
-  }) : super(key: key);
+  });
+
   ScreenshotController screenshotController = ScreenshotController();
 
   @override
@@ -40,13 +41,13 @@ class ShareDialogStep2 extends StatelessWidget {
                     shareTextSelected = true;
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    backgroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       side: BorderSide(
-                          color:
-                              shareTextSelected ? Colors.black : Colors.white),
+                        color: shareTextSelected ? Colors.black : Colors.white,
+                      ),
                     ),
                   ),
                   child: const Row(
@@ -65,13 +66,13 @@ class ShareDialogStep2 extends StatelessWidget {
                     shareTextSelected = false;
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    backgroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       side: BorderSide(
-                          color:
-                              !shareTextSelected ? Colors.black : Colors.white),
+                        color: !shareTextSelected ? Colors.black : Colors.white,
+                      ),
                     ),
                   ),
                   child: const Row(
@@ -92,7 +93,7 @@ class ShareDialogStep2 extends StatelessWidget {
             //قائمة الصور
             Visibility(
               visible: !shareTextSelected,
-              child: Container(
+              child: SizedBox(
                 height: 100,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -105,10 +106,11 @@ class ShareDialogStep2 extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black),
+                          border: Border.all(),
                         ),
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                           child: Image.asset(
                             'assets/img/imageShareList$index.jpg',
                             fit: BoxFit.fill,
@@ -142,27 +144,20 @@ class ShareDialogStep2 extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    //النصوص
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        // Text(allText[0],style: TextStyle(fontFamily: 'Cairo'),),
-                        // Text(allText[1],style: TextStyle(fontFamily: 'Cairo'),),
-                        // Text(allText[2],style: TextStyle(fontFamily: 'Cairo'),),
-                        // Text(allText[3],style: TextStyle(fontFamily: 'Cairo'),),
-                      ],
-                    ),
 
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Text('شبكة تراث الفيضة التجارية',
-                            style: TextStyle(
-                                fontFamily: 'Cairo',
-                                fontSize: 10,
-                                fontWeight: FontWeight.w300,
-                                color: Colors.black54)),
+                        const Text(
+                          'شبكة تراث الفيضة التجارية',
+                          style: TextStyle(
+                            fontFamily: 'Cairo',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black54,
+                          ),
+                        ),
 
                         Image.asset(
                           'assets/img/splash.png',
@@ -173,10 +168,11 @@ class ShareDialogStep2 extends StatelessWidget {
                         const Text(
                           'تطبيق دواوين الشيخ إبراهيم نياس',
                           style: TextStyle(
-                              fontFamily: 'Cairo',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.black54),
+                            fontFamily: 'Cairo',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black54,
+                          ),
                         ),
                       ],
                     ),

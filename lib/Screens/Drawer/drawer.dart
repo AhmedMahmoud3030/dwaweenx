@@ -3,6 +3,7 @@ import 'package:dwaweenx/Screens/AboutUs/AboutUs.dart';
 import 'package:dwaweenx/Screens/Comment/Comment.dart';
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/nav.dart';
+import 'package:dwaweenx/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
@@ -35,7 +36,7 @@ class _DrawerFb1State extends State<DrawerFb1> {
               height: 250,
               width: 500,
               child: SvgPicture.asset(
-                'assets/img/sidemenu.svg',
+                Assets.paintingsSideMenu,
                 alignment: Alignment.topCenter,
                 //width: 500,
                 height: MediaQuery.of(context).size.height,
@@ -59,15 +60,16 @@ class _DrawerFb1State extends State<DrawerFb1> {
                           //AppLocale.of(context).getTranslated("المفضلة"),
                           key: const ObjectKey('Favourit'),
                           style: TextStyle(
-                              color: Constants.primary,
-                              fontFamily: 'Cairo',
-                              fontSize: d3),
+                            color: Constants.primary,
+                            fontFamily: 'Cairo',
+                            fontSize: d3,
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          'assets/img/fav.png',
+                          Assets.iconsFav,
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -91,15 +93,16 @@ class _DrawerFb1State extends State<DrawerFb1> {
                           //AppLocale.of(context).getTranslated("الملاحظات"),
                           key: const ObjectKey('Notes'),
                           style: TextStyle(
-                              color: Constants.primary,
-                              fontFamily: 'Cairo',
-                              fontSize: d3),
+                            color: Constants.primary,
+                            fontFamily: 'Cairo',
+                            fontSize: d3,
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          'assets/img/notes.png',
+                          Assets.iconsNotes,
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -123,15 +126,16 @@ class _DrawerFb1State extends State<DrawerFb1> {
                           //AppLocale.of(context).getTranslated("مشاركه"),
                           key: const ObjectKey('Share'),
                           style: TextStyle(
-                              color: Constants.primary,
-                              fontFamily: 'Cairo',
-                              fontSize: d3),
+                            color: Constants.primary,
+                            fontFamily: 'Cairo',
+                            fontSize: d3,
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          'assets/img/share.png',
+                          Assets.iconsShare,
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -157,15 +161,16 @@ class _DrawerFb1State extends State<DrawerFb1> {
                             // AppLocale.of(context).getTranslated("اللغه"),
                             key: const ObjectKey('Language'),
                             style: TextStyle(
-                                color: Constants.primary,
-                                fontFamily: 'Cairo',
-                                fontSize: d3),
+                              color: Constants.primary,
+                              fontFamily: 'Cairo',
+                              fontSize: d3,
+                            ),
                           ),
                           const SizedBox(
                             width: 10,
                           ),
                           Image.asset(
-                            'assets/img/lang.png',
+                            Assets.iconsLang,
                             width: d1,
                             height: d1,
                             fit: BoxFit.fill,
@@ -190,15 +195,16 @@ class _DrawerFb1State extends State<DrawerFb1> {
                           //AppLocale.of(context).getTranslated("تواصل معنا"),
                           key: const ObjectKey('ContactUs'),
                           style: TextStyle(
-                              color: Constants.primary,
-                              fontFamily: 'Cairo',
-                              fontSize: d3),
+                            color: Constants.primary,
+                            fontFamily: 'Cairo',
+                            fontSize: d3,
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          'assets/img/contactus.png',
+                          Assets.iconsContactus,
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -222,15 +228,16 @@ class _DrawerFb1State extends State<DrawerFb1> {
                           //AppLocale.of(context).getTranslated("تواصل معنا"),
                           key: const ObjectKey('AboutUs'),
                           style: TextStyle(
-                              color: Constants.primary,
-                              fontFamily: 'Cairo',
-                              fontSize: d3),
+                            color: Constants.primary,
+                            fontFamily: 'Cairo',
+                            fontSize: d3,
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Image.asset(
-                          'assets/img/about.png',
+                          Assets.iconsAbout,
                           width: d1,
                           height: d1,
                           fit: BoxFit.fill,
@@ -277,9 +284,10 @@ class _DrawerFb1State extends State<DrawerFb1> {
   shareText() async {
     final box = context.findRenderObject() as RenderBox;
     await Share.share(
-        '\nرابط التطبيق للاندرويد : \n # \nرابط التطبيق للايفون : \n #\n\n',
-        subject: '',
-        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+      '\nرابط التطبيق للاندرويد : \n # \nرابط التطبيق للايفون : \n #\n\n',
+      subject: '',
+      sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+    );
   }
 }
 

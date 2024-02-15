@@ -14,10 +14,13 @@ class Utils {
     return res;
   }
 
-  bool hasTextOverflow(String text, TextStyle style,
-      {double minWidth = 0,
-      double maxWidth = double.infinity,
-      int maxLines = 2}) {
+  bool hasTextOverflow(
+    String text,
+    TextStyle style, {
+    double minWidth = 0,
+    double maxWidth = double.infinity,
+    int maxLines = 2,
+  }) {
     final TextPainter textPainter = TextPainter(
       text: TextSpan(text: text, style: style),
       maxLines: maxLines,
@@ -30,11 +33,12 @@ class Utils {
 
   void displayToastMessage(var toastMessage) {
     Fluttertoast.showToast(
-        msg: toastMessage.toString(),
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        textColor: Colors.white,
-        fontSize: 16.0);
+      msg: toastMessage.toString(),
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
   }
 
   List<String> splitToGetFirstTwoWords(String text) {
@@ -42,7 +46,4 @@ class Utils {
 
     return parts;
   }
-
-
-  
 }

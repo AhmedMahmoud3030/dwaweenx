@@ -4,8 +4,10 @@ import 'dart:io';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dwaweenx/Data/Models/card_data_model.dart';
 import 'package:dwaweenx/Data/Models/dewan_body_model.dart';
 import 'package:dwaweenx/Domain/Entities/audio.dart';
+import 'package:dwaweenx/Domain/Entities/card_data.dart';
 import 'package:dwaweenx/Domain/Entities/dewan.dart';
 import 'package:dwaweenx/Domain/Entities/dewanBody.dart';
 import 'package:dwaweenx/Domain/Entities/groupByPurpose.dart';
@@ -13,7 +15,7 @@ import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
 import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/features/About/about.dart';
 import 'package:dwaweenx/features/Dwaween/view.dart';
-import 'package:dwaweenx/features/Home/view.dart';
+import 'package:dwaweenx/features/Home/home_screen.dart';
 import 'package:dwaweenx/features/KasydaDetails/kasydaShareScreen.dart';
 import 'package:dwaweenx/services/cloud_firestore_service.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -42,17 +44,19 @@ class BaseProvider extends ChangeNotifier {
             id: 'K1',
             audio: [
               Audio(
-                  sheikhAr: 'Youssra1',
-                  sheikhEn: 'Youssra1en',
-                  url:
-                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Youssra%20El%20Hawary%20-%20Bas%20Kollo%20Yehoon%20%EF%BD%9C%20%D9%8A%D8%B3%D8%B1%D8%A7%20%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%B1%D9%8A%20-%20%D8%A8%D8%B3%20%D9%83%D9%8F%D9%84%D9%91%D9%87%20%D9%8A%D9%87%D9%88%D9%86.mp3?alt=media&token=55690100-9dd6-442c-b402-3adbede98486',
-                  id: 'audio1.mp3'),
+                sheikhAr: 'Youssra1',
+                sheikhEn: 'Youssra1en',
+                url:
+                    'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Youssra%20El%20Hawary%20-%20Bas%20Kollo%20Yehoon%20%EF%BD%9C%20%D9%8A%D8%B3%D8%B1%D8%A7%20%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%B1%D9%8A%20-%20%D8%A8%D8%B3%20%D9%83%D9%8F%D9%84%D9%91%D9%87%20%D9%8A%D9%87%D9%88%D9%86.mp3?alt=media&token=55690100-9dd6-442c-b402-3adbede98486',
+                id: 'audio1.mp3',
+              ),
               Audio(
-                  sheikhAr: 'Aziz1',
-                  sheikhEn: 'sAzizen1',
-                  url:
-                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033',
-                  id: 'audio1.mp3')
+                sheikhAr: 'Aziz1',
+                sheikhEn: 'sAzizen1',
+                url:
+                    'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033',
+                id: 'audio1.mp3',
+              ),
             ],
             purpose: 'purpose',
             type: 'Kasyda',
@@ -68,11 +72,12 @@ class BaseProvider extends ChangeNotifier {
             id: 'K2',
             audio: [
               Audio(
-                  sheikhAr: 'sheikhAr',
-                  sheikhEn: 'sheikhEn',
-                  url:
-                      'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033',
-                  id: 'audio1.mp3')
+                sheikhAr: 'sheikhAr',
+                sheikhEn: 'sheikhEn',
+                url:
+                    'https://firebasestorage.googleapis.com/v0/b/dwaween-8ede4.appspot.com/o/Aziz%20Maraka%20-%20Miganinani%20%EF%BD%9C%20Official%20Music%20Video%20-%202023%20%EF%BD%9C%20%D8%B9%D8%B2%D9%8A%D8%B2%20%D9%85%D8%B1%D9%82%D8%A9%20-%20%D9%85%D8%AC%D9%86%D9%86%D8%A7%D9%86%D9%8A.mp3?alt=media&token=536db9c2-9751-4bd7-9bbc-a75332897033',
+                id: 'audio1.mp3',
+              ),
             ],
             purpose: 'purpose',
             type: 'Kasyda',
@@ -96,7 +101,6 @@ class BaseProvider extends ChangeNotifier {
         .update(uploadData.toMap())
         .catchError((error) {
       // Handle any errors here
-      print("Error adding kasyda to dawawen: $error");
     });
   }
 
@@ -120,7 +124,7 @@ class BaseProvider extends ChangeNotifier {
 
     final loadedData = snapshot.data() as Map<String, dynamic>;
 
-    dewanBody = await DawawenBodyModel.fromJson(loadedData);
+    dewanBody = DawawenBodyModel.fromJson(loadedData);
     HomeScreenData = dewanBody!.dawawen;
     DewanScreenData = dewanBody!.dawawen;
     KasayedScreenData = dewanBody!.dawawen;
@@ -159,7 +163,7 @@ class BaseProvider extends ChangeNotifier {
     HomeScreen(),
     DwaweenScreen(),
     KasaedScreen(),
-    AboutScreen()
+    AboutScreen(),
   ];
 
   void setSelectedIndex({required int index}) {
@@ -213,7 +217,9 @@ class BaseProvider extends ChangeNotifier {
   }
 
   List<Dawawen> searchDewanBodyByNameAndKaseyda(
-      String query, DawawenBody dewanBody) {
+    String query,
+    DawawenBody dewanBody,
+  ) {
     return dewanBody.dawawen.where((dawawen) {
       return dawawen.name.contains(query) ||
           dawawen.kasaed.any((kasyda) => kasyda.name.contains(query));
@@ -299,24 +305,29 @@ class BaseProvider extends ChangeNotifier {
   }
 
   List<Dawawen> filterKaseydaByTextOrPurpose(
-      String text, DawawenBody dewanBody) {
+    String text,
+    DawawenBody dewanBody,
+  ) {
     List<Dawawen> filteredDawawen = [];
 
     dewanBody.dawawen.forEach((dawawen) {
       List<KasydaBody> matchingKasyda = dawawen.kasaed
-          .where((kenashat) =>
-              (kenashat.kaseyda.toLowerCase().contains(text.toLowerCase())) ||
-              kenashat.purpose.toLowerCase().contains(text.toLowerCase()))
+          .where(
+            (kenashat) =>
+                (kenashat.kaseyda.toLowerCase().contains(text.toLowerCase())) ||
+                kenashat.purpose.toLowerCase().contains(text.toLowerCase()),
+          )
           .toList();
       if (matchingKasyda.isNotEmpty) {
         // Create a new copy of the Dawawen object with the matching KasydaBody objects
         Dawawen filteredDawawenCopy = Dawawen(
-            id: dawawen.id,
-            name: dawawen.name,
-            nameT: dawawen.nameT,
-            dec: dawawen.dec,
-            type: dawawen.type,
-            kasaed: matchingKasyda);
+          id: dawawen.id,
+          name: dawawen.name,
+          nameT: dawawen.nameT,
+          dec: dawawen.dec,
+          type: dawawen.type,
+          kasaed: matchingKasyda,
+        );
 
         filteredDawawen.add(filteredDawawenCopy);
       }
@@ -328,12 +339,10 @@ class BaseProvider extends ChangeNotifier {
   TextEditingController aboutController = TextEditingController();
 
   void changeLang({required BuildContext context}) {
-    print('changeLang');
-    print(context.locale.languageCode);
     if (context.locale.languageCode == 'ar') {
-      EasyLocalization.of(context)!.setLocale(Locale('en'));
+      EasyLocalization.of(context)!.setLocale(const Locale('en'));
     } else {
-      EasyLocalization.of(context)!.setLocale(Locale('ar'));
+      EasyLocalization.of(context)!.setLocale(const Locale('ar'));
     }
     notifyListeners();
   }
@@ -354,8 +363,6 @@ class BaseProvider extends ChangeNotifier {
   // kafya[kafyaIndex ?? 0]
   // kafyaController.text.toLowerCase()
   filterByKasyda() {
-    print(kafyaIndex);
-
     KasaedDetailsScreenData = filterKasydaBodies(
       DewanDetailsScreenData[dewanIndex!].kasaed,
       kaseyda: kafyaController.text.isEmpty
@@ -364,23 +371,19 @@ class BaseProvider extends ChangeNotifier {
       letter: kafyaIndex == null ? null : kafya[kafyaIndex!],
     );
 
-    print("KasaedDetailsScreenData.length ${KasaedDetailsScreenData.length}");
-
     notifyListeners();
   }
 
-  List<KasydaBody> filterKasydaBodies(List<KasydaBody> kasydaBodies,
-      {String? kaseyda, String? letter}) {
-    print('comming here ');
-
+  List<KasydaBody> filterKasydaBodies(
+    List<KasydaBody> kasydaBodies, {
+    String? kaseyda,
+    String? letter,
+  }) {
     if (kaseyda == null && letter == null) {
-      print('nothing appear ');
       return kasydaBodies;
     }
 
     return kasydaBodies.where((kasydaBody) {
-      print('something appear ');
-
       if (kaseyda != null) {
         return kasydaBody.kaseyda.toLowerCase().contains(kaseyda.toLowerCase());
       }
@@ -403,7 +406,7 @@ class BaseProvider extends ChangeNotifier {
 
   Future<void> setKasydaDetailsBody(KasydaBody? value, String local) async {
     _KasydaDetailsBody = value;
-    _audioPlayer..setUrl(_KasydaDetailsBody!.audio.first.url);
+    _audioPlayer.setUrl(_KasydaDetailsBody!.audio.first.url);
     _sheikh = local == 'ar'
         ? _KasydaDetailsBody!.audio.first.sheikhAr
         : _KasydaDetailsBody!.audio.first.sheikhEn;
@@ -427,7 +430,7 @@ class BaseProvider extends ChangeNotifier {
       notifyListeners();
     }
 
-    Future.delayed(Duration(milliseconds: 1500))
+    Future.delayed(const Duration(milliseconds: 1500))
         .then((value) => fontTransactionEffect = false)
         .then((value) => notifyListeners());
   }
@@ -441,7 +444,7 @@ class BaseProvider extends ChangeNotifier {
       notifyListeners();
     }
 
-    Future.delayed(Duration(milliseconds: 1000))
+    Future.delayed(const Duration(milliseconds: 1000))
         .then((value) => fontTransactionEffect = false)
         .then((value) => notifyListeners());
   }
@@ -453,7 +456,7 @@ class BaseProvider extends ChangeNotifier {
     _fontSize = value;
     notifyListeners();
 
-    Future.delayed(Duration(milliseconds: 1000))
+    Future.delayed(const Duration(milliseconds: 1000))
         .then((value) => fontTransactionEffect = false)
         .then((value) => notifyListeners());
   }
@@ -462,18 +465,18 @@ class BaseProvider extends ChangeNotifier {
 
   List<Color> fontColors = [
     Colors.black,
-    Color(0xff1AA386),
-    Color(0xff0E264C),
-    Color(0xff0E264C),
-    Color(0xff51DECF),
+    const Color(0xff1AA386),
+    const Color(0xff0E264C),
+    const Color(0xff0E264C),
+    const Color(0xff51DECF),
   ];
 
   List<Color> BGColors = [
     Colors.white,
-    Color(0xffFFF8E9),
-    Color(0xffDFDFDF),
-    Color(0xffE6DBD0),
-    Color(0xffDBEDF1),
+    const Color(0xffFFF8E9),
+    const Color(0xffDFDFDF),
+    const Color(0xffE6DBD0),
+    const Color(0xffDBEDF1),
   ];
 
   int _fontColorIndex = 0;
@@ -496,10 +499,6 @@ class BaseProvider extends ChangeNotifier {
   List<String> versesToShareList = [];
 
   setVersesToShareList(String value) {
-    print('before');
-    print(value);
-    print(versesToShareList.length);
-
     if (versesToShareList.contains(value)) {
       versesToShareList.remove(value);
     } else {
@@ -510,9 +509,6 @@ class BaseProvider extends ChangeNotifier {
       }
     }
 
-    print('before');
-    print(value);
-    print(versesToShareList.length);
     notifyListeners();
   }
 
@@ -554,8 +550,6 @@ class BaseProvider extends ChangeNotifier {
     }
 
     urls = await Future.wait(xurls);
-    print(urls.length);
-    print("urls.length");
   }
 
   AudioPlayer _audioPlayer = AudioPlayer();
@@ -600,20 +594,24 @@ class BaseProvider extends ChangeNotifier {
   bool get isPlaying => _isPlaying;
 
   setIsPlaying(bool value) {
-    print(KasydaDetailsBody!.audio.first.url);
     _isPlaying = value;
     notifyListeners();
   }
 
   shareText(BuildContext context) async {
     final box = context.findRenderObject() as RenderBox;
-    await Share.share(versesToShareList.join('\n'),
-        subject: KasydaDetailsBody?.name ?? '',
-        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+    await Share.share(
+      versesToShareList.join('\n'),
+      subject: KasydaDetailsBody?.name ?? '',
+      sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+    );
   }
 
   void captureScreenShot(
-      BuildContext context, String image, String text) async {
+    BuildContext context,
+    String image,
+    String text,
+  ) async {
     final directory = await getTemporaryDirectory();
     Uint8List? imageBytes = await screenshotController.captureFromWidget(
       KasydaShareScreen(
@@ -635,22 +633,13 @@ class BaseProvider extends ChangeNotifier {
   }
 
   splitKasyda() {
-    K = KasydaDetailsBody!.kaseyda.toString().split(".");
-    KT = KasydaDetailsBody!.kaseydaT.toString().split(".");
+    K = KasydaDetailsBody!.kaseyda.toString().split('.');
+    KT = KasydaDetailsBody!.kaseydaT.toString().split('.');
     notifyListeners();
   }
 
   Future<void> downloadFile() async {
-    var childPath =
-        'Audios/${dewanBody!.dawawen[_dewanIndex!].id}/${KasydaDetailsBody!.id}/${KasydaDetailsBody!.audio[_audioIndex].id}';
-
-    var directoryRef = storage.ref().child(childPath);
-    try {
-      String x = await directoryRef.getDownloadURL();
-      print('hahahahahhahahahahhaahahahhahahhahaha');
-      print(x);
-    } catch (e) {
-      print("Error downloading file: $e");
+    try {} catch (e) {
       throw e;
     }
 
@@ -669,8 +658,10 @@ class BaseProvider extends ChangeNotifier {
     if (lowerCaseSearchValue.isNotEmpty) {
       groupedBy[groupByPurposeIndex]
           .kenshat
-          .where((element) =>
-              element.purpose.toLowerCase().contains(lowerCaseSearchValue))
+          .where(
+            (element) =>
+                element.purpose.toLowerCase().contains(lowerCaseSearchValue),
+          )
           .toList();
     } else {
       groupedBy[groupByPurposeIndex].kenshat;
@@ -679,4 +670,49 @@ class BaseProvider extends ChangeNotifier {
   }
 
 //!----------------------------------------------------------------------------
+  bool _cardDataLoading = true;
+
+  bool get cardDataLoading => _cardDataLoading;
+  AudioPlayer _cardAudioPlayer = AudioPlayer();
+
+  AudioPlayer get cardAudioPlayer => _cardAudioPlayer;
+
+  bool _cardIsPlaying = false;
+
+  bool get cardIsPlaying => _cardIsPlaying;
+
+  CardData? _cardData;
+
+  CardData? get cardData => _cardData;
+
+  void playCardAudio() {
+    _cardAudioPlayer.play();
+    _cardIsPlaying = true;
+    notifyListeners();
+  }
+
+  void pauseCardAudio() {
+    _cardAudioPlayer.pause();
+    _cardIsPlaying = false;
+    notifyListeners();
+  }
+
+  Future<void> readCardData() async {
+    _cardDataLoading = true;
+    notifyListeners();
+
+    final DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection('dwaween')
+        .doc('kibIWBlgZ3ML7YeziVnH')
+        .get();
+
+    final loadedData = snapshot.data() as Map<String, dynamic>;
+
+    _cardData = CardDataModel.fromJson(loadedData['homeCard']);
+
+    _cardAudioPlayer = AudioPlayer()..setUrl(_cardData!.url);
+
+    _cardDataLoading = false;
+    notifyListeners();
+  }
 }
