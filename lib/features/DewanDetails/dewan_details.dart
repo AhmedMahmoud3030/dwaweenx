@@ -12,6 +12,8 @@ import '../../generated/assets.dart';
 import '../provider.dart';
 
 class DewanDetailsPage extends StatefulWidget {
+  const DewanDetailsPage({super.key});
+
   @override
   State<DewanDetailsPage> createState() => _DewanDetailsPageState();
 }
@@ -48,7 +50,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                 child: Stack(
                   children: [
                     Image.asset(
-                      Assets.paintings1,
+                      Assets.paintingsImgHeadInternal,
                       alignment: Alignment.topCenter,
                       width: mediaQuery.width * 4,
                       height: mediaQuery.height / 2,
@@ -119,7 +121,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                             provider.kafyaController.clear();
                             provider.filterByKasyda();
                           },
-                          onFieldSubmitted: (String) {},
+                          onFieldSubmitted: (value) {},
                         ),
                       ],
                     ),

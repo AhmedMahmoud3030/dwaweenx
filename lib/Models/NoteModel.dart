@@ -8,8 +8,14 @@ class NoteModel {
   String? _kNameT;
   String? _kTextT;
 
-  NoteModel(this._title, this._body, this._kName, this._kText, this._kNameT,
-      this._kTextT);
+  NoteModel(
+    this._title,
+    this._body,
+    this._kName,
+    this._kText,
+    this._kNameT,
+    this._kTextT,
+  );
 
   NoteModel.map(dynamic obj) {
     _id = obj['id'];

@@ -1,7 +1,7 @@
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/core/widgits/customTextFormField.dart';
-import 'package:dwaweenx/features/DewanDetails/view.dart';
+import 'package:dwaweenx/features/DewanDetails/dewan_details.dart';
 import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 import '../provider.dart';
 
 class DwaweenScreen extends StatelessWidget {
+  const DwaweenScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -92,7 +94,7 @@ class DwaweenScreen extends StatelessWidget {
                     provider.dewanController.clear();
                     provider.searchDewanMethod(searchValue: '');
                   },
-                  onFieldSubmitted: (String) {},
+                  onFieldSubmitted: (value) {},
                 ),
                 const SizedBox(
                   height: 10,

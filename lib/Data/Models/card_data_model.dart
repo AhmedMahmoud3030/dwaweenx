@@ -1,12 +1,13 @@
 import 'package:dwaweenx/Domain/Entities/card_data.dart';
 
 class CardDataModel extends CardData {
-  const CardDataModel(
-      {required super.titleAr,
-      required super.titleEn,
-      required super.sheikhAr,
-      required super.sheikhEn,
-      required super.url});
+  const CardDataModel({
+    required super.titleAr,
+    required super.titleEn,
+    required super.sheikhAr,
+    required super.sheikhEn,
+    required super.url,
+  });
 
   factory CardDataModel.fromJson(Map<String, dynamic> json) {
     return CardDataModel(

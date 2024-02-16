@@ -104,7 +104,7 @@ class KasaedByCategoryScreen extends StatelessWidget {
                               searchValue: '',
                             );
                           },
-                          onFieldSubmitted: (String) {},
+                          onFieldSubmitted: (value) {},
                         ),
                         const SizedBox(
                           height: 10,

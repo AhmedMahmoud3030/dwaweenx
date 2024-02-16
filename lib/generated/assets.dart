@@ -46,34 +46,37 @@ class Assets {
   static const String iconsShare = 'assets/images/icons/share.png';
   static const String launcherLauncher = 'assets/images/launcher/launcher.png';
   static const String paintings1 = 'assets/images/paintings/1.png';
-  static const String paintings10 = 'assets/images/paintings/10.jpg';
-  static const String paintings11 = 'assets/images/paintings/11.jpg';
-  static const String paintings12 = 'assets/images/paintings/12.jpg';
-  static const String paintings13 = 'assets/images/paintings/13.jpg';
-  static const String paintings14 = 'assets/images/paintings/14.jpg';
-  static const String paintings15 = 'assets/images/paintings/15.jpg';
-  static const String paintings16 = 'assets/images/paintings/16.jpg';
-  static const String paintings17 = 'assets/images/paintings/17.jpg';
-  static const String paintings18 = 'assets/images/paintings/18.jpg';
-  static const String paintings19 = 'assets/images/paintings/19.jpg';
-  static const String paintings2 = 'assets/images/paintings/2.jpg';
-  static const String paintings20 = 'assets/images/paintings/20.jpg';
-  static const String paintings21 = 'assets/images/paintings/21.jpg';
-  static const String paintings22 = 'assets/images/paintings/22.jpg';
-  static const String paintings23 = 'assets/images/paintings/23.jpg';
-  static const String paintings24 = 'assets/images/paintings/24.jpg';
-  static const String paintings25 = 'assets/images/paintings/25.jpg';
-  static const String paintings26 = 'assets/images/paintings/26.jpg';
-  static const String paintings27 = 'assets/images/paintings/27.jpg';
-  static const String paintings28 = 'assets/images/paintings/28.jpg';
-  static const String paintings29 = 'assets/images/paintings/29.jpg';
-  static const String paintings3 = 'assets/images/paintings/3.jpg';
-  static const String paintings4 = 'assets/images/paintings/4.jpg';
-  static const String paintings5 = 'assets/images/paintings/5.jpg';
-  static const String paintings6 = 'assets/images/paintings/6.jpg';
-  static const String paintings7 = 'assets/images/paintings/7.jpg';
-  static const String paintings8 = 'assets/images/paintings/8.jpg';
-  static const String paintings9 = 'assets/images/paintings/9.jpg';
+  final List<String> paintingsShare = [
+    'assets/images/paintings/10.jpg',
+    'assets/images/paintings/11.jpg',
+    'assets/images/paintings/12.jpg',
+    'assets/images/paintings/13.jpg',
+    'assets/images/paintings/14.jpg',
+    'assets/images/paintings/15.jpg',
+    'assets/images/paintings/16.jpg',
+    'assets/images/paintings/17.jpg',
+    'assets/images/paintings/18.jpg',
+    'assets/images/paintings/19.jpg',
+    'assets/images/paintings/2.jpg',
+    'assets/images/paintings/20.jpg',
+    'assets/images/paintings/21.jpg',
+    'assets/images/paintings/22.jpg',
+    'assets/images/paintings/23.jpg',
+    'assets/images/paintings/24.jpg',
+    'assets/images/paintings/25.jpg',
+    'assets/images/paintings/26.jpg',
+    'assets/images/paintings/27.jpg',
+    'assets/images/paintings/28.jpg',
+    'assets/images/paintings/29.jpg',
+    'assets/images/paintings/3.jpg',
+    'assets/images/paintings/4.jpg',
+    'assets/images/paintings/5.jpg',
+    'assets/images/paintings/6.jpg',
+    'assets/images/paintings/7.jpg',
+    'assets/images/paintings/8.jpg',
+    'assets/images/paintings/9.jpg',
+  ];
+
   static const String paintingsBG = 'assets/images/paintings/BG.png';
   static const String paintingsBooks = 'assets/images/paintings/books.png';
   static const String paintingsCheikh = 'assets/images/paintings/cheikh.jpg';

@@ -14,7 +14,7 @@ import 'package:dwaweenx/Domain/Entities/groupByPurpose.dart';
 import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
 import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/features/About/about.dart';
-import 'package:dwaweenx/features/Dwaween/view.dart';
+import 'package:dwaweenx/features/Dwaween/dawaween_screen.dart';
 import 'package:dwaweenx/features/Home/home_screen.dart';
 import 'package:dwaweenx/features/KasydaDetails/kasydaShareScreen.dart';
 import 'package:dwaweenx/services/cloud_firestore_service.dart';
@@ -337,6 +337,7 @@ class BaseProvider extends ChangeNotifier {
 
   //?============================AboutScreen=================================================
   TextEditingController aboutController = TextEditingController();
+  TextEditingController favoriteController = TextEditingController();
 
   void changeLang({required BuildContext context}) {
     if (context.locale.languageCode == 'ar') {

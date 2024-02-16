@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.dwaweenx"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -41,8 +41,8 @@ android {
     }
 
     defaultConfig {
-        
-         multiDexEnabled true
+
+        multiDexEnabled true
 
         applicationId "com.example.dwaweenx"
         // You can update the following values to match your application needs.
@@ -67,6 +67,6 @@ flutter {
 }
 
 dependencies {
-     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:multidex:1.0.3'
 
 }

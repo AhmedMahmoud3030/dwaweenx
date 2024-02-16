@@ -1,4 +1,3 @@
-import 'package:dwaweenx/Screens/Comment/Comment.dart';
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/help/database_helper_notification.dart';
 import 'package:dwaweenx/core/nav.dart';
@@ -233,19 +232,19 @@ class _noteDataState extends State<noteData> {
                   ),
                 ),
                 actions: <Widget>[
-                  Align(
-                    child: DefaultElevatedButton(
-                      height: height / 20,
-                      width: width / 2,
-                      onPressed: () {
-                        EditZikr(context, note);
-                      },
-                      title: 'حفظ',
-                      titleSize: width / 27,
-                      color: Constants.primary,
-                      borderRadius: 10,
-                    ),
-                  ),
+                  // Align(
+                  //   child: DefaultElevatedButton(
+                  //     height: height / 20,
+                  //     width: width / 2,
+                  //     onPressed: () {
+                  //       EditZikr(context, note);
+                  //     },
+                  //     title: 'حفظ',
+                  //     titleSize: width / 27,
+                  //     color: Constants.primary,
+                  //     borderRadius: 10,
+                  //   ),
+                  // ),
                 ],
               );
             },

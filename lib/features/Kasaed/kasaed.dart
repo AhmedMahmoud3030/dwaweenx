@@ -94,7 +94,7 @@ class KasaedScreen extends StatelessWidget {
                         provider.kasayedController.clear();
                         provider.searchKasayedMethod(searchValue: '');
                       },
-                      onFieldSubmitted: (String) {},
+                      onFieldSubmitted: (value) {},
                     ),
                     const SizedBox(
                       height: 10,

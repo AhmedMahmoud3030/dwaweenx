@@ -56,7 +56,8 @@ class DatabaseHelperFavourite {
   Future<int?> getCountFav() async {
     var dbClient = await db;
     return Sqflite.firstIntValue(
-        await dbClient!.rawQuery('SELECT COUNT(*) FROM $tableDuaaFav'));
+      await dbClient!.rawQuery('SELECT COUNT(*) FROM $tableDuaaFav'),
+    );
   }
 
   Future<FavModel?> getsFav(int id) async {

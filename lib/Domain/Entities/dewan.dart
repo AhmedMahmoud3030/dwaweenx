@@ -9,7 +9,7 @@ class Dawawen extends Equatable {
   final String type;
   final List<KasydaBody> kasaed;
 
-  Dawawen({
+  const Dawawen({
     required this.id,
     required this.name,
     required this.nameT,

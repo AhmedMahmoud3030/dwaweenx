@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:dwaweenx/features/Base/view.dart';
+import 'package:dwaweenx/features/Base/base_screen.dart';
 import 'package:dwaweenx/features/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

@@ -1,14 +1,17 @@
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: TestPage(),
-  ));
+  runApp(
+    MaterialApp(
+      home: TestPage(),
+    ),
+  );
 }
 
 class TestPage extends StatefulWidget {
@@ -30,11 +33,11 @@ class _TestPageState extends State<TestPage> {
         child: Center(
           child: Container(
             color: Colors.blue,
+            padding: const EdgeInsets.all(16.0),
             child: const Text(
               'This is a test page for screenshots',
               style: TextStyle(color: Colors.white, fontSize: 20.0),
             ),
-            padding: const EdgeInsets.all(16.0),
           ),
         ),
       ),
@@ -47,11 +50,12 @@ class _TestPageState extends State<TestPage> {
           String imagePath = await _saveImage(imageBytes!);
 
           // Share the saved image file
-          await Share.shareFiles([imagePath],
-              text: 'Check out this screenshot!',
-              subject: 'Screenshot Shared');
-
-          },
+          await Share.shareFiles(
+            [imagePath],
+            text: 'Check out this screenshot!',
+            subject: 'Screenshot Shared',
+          );
+        },
         child: const Icon(Icons.share),
       ),
     );

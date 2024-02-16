@@ -31,17 +31,19 @@ class share extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 7,
                     margin: const EdgeInsets.all(10),
+                    color: Colors.white,
                     child: Center(
                       child: Image.asset('assets/img/share-img$index.jpg'),
                     ),
-                    color: Colors.white,
                   ),
                 ),
               ),
               Text(
                 _content,
                 style: const TextStyle(
-                    color: Constants.primary, fontFamily: 'Cairo'),
+                  color: Constants.primary,
+                  fontFamily: 'Cairo',
+                ),
                 textAlign: TextAlign.right,
               ),
               const SizedBox(height: 10),

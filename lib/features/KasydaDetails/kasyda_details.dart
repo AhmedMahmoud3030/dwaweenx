@@ -309,7 +309,7 @@ class KasydaDetails extends StatelessWidget {
                                     icon: SvgPicture.asset(
                                       width: 30,
                                       height: 30,
-                                      'assets/img/ic_nspeed.svg',
+                                      Assets.iconsIcForward30,
                                     ),
                                   ),
                                   IconButton(
@@ -332,7 +332,7 @@ class KasydaDetails extends StatelessWidget {
                                     icon: SvgPicture.asset(
                                       width: 30,
                                       height: 30,
-                                      'assets/img/ic_next.svg',
+                                      Assets.iconsIcForward10,
                                     ),
                                   ),
                                   IconButton(
@@ -388,7 +388,7 @@ class KasydaDetails extends StatelessWidget {
                                     icon: SvgPicture.asset(
                                       width: 30,
                                       height: 30,
-                                      'assets/img/ic_p.svg',
+                                      Assets.iconsIcBack10,
                                     ),
                                   ),
                                   IconButton(
@@ -422,7 +422,7 @@ class KasydaDetails extends StatelessWidget {
                                     icon: SvgPicture.asset(
                                       width: 30,
                                       height: 30,
-                                      'assets/img/ic_pspeed.svg',
+                                      Assets.iconsIcBack30,
                                     ),
                                   ),
                                 ],
@@ -443,7 +443,7 @@ class KasydaDetails extends StatelessWidget {
                                 icon: SvgPicture.asset(
                                   width: 30,
                                   height: 30,
-                                  'assets/img/ic_downlod.svg',
+                                  Assets.iconsIcDownlod,
                                 ),
                               ),
                             ],
@@ -490,6 +490,15 @@ class VocalistList extends StatelessWidget {
         Positioned(
           bottom: mediaQuery.height * .2,
           child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            width: mediaQuery.width,
+            height: mediaQuery.height * .25,
             child: Column(
               children: [
                 Row(
@@ -593,15 +602,6 @@ class VocalistList extends StatelessWidget {
                 ),
               ],
             ),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            width: mediaQuery.width,
-            height: mediaQuery.height * .25,
           ),
         ),
       ],
@@ -624,6 +624,15 @@ class MenuModel extends StatelessWidget {
         Positioned(
           bottom: mediaQuery.height * .2,
           child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            width: mediaQuery.width,
+            height: mediaQuery.height * .6,
             child: Padding(
               padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
               child: Column(
@@ -802,6 +811,12 @@ class MenuModel extends StatelessWidget {
                       Container(
                         width: 70,
                         height: 30,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Constants.primary,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                         child: IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: () {
@@ -813,12 +828,6 @@ class MenuModel extends StatelessWidget {
                             Icons.add,
                           ),
                         ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Constants.primary,
-                          ),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
                       ),
                       const SizedBox(
                         width: 10,
@@ -829,6 +838,15 @@ class MenuModel extends StatelessWidget {
                                 Container(
                           width: 70,
                           height: 30,
+                          decoration: BoxDecoration(
+                            color: provider.fontTransactionEffect
+                                ? Colors.white
+                                : Constants.primary2,
+                            border: Border.all(
+                              color: Constants.primary2,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                           child: provider.fontTransactionEffect
                               ? Center(
                                   child: Text(
@@ -849,15 +867,6 @@ class MenuModel extends StatelessWidget {
                                     Icons.drag_handle,
                                   ),
                                 ),
-                          decoration: BoxDecoration(
-                            color: provider.fontTransactionEffect
-                                ? Colors.white
-                                : Constants.primary2,
-                            border: Border.all(
-                              color: Constants.primary2,
-                            ),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
                         ),
                       ),
                       const SizedBox(
@@ -866,6 +875,12 @@ class MenuModel extends StatelessWidget {
                       Container(
                         width: 70,
                         height: 30,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Constants.primary,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                         child: IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: () {
@@ -876,12 +891,6 @@ class MenuModel extends StatelessWidget {
                           icon: const Icon(
                             Icons.remove,
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Constants.primary,
-                          ),
-                          borderRadius: BorderRadius.circular(5),
                         ),
                       ),
                     ],
@@ -1044,15 +1053,6 @@ class MenuModel extends StatelessWidget {
                 ],
               ),
             ),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            width: mediaQuery.width,
-            height: mediaQuery.height * .6,
           ),
         ),
       ],
@@ -1288,6 +1288,14 @@ class ShareDialog2 extends StatelessWidget {
                     provider.setShareDialogIndex(1);
                   },
                   child: Container(
+                    decoration: BoxDecoration(
+                      color: provider.shareDialogIndex == 1
+                          ? Constants.primary
+                          : Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(color: Constants.primary2),
+                    ),
+                    padding: const EdgeInsets.all(8),
                     child: Text(
                       'share_as_image'.tr(),
                       style: TextStyle(
@@ -1301,14 +1309,6 @@ class ShareDialog2 extends StatelessWidget {
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-                    decoration: BoxDecoration(
-                      color: provider.shareDialogIndex == 1
-                          ? Constants.primary
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: Constants.primary2),
-                    ),
-                    padding: const EdgeInsets.all(8),
                   ),
                 ),
               ],
@@ -1443,11 +1443,11 @@ class ShareDialog2 extends StatelessWidget {
                                                 highlightColor:
                                                     Constants.primary,
                                                 child: SizedBox(
+                                                  width: mediaQuery.width * .5,
                                                   child: Image.asset(
-                                                    'assets/images/paintings/shikh.png',
+                                                    Assets.paintingsShikh,
                                                     fit: BoxFit.fill,
                                                   ),
-                                                  width: mediaQuery.width * .5,
                                                 ),
                                               ),
                                               errorWidget:

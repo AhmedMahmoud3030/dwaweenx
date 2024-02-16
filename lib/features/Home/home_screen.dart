@@ -2,7 +2,7 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/core/widgits/customTextFormField.dart';
-import 'package:dwaweenx/features/DewanDetails/view.dart';
+import 'package:dwaweenx/features/DewanDetails/dewan_details.dart';
 import 'package:dwaweenx/features/KasayedByCategory/kasayed_by_category.dart';
 import 'package:dwaweenx/features/provider.dart';
 import 'package:dwaweenx/generated/assets.dart';
@@ -13,6 +13,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -313,7 +315,7 @@ class HomeScreen extends StatelessWidget {
                                       child: Text(
                                         'view_all'.tr(),
                                         style: TextStyle(
-                                          color: Colors.teal,
+                                          color: const Color(0xff1C7F88),
                                           fontSize: mediaQuery.width / 25,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.bold,
@@ -501,10 +503,9 @@ class HomeScreen extends StatelessWidget {
                                     Text(
                                       'poems'.tr(),
                                       style: TextStyle(
-                                        color: Colors.teal,
-                                        fontSize: mediaQuery.width / 20,
-
-                                        // fontFamily: "Cairo",
+                                        color: const Color(0xff1C7F88),
+                                        fontSize: mediaQuery.width / 25,
+                                        fontFamily: 'Cairo',
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -531,7 +532,7 @@ class HomeScreen extends StatelessWidget {
                                       child: Text(
                                         'view_all'.tr(),
                                         style: TextStyle(
-                                          color: Colors.teal,
+                                          color: const Color(0xff1C7F88),
                                           fontSize: mediaQuery.width / 25,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.bold,

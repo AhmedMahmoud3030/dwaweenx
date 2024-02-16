@@ -1,6 +1,4 @@
 import 'package:dwaweenx/Notes/notesData.dart';
-import 'package:dwaweenx/Screens/AboutUs/AboutUs.dart';
-import 'package:dwaweenx/Screens/Comment/Comment.dart';
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/features/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -9,8 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../Favourite/FavDataBase.dart';
 import '../../generated/assets.dart';
+import '../Favorite/favorite_screen.dart';
 
 class DrawerFb1 extends StatelessWidget {
   const DrawerFb1({super.key});
@@ -49,7 +47,7 @@ class DrawerFb1 extends StatelessWidget {
                     Navigator.of(context).pop();
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const FavDataBase(),
+                        builder: (context) => const FavoriteScreen(),
                       ),
                     );
                   },
@@ -203,11 +201,11 @@ class DrawerFb1 extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).pop();
 
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Comment(),
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => Comment(),
+                    //   ),
+                    // );
                   },
                   child: Row(
                     children: [
@@ -236,11 +234,11 @@ class DrawerFb1 extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).pop();
 
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AboutUs(),
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const AboutUs(),
+                    //   ),
+                    // );
                   },
                   child: Row(
                     children: [
