@@ -7,9 +7,6 @@ class share2 extends StatelessWidget {
 
   String kasyeda;
 
-  //final String _content =
-  //  'جل فكري في معالي أعني على التهيام وا لبُرَحَاءِ بحب الإمام الهاشميِّ أتقربُ تذكرت والأشواق والذكرات';
-
   void _shareContent() {
     Share.share(kasyeda);
   }

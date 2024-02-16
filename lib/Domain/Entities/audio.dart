@@ -35,6 +35,15 @@ class Audio extends Equatable {
     };
   }
 
+  factory Audio.fromMap(Map<dynamic, dynamic> map) {
+    return Audio(
+      id: map['id'],
+      sheikhAr: map['sheikhAr'],
+      sheikhEn: map['sheikhEn'],
+      url: map['url'],
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,

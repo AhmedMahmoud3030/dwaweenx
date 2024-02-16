@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/utils.dart';
-import '../../core/widgits/customTextFormField.dart';
+import '../../core/widgets/customTextFormField.dart';
 import '../../generated/assets.dart';
 import '../provider.dart';
 
@@ -49,7 +49,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                 ),
                 child: Stack(
                   children: [
-                    Image.asset(
+                    SvgPicture.asset(
                       Assets.paintingsImgHeadInternal,
                       alignment: Alignment.topCenter,
                       width: mediaQuery.width * 4,

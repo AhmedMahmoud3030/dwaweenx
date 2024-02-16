@@ -1,7 +1,7 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/utils.dart';
-import 'package:dwaweenx/core/widgits/customTextFormField.dart';
+import 'package:dwaweenx/core/widgets/customTextFormField.dart';
 import 'package:dwaweenx/features/DewanDetails/dewan_details.dart';
 import 'package:dwaweenx/features/KasayedByCategory/kasayed_by_category.dart';
 import 'package:dwaweenx/features/provider.dart';

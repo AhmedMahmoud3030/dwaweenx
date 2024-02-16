@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/utils.dart';
-import 'package:dwaweenx/core/widgits/customTextFormField.dart';
+import 'package:dwaweenx/core/widgets/customTextFormField.dart';
 import 'package:dwaweenx/features/provider.dart';
 import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -637,25 +637,39 @@ class MenuModel extends StatelessWidget {
               padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset(
-                        Assets.iconsIcAddFav,
-                        width: 35,
-                        height: 35,
+                  GestureDetector(
+                    onTap: () {
+                      Provider.of<BaseProvider>(context, listen: false)
+                          .saveDataToDataBase(
+                        kasydaBody: Provider.of<BaseProvider>(
+                          context,
+                          listen: false,
+                        ).KasydaDetailsBody!,
+                      );
+                    },
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            Assets.iconsIcAddFav,
+                            width: 35,
+                            height: 35,
+                          ),
+                          Text(
+                            'Favourite'.tr(),
+                            style: const TextStyle(
+                              decoration: TextDecoration.none,
+                              decorationStyle: TextDecorationStyle.wavy,
+                              color: Constants.primary2,
+                              fontSize: 18,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Favourite'.tr(),
-                        style: const TextStyle(
-                          decoration: TextDecoration.none,
-                          decorationStyle: TextDecorationStyle.wavy,
-                          color: Constants.primary2,
-                          fontSize: 18,
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                   const SizedBox(
                     height: 10,

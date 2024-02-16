@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/constants.dart';
-import '../../core/widgits/customTextFormField.dart';
+import '../../core/widgets/customTextFormField.dart';
 import '../provider.dart';
 
 class KasaedByCategoryScreen extends StatelessWidget {

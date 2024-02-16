@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/widgits/customTextFormField.dart';
+import '../../core/widgets/customTextFormField.dart';
 import '../provider.dart';
 
 class AboutScreen extends StatelessWidget {

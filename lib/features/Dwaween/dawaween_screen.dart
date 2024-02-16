@@ -1,6 +1,6 @@
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/core/utils.dart';
-import 'package:dwaweenx/core/widgits/customTextFormField.dart';
+import 'package:dwaweenx/core/widgets/customTextFormField.dart';
 import 'package:dwaweenx/features/DewanDetails/dewan_details.dart';
 import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';

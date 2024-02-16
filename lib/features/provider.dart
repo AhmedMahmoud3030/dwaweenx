@@ -12,6 +12,7 @@ import 'package:dwaweenx/Domain/Entities/dewan.dart';
 import 'package:dwaweenx/Domain/Entities/dewanBody.dart';
 import 'package:dwaweenx/Domain/Entities/groupByPurpose.dart';
 import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
+import 'package:dwaweenx/core/help/database_helper_fav.dart';
 import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/features/About/about.dart';
 import 'package:dwaweenx/features/Dwaween/dawaween_screen.dart';
@@ -23,6 +24,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -440,7 +442,7 @@ class BaseProvider extends ChangeNotifier {
     fontTransactionEffect = true;
     notifyListeners();
 
-    if (_fontSize > 2) {
+    if (_fontSize > 12) {
       _fontSize = _fontSize - 2;
       notifyListeners();
     }
@@ -714,6 +716,51 @@ class BaseProvider extends ChangeNotifier {
     _cardAudioPlayer = AudioPlayer()..setUrl(_cardData!.url);
 
     _cardDataLoading = false;
+    notifyListeners();
+  }
+
+  //?============================FavoriteScreen=================================================
+  List<KasydaBody> favoriteListData = [];
+  bool favoriteDataLoading = true;
+
+  readDataFromDataBase() async {
+    Logger logger = Logger();
+    favoriteDataLoading = true;
+    notifyListeners();
+    logger.e('favoriteListData.length${favoriteListData.length}');
+    favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+    logger.i('favoriteListData.length${favoriteListData.length}');
+    favoriteDataLoading = false;
+    notifyListeners();
+  }
+
+  deleteDataFromDataBase({required String id}) async {
+    favoriteDataLoading = true;
+    notifyListeners();
+    await DatabaseHelperFav().deleteKasydaBody(id).whenComplete(() async {
+      favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+    });
+    favoriteDataLoading = false;
+    notifyListeners();
+  }
+
+  saveDataToDataBase({required KasydaBody kasydaBody}) async {
+    favoriteDataLoading = true;
+    notifyListeners();
+
+    if (await DatabaseHelperFav().containsKasydaBody(kasydaBody.id)) {
+      Utils().displayToastMessage('kasyda_already_added'.tr());
+    } else {
+      await DatabaseHelperFav()
+          .saveKasydaBody(kasydaBody)
+          .whenComplete(() async {
+        favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+      });
+
+      Utils().displayToastMessage('kasyda_added_successfully'.tr());
+    }
+
+    favoriteDataLoading = false;
     notifyListeners();
   }
 }

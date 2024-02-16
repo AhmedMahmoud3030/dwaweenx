@@ -39,6 +39,20 @@ class KasydaBody extends Equatable {
     };
   }
 
+  factory KasydaBody.fromMap(Map<dynamic, dynamic> map) {
+    return KasydaBody(
+      id: map['id'],
+      audio: List<Audio>.from(map['audio']?.map((x) => Audio.fromMap(x))),
+      purpose: map['purpose'],
+      type: map['type'],
+      name: map['name'],
+      nameT: map['nameT'],
+      kaseyda: map['kaseyda'],
+      kaseydaT: map['kaseydaT'],
+      letter: map['letter'],
+    );
+  }
+
   KasydaBody copyWith({
     String? id,
     List<Audio>? audio,

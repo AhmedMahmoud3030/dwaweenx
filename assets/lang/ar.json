@@ -68,5 +68,14 @@
   "verse": "بيت",
   "kafya": "القافية : حرف",
   "vocalist": "المنشد :",
-  "vocalists": "المنشدين"
+  "vocalists": "المنشدين",
+  "kasyda_deleted_successfully": "تم حذف القصيدة بنجاح",
+  "kasyda_added_successfully": "تمت إضافة القصيدة بنجاح",
+  "kasyda_already_added": "القصيدة مضافة بالفعل",
+  "no_data_in_favorite": "لا توجد بيانات في المفضلة",
+  "notes_deleted_successfully": "تم حذف الملاحظة بنجاح",
+  "notes_added_successfully": "تمت إضافة الملاحظة بنجاح",
+  "notes_already_added": "الملاحظة مضافة بالفعل",
+  "no_data_in_notes": "لا توجد بيانات في الملاحظات",
+  "un_expected_error": "حدث خطأ غير متوقع"
 }

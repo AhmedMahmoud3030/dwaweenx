@@ -1,4 +1,3 @@
-import 'package:dwaweenx/Notes/notesData.dart';
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/features/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -45,6 +44,8 @@ class DrawerFb1 extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
+                    Provider.of<BaseProvider>(context, listen: false)
+                        .readDataFromDataBase();
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const FavoriteScreen(),
@@ -77,11 +78,11 @@ class DrawerFb1 extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const noteData(),
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const noteData(),
+                    //   ),
+                    // );
                   },
                   child: Row(
                     children: [
@@ -202,9 +203,9 @@ class DrawerFb1 extends StatelessWidget {
                     Navigator.of(context).pop();
 
                     // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => Comment(),
-                    //   ),
+                    // MaterialPageRoute(
+                    //   builder: (context) => Comment(),
+                    // ),
                     // );
                   },
                   child: Row(

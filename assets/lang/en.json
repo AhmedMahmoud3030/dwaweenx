@@ -68,5 +68,14 @@
   "verse": "verse",
   "kafya": "Letter :",
   "vocalist": "vocalist :",
-  "vocalists": "Vocalists"
+  "vocalists": "Vocalists",
+  "kasyda_deleted_successfully": "Kasyda deleted successfully",
+  "kasyda_added_successfully": "Kasyda added successfully",
+  "kasyda_already_added": "Kasyda already added",
+  "no_data_in_favorite": "No data in favorite",
+  "notes_deleted_successfully": "Notes deleted successfully",
+  "notes_added_successfully": "Notes added successfully",
+  "notes_already_added": "Notes already added",
+  "no_data_in_notes": "No data in notes",
+  "un_expected_error": "Un expected error"
 }
