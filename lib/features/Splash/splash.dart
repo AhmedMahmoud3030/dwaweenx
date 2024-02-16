@@ -36,6 +36,7 @@ class _SplashState extends State<Splash> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     return Scaffold(

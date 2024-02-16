@@ -720,32 +720,33 @@ class BaseProvider extends ChangeNotifier {
   }
 
   //?============================FavoriteScreen=================================================
-  List<KasydaBody> favoriteListData = [];
-  bool favoriteDataLoading = true;
+  List<KasydaBody> _favoriteListData = [];
+
+  List<KasydaBody> get favoriteListData => _favoriteListData;
+
+  setFavoriteListData(List<KasydaBody> value) {
+    _favoriteListData = value;
+    notifyListeners();
+  }
 
   readDataFromDataBase() async {
     Logger logger = Logger();
-    favoriteDataLoading = true;
     notifyListeners();
     logger.e('favoriteListData.length${favoriteListData.length}');
-    favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
-    logger.i('favoriteListData.length${favoriteListData.length}');
-    favoriteDataLoading = false;
+    _favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+
     notifyListeners();
   }
 
   deleteDataFromDataBase({required String id}) async {
-    favoriteDataLoading = true;
     notifyListeners();
     await DatabaseHelperFav().deleteKasydaBody(id).whenComplete(() async {
-      favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+      _favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
     });
-    favoriteDataLoading = false;
     notifyListeners();
   }
 
   saveDataToDataBase({required KasydaBody kasydaBody}) async {
-    favoriteDataLoading = true;
     notifyListeners();
 
     if (await DatabaseHelperFav().containsKasydaBody(kasydaBody.id)) {
@@ -754,13 +755,12 @@ class BaseProvider extends ChangeNotifier {
       await DatabaseHelperFav()
           .saveKasydaBody(kasydaBody)
           .whenComplete(() async {
-        favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+        _favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
       });
 
       Utils().displayToastMessage('kasyda_added_successfully'.tr());
     }
 
-    favoriteDataLoading = false;
     notifyListeners();
   }
 }

@@ -134,9 +134,7 @@ class FavoriteScreen extends StatelessWidget {
                           ),
                         ),
                         Consumer<BaseProvider>(
-                          builder:
-                              (BuildContext context, provider, Widget? child) =>
-                                  Container(
+                          builder: (context, provider, child) => Container(
                             margin: const EdgeInsets.only(top: 20),
                             width: mediaQuery.width * .85,
                             height: mediaQuery.height * .6,
@@ -150,120 +148,35 @@ class FavoriteScreen extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
-                                Consumer<BaseProvider>(
-                                  builder: (
-                                    BuildContext context,
-                                    provider,
-                                    Widget? child,
-                                  ) {
-                                    if (provider.favoriteListData.isNotEmpty) {
-                                      //return empty widget that confirm user that there  is no data in data base and encourage him to add some kasayed
-                                      return ListView.separated(
-                                        shrinkWrap: true,
-                                        itemCount:
-                                            provider.favoriteListData.length,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        itemBuilder: (_, i) => Row(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                provider
-                                                    .setKasydaDetailsBody(
-                                                      provider
-                                                          .favoriteListData[i],
-                                                      context
-                                                          .locale.languageCode,
-                                                    )
-                                                    .whenComplete(
-                                                      () =>
-                                                          Navigator.of(context)
-                                                              .pushReplacement(
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              KasydaDetails(),
-                                                        ),
-                                                      ),
-                                                    );
-                                              },
-                                              child: Expanded(
-                                                flex: 8,
-                                                child: Center(
-                                                  child: Text(
-                                                    provider.favoriteListData[i]
-                                                        .nameT,
-                                                    style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize:
-                                                          mediaQuery.width / 25,
-                                                      fontFamily: 'Cairo',
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
+                                ListView.separated(
+                                  shrinkWrap: true,
+                                  itemCount: provider.favoriteListData.length,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, i) => Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          provider
+                                              .setKasydaDetailsBody(
+                                                provider.favoriteListData[i],
+                                                context.locale.languageCode,
+                                              )
+                                              .whenComplete(
+                                                () => Navigator.of(context)
+                                                    .pushReplacement(
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        KasydaDetails(),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 2,
-                                              child: Center(
-                                                child: IconButton(
-                                                  onPressed: () {
-                                                    provider
-                                                        .deleteDataFromDataBase(
-                                                      id: provider
-                                                          .favoriteListData[i]
-                                                          .id,
-                                                    )
-                                                        .then(
-                                                      (value) {
-                                                        if (value) {
-                                                          Utils()
-                                                              .displayToastMessage(
-                                                            'kasyda_deleted_successfully'
-                                                                .tr(),
-                                                          );
-                                                        }
-                                                      },
-                                                    );
-                                                  },
-                                                  icon: const Icon(
-                                                    Icons.delete,
-                                                    color: Colors.red,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        separatorBuilder:
-                                            (BuildContext context, int index) =>
-                                                Container(
-                                          margin: const EdgeInsets.only(
-                                            left: 10,
-                                            right: 10,
-                                          ),
-                                          height: .5,
-                                          color: Colors.grey,
-                                        ),
-                                      );
-                                    } else {
-                                      return Center(
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 50,
-                                            ),
-                                            SvgPicture.asset(
-                                              Assets.iconsIcKsaed,
-                                              width: mediaQuery.width * .5,
-                                              height: mediaQuery.height * .3,
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            Text(
-                                              'no_data_in_favorite'.tr(),
+                                              );
+                                        },
+                                        child: Expanded(
+                                          flex: 8,
+                                          child: Center(
+                                            child: Text(
+                                              provider
+                                                  .favoriteListData[i].nameT,
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: mediaQuery.width / 25,
@@ -271,11 +184,49 @@ class FavoriteScreen extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                      );
-                                    }
-                                  },
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Center(
+                                          child: IconButton(
+                                            onPressed: () {
+                                              provider
+                                                  .deleteDataFromDataBase(
+                                                id: provider
+                                                    .favoriteListData[i].id,
+                                              )
+                                                  .then(
+                                                (value) {
+                                                  if (value) {
+                                                    Utils().displayToastMessage(
+                                                      'kasyda_deleted_successfully'
+                                                          .tr(),
+                                                    );
+                                                  }
+                                                },
+                                              );
+                                            },
+                                            icon: const Icon(
+                                              Icons.delete,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  separatorBuilder:
+                                      (BuildContext context, int index) =>
+                                          Container(
+                                    margin: const EdgeInsets.only(
+                                      left: 10,
+                                      right: 10,
+                                    ),
+                                    height: .5,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ],
                             ),
@@ -283,8 +234,6 @@ class FavoriteScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-
-                    // Consumer<BaseProvider>(builder: (context,provider,widget)=>
                   ],
                 ),
               ],
