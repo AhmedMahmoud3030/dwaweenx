@@ -24,7 +24,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -720,42 +719,28 @@ class BaseProvider extends ChangeNotifier {
   }
 
   //?============================FavoriteScreen=================================================
-  List<KasydaBody> _favoriteListData = [];
+  List<KasydaBody> favoriteListData = [];
 
-  List<KasydaBody> get favoriteListData => _favoriteListData;
-
-  setFavoriteListData(List<KasydaBody> value) {
-    _favoriteListData = value;
-    notifyListeners();
-  }
-
-  readDataFromDataBase() async {
-    Logger logger = Logger();
-    notifyListeners();
-    logger.e('favoriteListData.length${favoriteListData.length}');
-    _favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
-
+  Future<void> readDataFromDataBase() async {
+    favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
     notifyListeners();
   }
 
   deleteDataFromDataBase({required String id}) async {
-    notifyListeners();
     await DatabaseHelperFav().deleteKasydaBody(id).whenComplete(() async {
-      _favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+      favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
     });
     notifyListeners();
   }
 
   saveDataToDataBase({required KasydaBody kasydaBody}) async {
-    notifyListeners();
-
     if (await DatabaseHelperFav().containsKasydaBody(kasydaBody.id)) {
       Utils().displayToastMessage('kasyda_already_added'.tr());
     } else {
       await DatabaseHelperFav()
           .saveKasydaBody(kasydaBody)
           .whenComplete(() async {
-        _favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+        favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
       });
 
       Utils().displayToastMessage('kasyda_added_successfully'.tr());

@@ -48,7 +48,7 @@ class DrawerFb1 extends StatelessWidget {
                         .readDataFromDataBase();
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => const FavoriteScreen(),
+                        builder: (_) => FavoriteScreen(),
                       ),
                     );
                   },
