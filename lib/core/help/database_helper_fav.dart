@@ -1,6 +1,5 @@
 import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
 import 'package:hive/hive.dart';
-import 'package:logger/logger.dart';
 
 class DatabaseHelperFav {
   final String boxName = 'kasyda_bodies';
@@ -15,12 +14,10 @@ class DatabaseHelperFav {
   }
 
   Future<List<KasydaBody>> getAllKasydaBodies() async {
-    Logger logger = Logger();
     final Box<Map<dynamic, dynamic>> box = await _openBox();
 
-    final List<KasydaBody> kasydaBodies = box.values
-        .map((map) => KasydaBody.fromMap(map as Map<dynamic, dynamic>))
-        .toList();
+    final List<KasydaBody> kasydaBodies =
+        box.values.map((map) => KasydaBody.fromMap(map)).toList();
 
     return kasydaBodies;
   }
