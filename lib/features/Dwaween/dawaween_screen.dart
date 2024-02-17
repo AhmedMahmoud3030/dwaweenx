@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../provider.dart';
 
 class DwaweenScreen extends StatelessWidget {
-  const DwaweenScreen({super.key});
+  DwaweenScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
 
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) =>
@@ -26,34 +26,41 @@ class DwaweenScreen extends StatelessWidget {
         },
         child: Stack(
           children: [
-            SvgPicture.asset(
-              Assets.paintingsImgHeadInternal,
-              alignment: Alignment.topCenter,
-              width: mediaQuery.width * 4,
-              height: mediaQuery.height / 2,
+            Container(
+              width: 100.0.w,
+              height: 20.0.h,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.orn_header_home),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(70),
+                  ),
+                  color: Constants.primary),
             ),
             Column(
               children: [
                 Container(
                   color: Colors.transparent,
-                  height: mediaQuery.height * .09,
+                  height: 9.h,
                 ),
                 Row(
                   children: [
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: .10.w,
                     ),
                     Column(
                       children: [
                         SvgPicture.asset(
                           Assets.iconsIcDwawen2,
-                          height: mediaQuery.width / 12,
-                          width: mediaQuery.width / 12,
+                          height: 8.33333333.w,
+                          width: 8.33333333.w,
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: .10.w,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +69,7 @@ class DwaweenScreen extends StatelessWidget {
                           'dwaween'.tr(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaQuery.width / 25,
+                            fontSize: 4.w,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
                           ),
@@ -71,7 +78,7 @@ class DwaweenScreen extends StatelessWidget {
                           'search_all_dwaween'.tr(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaQuery.width / 25,
+                            fontSize: 4.w,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.normal,
                           ),
@@ -81,10 +88,9 @@ class DwaweenScreen extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  height: mediaQuery.height * .02,
+                  height: 2.h,
                 ),
                 CustomTextFormFiled(
-                  mediaQuery: mediaQuery,
                   textEditingController: provider.dewanController,
                   onChanged: (value) {
                     provider.searchDewanMethod(searchValue: value);
@@ -96,17 +102,17 @@ class DwaweenScreen extends StatelessWidget {
                   },
                   onFieldSubmitted: (value) {},
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: .10.h,
                 ),
                 SizedBox(
-                  // height: mediaQuery.height / 1.55,
-                  width: mediaQuery.height,
+                  // height: 66.6666667.h
+                  width: 100.h,
                   child: provider.dewanBodyLoading
                       ? SizedBox(
-                          width: mediaQuery.width,
-                          height: mediaQuery.height,
-                          child: const Center(
+                          width: 100.w,
+                          height: 100.h,
+                          child: Center(
                             child: SpinKitCircle(
                               color: Constants.primary,
                             ),
@@ -114,14 +120,14 @@ class DwaweenScreen extends StatelessWidget {
                         )
                       : provider.DewanScreenData.isEmpty
                           ? Container(
-                              width: mediaQuery.width,
+                    width: 100.w,
                               margin: EdgeInsets.symmetric(
-                                horizontal: mediaQuery.width / 30,
+                                horizontal: 3.33333333.w,
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(4.0),
+                                padding: EdgeInsets.all(4.0),
                                 child: Container(
-                                  padding: const EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
                                     color: Colors.white,
@@ -130,8 +136,8 @@ class DwaweenScreen extends StatelessWidget {
                                     alignment: Alignment.centerRight,
                                     child: Text(
                                       'there_is_no_Dwaween'.tr(),
-                                      style: const TextStyle(
-                                        fontSize: 16,
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
                                         color: Colors.teal,
                                         fontFamily: 'Cairo',
                                       ),
@@ -143,16 +149,16 @@ class DwaweenScreen extends StatelessWidget {
                           : Expanded(
                               child: ListView.builder(
                                 padding: EdgeInsets.zero,
-                                physics: const BouncingScrollPhysics(),
+                                physics: BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: provider.DewanScreenData.length,
                                 itemBuilder: (BuildContext context, index) {
                                   return InkWell(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
+                                      padding: EdgeInsets.all(4.0),
                                       child: Container(
                                         margin: EdgeInsets.symmetric(
-                                          horizontal: mediaQuery.width / 40,
+                                          horizontal: 2.5.w,
                                         ),
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -164,11 +170,11 @@ class DwaweenScreen extends StatelessWidget {
                                           children: [
                                             SvgPicture.asset(
                                               Assets.iconsIcDwawen,
-                                              height: mediaQuery.width / 12,
-                                              width: mediaQuery.width / 12,
+                                              height: 8.33333333.w,
+                                              width: 8.33333333.w,
                                             ),
-                                            const SizedBox(
-                                              width: 10,
+                                            SizedBox(
+                                              width: .10.w,
                                             ),
                                             Column(
                                               mainAxisAlignment:
@@ -186,8 +192,7 @@ class DwaweenScreen extends StatelessWidget {
                                                   style: TextStyle(
                                                     color: Constants.primary,
                                                     fontWeight: FontWeight.w500,
-                                                    fontSize:
-                                                        mediaQuery.width / 20,
+                                                    fontSize: 5.w,
                                                     fontFamily: 'Cairo',
                                                   ),
                                                 ),
@@ -197,8 +202,7 @@ class DwaweenScreen extends StatelessWidget {
                                                     fontWeight:
                                                         FontWeight.normal,
                                                     color: Constants.primary,
-                                                    fontSize:
-                                                        mediaQuery.width / 27,
+                                                    fontSize: 3.7037037.w,
                                                     fontFamily: 'Cairo',
                                                   ),
                                                 ),

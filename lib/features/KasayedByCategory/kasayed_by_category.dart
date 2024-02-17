@@ -5,24 +5,24 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/constants.dart';
 import '../../core/widgets/customTextFormField.dart';
 import '../provider.dart';
 
 class KasaedByCategoryScreen extends StatelessWidget {
-  const KasaedByCategoryScreen({
+  KasaedByCategoryScreen({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
 
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) => Scaffold(
         body: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: Constants.bgColor,
             image: DecorationImage(
               image: AssetImage(Assets.paintingsBG),
@@ -33,17 +33,24 @@ class KasaedByCategoryScreen extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  SvgPicture.asset(
-                    Assets.paintingsImgHeadInternal,
-                    alignment: Alignment.topCenter,
-                    width: mediaQuery.width * 4,
-                    height: mediaQuery.height / 2,
+                  Container(
+                    width: 100.0.w,
+                    height: 20.0.h,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(Assets.orn_header_home),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(70),
+                        ),
+                        color: Constants.primary),
                   ),
                   SingleChildScrollView(
                     child: Column(
                       children: [
                         Container(
-                          height: mediaQuery.height * .09,
+                          height: 9.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -55,7 +62,7 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                   "${"poemsx".tr()} ${provider.groupedBy[provider.groupByPurposeIndex].purpose}",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: mediaQuery.width / 25,
+                                    fontSize: 4.w,
                                     fontFamily: 'Cairo',
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -64,21 +71,21 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                   "${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber(provider.groupedBy[provider.groupByPurposeIndex].kenshat.length.toString()) : provider.groupedBy[provider.groupByPurposeIndex].kenshat.length} ${'poem'.tr()}",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: mediaQuery.width / 25,
+                                    fontSize: 4.w,
                                     fontFamily: 'Cairo',
                                     fontWeight: FontWeight.normal,
                                   ),
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              width: 10,
+                            SizedBox(
+                              width: 0.1.w,
                             ),
                             IconButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.arrow_forward_ios,
                               ),
                               color: Colors.white,
@@ -86,10 +93,9 @@ class KasaedByCategoryScreen extends StatelessWidget {
                           ],
                         ),
                         Container(
-                          height: mediaQuery.height * .02,
+                          height: 2.h,
                         ),
                         CustomTextFormFiled(
-                          mediaQuery: mediaQuery,
                           textEditingController:
                               provider.kasayedByGategoryController,
                           onChanged: (value) {
@@ -106,20 +112,20 @@ class KasaedByCategoryScreen extends StatelessWidget {
                           },
                           onFieldSubmitted: (value) {},
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 0.1.h,
                         ),
                         provider.groupedBy[provider.groupByPurposeIndex].kenshat
                                 .isEmpty
                             ? Container(
-                                width: mediaQuery.width,
+                                width: 100.w,
                                 margin: EdgeInsets.symmetric(
-                                  horizontal: mediaQuery.width / 30,
+                                  horizontal: 3.33333333.w,
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
+                                  padding: EdgeInsets.all(4.0),
                                   child: Container(
-                                    padding: const EdgeInsets.all(8),
+                                    padding: EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0),
                                       color: Colors.white,
@@ -128,8 +134,8 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                       alignment: Alignment.centerRight,
                                       child: Text(
                                         'there_is_no_Kasayed'.tr(),
-                                        style: const TextStyle(
-                                          fontSize: 16,
+                                        style: TextStyle(
+                                          fontSize: 16.sp,
                                           color: Colors.teal,
                                           fontFamily: 'Cairo',
                                         ),
@@ -139,18 +145,18 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                 ),
                               )
                             : ListView.builder(
-                                padding: EdgeInsets.zero,
-                                physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.zero,
+                                physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return Container(
-                                    width: mediaQuery.width,
+                                    width: 100.w,
                                     margin: EdgeInsets.symmetric(
-                                      horizontal: mediaQuery.width / 30,
+                                      horizontal: 3.33333333.w,
                                     ),
                                     child: InkWell(
                                       child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: EdgeInsets.all(4.0),
                                         child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -177,7 +183,7 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                                             .groupByPurposeIndex]
                                                         .kenshat[index]
                                                         .name,
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.teal,
@@ -185,12 +191,11 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                                   ),
                                                 ],
                                               ),
-                                              const SizedBox(
-                                                height: 10,
+                                              SizedBox(
+                                                height: 0.1.h,
                                               ),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
+                                                padding: EdgeInsets.symmetric(
                                                   horizontal: 16,
                                                 ),
                                                 child: Row(
@@ -210,14 +215,14 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                                             .kaseydaT
                                                             .split('.')
                                                             .first,
-                                                        style: const TextStyle(
+                                                        style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           color: Colors.black45,
                                                         ),
                                                       ),
                                                     ),
-                                                    const SizedBox(
+                                                    SizedBox(
                                                       width: 12,
                                                     ),
                                                     Expanded(
@@ -231,7 +236,7 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                                             .kenshat[index]
                                                             .kaseydaT
                                                             .split('.')[1],
-                                                        style: const TextStyle(
+                                                        style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           color: Colors.black45,
@@ -273,8 +278,8 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                     .kenshat
                                     .length,
                               ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 0.1.h,
                         ),
                       ],
                     ),

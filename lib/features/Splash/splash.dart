@@ -5,11 +5,12 @@ import 'package:dwaweenx/features/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../generated/assets.dart';
 
 class Splash extends StatefulWidget {
-  const Splash({super.key});
+  Splash({super.key});
 
   @override
   State<Splash> createState() => _SplashState();
@@ -25,11 +26,11 @@ class _SplashState extends State<Splash> {
       () => Provider.of<BaseProvider>(context, listen: false).readCardData(),
     );
 
-    Timer(const Duration(seconds: 2), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const BaseScreen(),
+          builder: (context) => BaseScreen(),
         ),
       );
     });
@@ -41,7 +42,7 @@ class _SplashState extends State<Splash> {
     var mediaQuery = MediaQuery.of(context);
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
@@ -60,7 +61,7 @@ class _SplashState extends State<Splash> {
             Container(
               height: mediaQuery.size.width * .8,
               width: mediaQuery.size.width * .8,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(Assets.paintingsSplash),
                   fit: BoxFit.fill,
@@ -70,8 +71,8 @@ class _SplashState extends State<Splash> {
             SizedBox(height: mediaQuery.size.height * .03),
             Text(
               'proceed'.tr(),
-              style: const TextStyle(
-                fontSize: 20,
+              style: TextStyle(
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 8, 238, 246),
                 fontFamily: 'Amiri Regular',
@@ -80,8 +81,8 @@ class _SplashState extends State<Splash> {
             SizedBox(height: mediaQuery.size.height * .01),
             Text(
               'Al_Faydah_Tijaniya_Heritage_Network'.tr(),
-              style: const TextStyle(
-                fontSize: 20,
+              style: TextStyle(
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
                 fontFamily: 'Amiri Regular',
@@ -93,7 +94,7 @@ class _SplashState extends State<Splash> {
               child: Container(
                 height: mediaQuery.size.height * .3,
                 width: mediaQuery.size.height * .3,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(Assets.paintingsBooks),
                     fit: BoxFit.fill,

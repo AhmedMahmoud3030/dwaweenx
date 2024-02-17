@@ -9,6 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,40 +30,44 @@ void main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [
+      supportedLocales: [
         Locale('en'),
         Locale('ar'),
       ],
-      startLocale: const Locale('ar'),
+      startLocale: Locale('ar'),
       path: 'assets/lang',
-      fallbackLocale: const Locale('ar'),
+      fallbackLocale: Locale('ar'),
       useOnlyLangCode: true,
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => BaseProvider(),
-      child: MaterialApp(
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          EasyLocalization.of(context)!.delegate,
-        ],
-        supportedLocales: EasyLocalization.of(context)!.supportedLocales,
-        locale: EasyLocalization.of(context)!.locale,
-        debugShowCheckedModeBanner: false,
-        home: const Splash(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => BaseProvider()),
+      ],
+      child: ResponsiveSizer(
+        builder: (BuildContext, Orientation, ScreenType) => MaterialApp(
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            EasyLocalization.of(context)!.delegate,
+          ],
+          supportedLocales: EasyLocalization.of(context)!.supportedLocales,
+          locale: EasyLocalization.of(context)!.locale,
+          debugShowCheckedModeBanner: false,
+          home: Splash(),
+        ),
       ),
     );
   }

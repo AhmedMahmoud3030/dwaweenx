@@ -1,51 +1,51 @@
 import 'package:dwaweenx/core/constants.dart';
+import 'package:dwaweenx/features/ContactUs/contact_us.dart';
 import 'package:dwaweenx/features/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../generated/assets.dart';
+import '../AboutUs/about_us.dart';
 import '../Favorite/favorite_screen.dart';
+import '../Notes/notes_screen.dart';
 
 class DrawerFb1 extends StatelessWidget {
-  const DrawerFb1({super.key});
-
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
 
     return Drawer(
       shadowColor: Constants.primary2,
       elevation: 20,
       // surfaceTintColor: Colors.amber,
-      backgroundColor: const Color(0xff0A8065),
+      backgroundColor: Color(0xff0A8065),
       child: ListView(
         children: <Widget>[
           Container(
             color: Colors.white,
-            height: mediaQuery.size.height * .3,
+            height: 30.h,
             width: double.infinity,
             child: SvgPicture.asset(
               Assets.paintingsSideMenu,
               alignment: Alignment.topCenter,
               //width: 500,
-              height: MediaQuery.of(context).size.height,
+              height: 100.h,
             ),
           ),
           Container(
-            height: mediaQuery.size.height * .7,
+            height: 70.h,
             color: Colors.white,
-            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 12.0, 8.0),
+            padding: EdgeInsets.fromLTRB(8.0, 8.0, 12.0, 8.0),
             child: Column(
               children: [
-                const SizedBox(height: 12),
+                SizedBox(height: .12.h),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
-                    Provider.of<BaseProvider>(context, listen: false)
-                        .readDataFromDataBase();
+
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => FavoriteScreen(),
@@ -60,29 +60,29 @@ class DrawerFb1 extends StatelessWidget {
                         height: 30,
                         fit: BoxFit.fill,
                       ),
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        width: .10.w,
                       ),
                       Text(
                         'Favourite'.tr(),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Constants.primary2,
                           fontFamily: 'Cairo',
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 2.h),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const noteData(),
-                    //   ),
-                    // );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => NotesScreen(),
+                      ),
+                    );
                   },
                   child: Row(
                     children: [
@@ -92,21 +92,21 @@ class DrawerFb1 extends StatelessWidget {
                         height: 30,
                         fit: BoxFit.fill,
                       ),
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        width: .10.w,
                       ),
                       Text(
                         'Notes'.tr(),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Constants.primary2,
                           fontFamily: 'Cairo',
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 2.h),
                 InkWell(
                   onTap: () async {
                     Navigator.of(context).pop();
@@ -126,21 +126,21 @@ class DrawerFb1 extends StatelessWidget {
                         height: 30,
                         fit: BoxFit.fill,
                       ),
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        width: .10.w,
                       ),
                       Text(
                         'Share'.tr(),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Constants.primary2,
                           fontFamily: 'Cairo',
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 2.h),
                 Consumer<BaseProvider>(
                   builder: (BuildContext context, value, Widget? child) =>
                       InkWell(
@@ -159,15 +159,15 @@ class DrawerFb1 extends StatelessWidget {
                               height: 30,
                               fit: BoxFit.fill,
                             ),
-                            const SizedBox(
-                              width: 10,
+                            SizedBox(
+                              width: .10.w,
                             ),
                             Text(
                               'Language'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Constants.primary2,
                                 fontFamily: 'Cairo',
-                                fontSize: 16,
+                                fontSize: 16.sp,
                               ),
                             ),
                           ],
@@ -178,16 +178,16 @@ class DrawerFb1 extends StatelessWidget {
                               context.locale.languageCode == 'ar'
                                   ? 'English'
                                   : 'عربي',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Constants.primary2,
                                 fontFamily: 'Cairo',
-                                fontSize: 16,
+                                fontSize: 16.sp,
                               ),
                             ),
-                            const SizedBox(
-                              width: 10,
+                            SizedBox(
+                              width: .10.w,
                             ),
-                            const Icon(
+                            Icon(
                               Icons.arrow_forward_ios,
                               color: Constants.primary2,
                             ),
@@ -197,16 +197,16 @@ class DrawerFb1 extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 2.h),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
 
-                    // Navigator.of(context).push(
-                    // MaterialPageRoute(
-                    //   builder: (context) => Comment(),
-                    // ),
-                    // );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ContactUs(),
+                      ),
+                    );
                   },
                   child: Row(
                     children: [
@@ -216,30 +216,30 @@ class DrawerFb1 extends StatelessWidget {
                         height: 30,
                         fit: BoxFit.fill,
                       ),
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        width: .10.w,
                       ),
                       Text(
                         'ContactUs'.tr(),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Constants.primary2,
                           fontFamily: 'Cairo',
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 2.h),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
 
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const AboutUs(),
-                    //   ),
-                    // );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => AboutUs(),
+                      ),
+                    );
                   },
                   child: Row(
                     children: [
@@ -249,15 +249,15 @@ class DrawerFb1 extends StatelessWidget {
                         height: 30,
                         fit: BoxFit.fill,
                       ),
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        width: .10.w,
                       ),
                       Text(
                         'AboutUs'.tr(),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Constants.primary2,
                           fontFamily: 'Cairo',
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ],

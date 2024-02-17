@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/utils.dart';
 import '../../core/widgets/customTextFormField.dart';
@@ -12,7 +13,7 @@ import '../../generated/assets.dart';
 import '../provider.dart';
 
 class DewanDetailsPage extends StatefulWidget {
-  const DewanDetailsPage({super.key});
+  DewanDetailsPage({super.key});
 
   @override
   State<DewanDetailsPage> createState() => _DewanDetailsPageState();
@@ -28,7 +29,6 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
 
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) {
@@ -40,7 +40,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
             backgroundColor: Colors.transparent,
             body: SingleChildScrollView(
               child: Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Constants.bgColor,
                   image: DecorationImage(
                     image: AssetImage(Assets.paintingsBG),
@@ -49,22 +49,29 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                 ),
                 child: Stack(
                   children: [
-                    SvgPicture.asset(
-                      Assets.paintingsImgHeadInternal,
-                      alignment: Alignment.topCenter,
-                      width: mediaQuery.width * 4,
-                      height: mediaQuery.height / 2,
+                    Container(
+                      width: 100.0.w,
+                      height: 20.0.h,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(Assets.orn_header_home),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.vertical(
+                            bottom: Radius.circular(70),
+                          ),
+                          color: Constants.primary),
                     ),
                     Column(
                       children: [
                         Container(
                           color: Colors.transparent,
-                          height: mediaQuery.height * .09,
+                          height: 9.h,
                         ),
                         Row(
                           children: [
-                            const SizedBox(
-                              width: 20,
+                            SizedBox(
+                              width: 2.w,
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.min,
@@ -72,8 +79,8 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                               children: [
                                 Text(
                                   ' ${'dewan'.tr()} ${provider.DewanDetailsScreenData[provider.dewanIndex!].nameT}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
                                     // fontFamily: "Cairo",
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -81,8 +88,8 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                 ),
                                 Text(
                                   ' ${'number_of_poems'.tr()} ${provider.DewanDetailsScreenData[provider.dewanIndex!].kasaed.length} ${'poem'.tr()}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
                                     // fontFamily: "Cairo",
                                     fontWeight: FontWeight.normal,
                                     color: Colors.white,
@@ -90,28 +97,27 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                 ),
                               ],
                             ),
-                            const Spacer(),
+                            Spacer(),
                             InkWell(
                               onTap: () {
                                 Navigator.pop(context);
                                 provider.setKafyaIndex(null);
                               },
-                              child: const Icon(
+                              child: Icon(
                                 Icons.arrow_forward_ios,
                                 color: Colors.white,
                                 size: 20,
                               ),
                             ),
-                            const SizedBox(
-                              width: 20,
+                            SizedBox(
+                              width: 2.w,
                             ),
                           ],
                         ),
                         Container(
-                          height: 20,
+                          height: 2.h,
                         ),
                         CustomTextFormFiled(
-                          mediaQuery: mediaQuery,
                           textEditingController: provider.kafyaController,
                           onChanged: (value) {
                             provider.filterByKasyda();
@@ -128,20 +134,20 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const SizedBox(
-                          height: 220,
+                        SizedBox(
+                          height: 25.h,
                         ),
                         Container(
-                          padding: const EdgeInsets.all(15),
-                          width: mediaQuery.width * .9,
-                          height: mediaQuery.height * .17,
+                          padding: EdgeInsets.all(15),
+                          width: 90.w,
+                          height: 17.h,
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.3),
                                 spreadRadius: 5,
                                 blurRadius: 7,
-                                offset: const Offset(
+                                offset: Offset(
                                   0,
                                   3,
                                 ), // changes position of shadow
@@ -153,13 +159,13 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 20,
+                                height: 2.h,
                                 child: Row(
                                   children: [
                                     Text(
                                       'brief_about_dewan'.tr(),
-                                      style: const TextStyle(
-                                        fontSize: 12,
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
                                         color: Constants.primary,
                                         fontWeight: FontWeight.w500,
                                         fontFamily: 'Cairo',
@@ -167,7 +173,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                     ),
                                     Expanded(
                                       child: Container(
-                                        margin: const EdgeInsets.only(top: 10),
+                                        margin: EdgeInsets.only(top: 10),
                                         height: .5,
                                         width: double.infinity,
                                         color: Colors.grey,
@@ -176,8 +182,8 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(
-                                height: 10,
+                              SizedBox(
+                                height: 1.h,
                               ),
                               Expanded(
                                 child: TextButton(
@@ -187,13 +193,13 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                           .DewanDetailsScreenData[
                                               provider.dewanIndex!]
                                           .dec,
-                                      const TextStyle(
-                                        fontSize: 13,
+                                      TextStyle(
+                                        fontSize: 13.sp,
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
                                       ),
                                       maxLines: 3,
-                                      maxWidth: 200,
+                                      maxWidth: 20.w,
                                     )
                                         ? showDialog(
                                             context: context,
@@ -209,9 +215,8 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                         Colors.white,
                                                     children: [
                                                       Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(16.0),
+                                                        padding: EdgeInsets.all(
+                                                            16.0),
                                                         child: Text(
                                                           provider
                                                               .DewanDetailsScreenData[
@@ -235,8 +240,8 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                         .DewanDetailsScreenData[
                                             provider.dewanIndex!]
                                         .dec,
-                                    style: const TextStyle(
-                                      fontSize: 13,
+                                    style: TextStyle(
+                                      fontSize: 13.sp,
                                       color: Colors.black54,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -248,12 +253,12 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 1.h,
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          height: 40,
+                          padding: EdgeInsets.symmetric(horizontal: 25),
+                          height: 4.h,
                           child: Row(
                             children: [
                               SvgPicture.asset(
@@ -263,19 +268,19 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                               ),
                               Text(
                                 'kwafy'.tr(),
-                                style: const TextStyle(
-                                  fontSize: 12,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
                                   color: Constants.primary2,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Cairo',
                                 ),
                               ),
-                              const SizedBox(
-                                width: 6,
+                              SizedBox(
+                                width: .6.w,
                               ),
                               Expanded(
                                 child: Container(
-                                  margin: const EdgeInsets.only(top: 10),
+                                  margin: EdgeInsets.only(top: 10),
                                   height: .6,
                                   width: double.infinity,
                                   color: Constants.primary2,
@@ -284,22 +289,21 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          // padding: EdgeI nsets.symmetric(horizontal: 8, vertical: 6),
-                          height: mediaQuery.height * .18,
-                          width: mediaQuery.width * .9,
+                        Container(
+                          height: 18.h,
+                          width: 90.w,
                           child: GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
+                            physics: NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.zero,
                             gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 6,
                               childAspectRatio: 1.8,
                             ),
                             itemCount: provider.kafya.length,
                             itemBuilder: (context, indexGrid) {
                               return Padding(
-                                padding: const EdgeInsets.all(3.0),
+                                padding: EdgeInsets.all(3.0),
                                 child: GestureDetector(
                                   onTap: () {
                                     provider.setKafyaIndex(
@@ -313,11 +317,11 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                     decoration: BoxDecoration(
                                       color: indexGrid == provider.kafyaIndex
                                           ? Constants.primary
-                                          : const Color(0xffE9E9E9),
+                                          : Color(0xffE9E9E9),
                                       borderRadius: BorderRadius.circular(5),
                                     ),
-                                    height: 10,
-                                    width: 10,
+                                    height: 0.1.h,
+                                    width: 0.1.w,
                                     child: Center(
                                       child: Text(
                                         provider.kafya[indexGrid],
@@ -336,12 +340,12 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                             },
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
+                        SizedBox(
+                          height: .5.h,
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          height: 40,
+                          padding: EdgeInsets.symmetric(horizontal: 25),
+                          height: 4.h,
                           child: Row(
                             children: [
                               SvgPicture.asset(
@@ -351,19 +355,19 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                               ),
                               Text(
                                 'poems'.tr(),
-                                style: const TextStyle(
-                                  fontSize: 12,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
                                   color: Constants.primary2,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Cairo',
                                 ),
                               ),
-                              const SizedBox(
-                                width: 6,
+                              SizedBox(
+                                width: .6.w,
                               ),
                               Expanded(
                                 child: Container(
-                                  margin: const EdgeInsets.only(top: 10),
+                                  margin: EdgeInsets.only(top: 10),
                                   height: .6,
                                   width: double.infinity,
                                   color: Constants.primary2,
@@ -373,13 +377,13 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                           ),
                         ),
                         SizedBox(
-                          height: mediaQuery.height / 1.55,
-                          width: mediaQuery.height,
+                          height: 31.5.h,
+                          width: 100.h,
                           child: provider.dewanBodyLoading
                               ? SizedBox(
-                                  width: mediaQuery.width,
-                                  height: mediaQuery.height,
-                                  child: const Center(
+                                  width: 100.w,
+                                  height: 100.h,
+                                  child: Center(
                                     child: SpinKitCircle(
                                       color: Constants.primary,
                                     ),
@@ -387,14 +391,14 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                 )
                               : provider.KasaedDetailsScreenData.isEmpty
                                   ? Container(
-                                      width: mediaQuery.width,
+                            width: 100.w,
                                       margin: EdgeInsets.symmetric(
-                                        horizontal: mediaQuery.width / 30,
+                                        horizontal: 3.33.w,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: EdgeInsets.all(4.0),
                                         child: Container(
-                                          padding: const EdgeInsets.all(8),
+                                          padding: EdgeInsets.all(8),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
@@ -404,8 +408,8 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                             alignment: Alignment.topRight,
                                             child: Text(
                                               'there_is_no_Kasayed'.tr(),
-                                              style: const TextStyle(
-                                                fontSize: 16,
+                                              style: TextStyle(
+                                                fontSize: 16.sp,
                                                 color: Colors.teal,
                                                 fontFamily: 'Cairo',
                                               ),
@@ -415,8 +419,8 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                       ),
                                     )
                                   : ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      physics: const BouncingScrollPhysics(),
+                            padding: EdgeInsets.zero,
+                                      physics: BouncingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: provider
                                           .KasaedDetailsScreenData.length,
@@ -424,11 +428,10 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                           (BuildContext context, index) {
                                         return InkWell(
                                           child: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Container(
                                               margin: EdgeInsets.symmetric(
-                                                horizontal:
-                                                    mediaQuery.width / 40,
+                                                horizontal: 2.5.w,
                                               ),
                                               decoration: BoxDecoration(
                                                 borderRadius:
@@ -441,17 +444,14 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                 children: [
                                                   SvgPicture.asset(
                                                     Assets.iconsIcKsaed,
-                                                    height:
-                                                        mediaQuery.width / 16,
-                                                    width:
-                                                        mediaQuery.width / 16,
+                                                    height: 6.25.w,
+                                                    width: 6.25.w,
                                                   ),
-                                                  const SizedBox(
-                                                    width: 10,
+                                                  SizedBox(
+                                                    width: 1.w,
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
+                                                    padding: EdgeInsets.all(
                                                       8.0,
                                                     ),
                                                     child: Column(
@@ -474,16 +474,13 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                                 .primary2,
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                            fontSize: mediaQuery
-                                                                    .width /
-                                                                20,
+                                                            fontSize: 5.w,
                                                             fontFamily: 'Cairo',
                                                           ),
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                  .only(
+                                                          EdgeInsets.only(
                                                             top: 8.0,
                                                           ),
                                                           child: Row(
@@ -503,21 +500,20 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                                     )
                                                                     .first,
                                                                 style:
-                                                                    const TextStyle(
+                                                                TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
                                                                   color: Colors
                                                                       .grey,
-                                                                  fontSize: 12,
+                                                                  fontSize:
+                                                                      12.sp,
                                                                   fontFamily:
                                                                       'Cairo',
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: mediaQuery
-                                                                        .width *
-                                                                    .06,
+                                                                width: 6.w,
                                                               ),
                                                               Text(
                                                                 textScaleFactor:
@@ -531,13 +527,14 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                                     )
                                                                     .last,
                                                                 style:
-                                                                    const TextStyle(
+                                                                TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
                                                                   color: Colors
                                                                       .grey,
-                                                                  fontSize: 12,
+                                                                  fontSize:
+                                                                      12.sp,
                                                                   fontFamily:
                                                                       'Cairo',
                                                                 ),

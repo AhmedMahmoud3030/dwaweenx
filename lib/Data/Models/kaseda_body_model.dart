@@ -1,4 +1,4 @@
-import 'package:dwaweenx/Data/Models/audioo_model.dart';
+import 'package:dwaweenx/Data/Models/audio_model.dart';
 import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
 
 class KasydaBodyModel extends KasydaBody {

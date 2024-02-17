@@ -49,7 +49,7 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
+  static FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCsjsAuYHLsTvZHOjtWloXwTzWCh30LMyY',
     appId: '1:192596826171:android:70272ad2bcf18801dd241e',
     messagingSenderId: '192596826171',
@@ -57,7 +57,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'dwaween-8ede4.appspot.com',
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
+  static FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyB9tOWPYw487SxxaiX2Z8lHsT_nBAe0xEs',
     appId: '1:192596826171:ios:ff118db9cbfb8a88dd241e',
     messagingSenderId: '192596826171',

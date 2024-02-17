@@ -12,7 +12,9 @@ import 'package:dwaweenx/Domain/Entities/dewan.dart';
 import 'package:dwaweenx/Domain/Entities/dewanBody.dart';
 import 'package:dwaweenx/Domain/Entities/groupByPurpose.dart';
 import 'package:dwaweenx/Domain/Entities/kasedaBody.dart';
+import 'package:dwaweenx/Domain/Entities/note.dart';
 import 'package:dwaweenx/core/help/database_helper_fav.dart';
+import 'package:dwaweenx/core/help/database_helper_notes.dart';
 import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/features/About/about.dart';
 import 'package:dwaweenx/features/Dwaween/dawaween_screen.dart';
@@ -338,13 +340,12 @@ class BaseProvider extends ChangeNotifier {
 
   //?============================AboutScreen=================================================
   TextEditingController aboutController = TextEditingController();
-  TextEditingController favoriteController = TextEditingController();
 
   void changeLang({required BuildContext context}) {
     if (context.locale.languageCode == 'ar') {
-      EasyLocalization.of(context)!.setLocale(const Locale('en'));
+      EasyLocalization.of(context)!.setLocale(Locale('en'));
     } else {
-      EasyLocalization.of(context)!.setLocale(const Locale('ar'));
+      EasyLocalization.of(context)!.setLocale(Locale('ar'));
     }
     notifyListeners();
   }
@@ -407,6 +408,8 @@ class BaseProvider extends ChangeNotifier {
   KasydaBody? get KasydaDetailsBody => _KasydaDetailsBody;
 
   Future<void> setKasydaDetailsBody(KasydaBody? value, String local) async {
+    print('KasydaDetailsBody');
+    print(value);
     _KasydaDetailsBody = value;
     _audioPlayer.setUrl(_KasydaDetailsBody!.audio.first.url);
     _sheikh = local == 'ar'
@@ -432,7 +435,7 @@ class BaseProvider extends ChangeNotifier {
       notifyListeners();
     }
 
-    Future.delayed(const Duration(milliseconds: 1500))
+    Future.delayed(Duration(milliseconds: 1500))
         .then((value) => fontTransactionEffect = false)
         .then((value) => notifyListeners());
   }
@@ -446,7 +449,7 @@ class BaseProvider extends ChangeNotifier {
       notifyListeners();
     }
 
-    Future.delayed(const Duration(milliseconds: 1000))
+    Future.delayed(Duration(milliseconds: 1000))
         .then((value) => fontTransactionEffect = false)
         .then((value) => notifyListeners());
   }
@@ -458,7 +461,7 @@ class BaseProvider extends ChangeNotifier {
     _fontSize = value;
     notifyListeners();
 
-    Future.delayed(const Duration(milliseconds: 1000))
+    Future.delayed(Duration(milliseconds: 1000))
         .then((value) => fontTransactionEffect = false)
         .then((value) => notifyListeners());
   }
@@ -467,18 +470,18 @@ class BaseProvider extends ChangeNotifier {
 
   List<Color> fontColors = [
     Colors.black,
-    const Color(0xff1AA386),
-    const Color(0xff0E264C),
-    const Color(0xff0E264C),
-    const Color(0xff51DECF),
+    Color(0xff1AA386),
+    Color(0xff0E264C),
+    Color(0xff0E264C),
+    Color(0xff51DECF),
   ];
 
   List<Color> BGColors = [
     Colors.white,
-    const Color(0xffFFF8E9),
-    const Color(0xffDFDFDF),
-    const Color(0xffE6DBD0),
-    const Color(0xffDBEDF1),
+    Color(0xffFFF8E9),
+    Color(0xffDFDFDF),
+    Color(0xffE6DBD0),
+    Color(0xffDBEDF1),
   ];
 
   int _fontColorIndex = 0;
@@ -537,29 +540,13 @@ class BaseProvider extends ChangeNotifier {
   }
 
   ListResult? result;
-  List<String> urls = [];
   List<Future<String>> xurls = [];
-
-  getListOfImages() async {
-    var directoryRef = storage.ref().child('imagesToShare/');
-
-    result = await directoryRef.listAll();
-
-    if (result != null) {
-      xurls = result!.items.map((item) {
-        return item.getDownloadURL();
-      }).toList();
-    }
-
-    urls = await Future.wait(xurls);
-  }
 
   AudioPlayer _audioPlayer = AudioPlayer();
 
   AudioPlayer get audioPlayer => _audioPlayer;
 
   int _audioIndex = 0;
-
   int get audioIndex => _audioIndex;
 
   String _sheikh = '';
@@ -719,10 +706,13 @@ class BaseProvider extends ChangeNotifier {
   }
 
   //?============================FavoriteScreen=================================================
+  TextEditingController favoriteController = TextEditingController();
+
   List<KasydaBody> favoriteListData = [];
 
   Future<void> readDataFromDataBase() async {
     favoriteListData = await DatabaseHelperFav().getAllKasydaBodies();
+    print(favoriteListData.length);
     notifyListeners();
   }
 
@@ -748,4 +738,44 @@ class BaseProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+
+//?============================Notes Screen=================================================
+  TextEditingController noteController = TextEditingController();
+  TextEditingController titleNoteController = TextEditingController();
+  TextEditingController contentNoteController = TextEditingController();
+
+  List<NoteBody> notesListData = [];
+
+  Future<void> readNotesDataFromDataBase() async {
+    notesListData = await DatabaseHelperNotes().getAllNotesBodies();
+    print(notesListData.length);
+    notifyListeners();
+  }
+
+  deleteNotesDataFromDataBase({required String id}) async {
+    await DatabaseHelperNotes().deleteNoteBody(id).whenComplete(() async {
+      notesListData = await DatabaseHelperNotes().getAllNotesBodies();
+    });
+    notifyListeners();
+  }
+
+  saveNotesDataToDataBase({required NoteBody noteBody}) async {
+    if (await DatabaseHelperNotes().containsNoteBody(noteBody.title)) {
+      Utils().displayToastMessage('notes_already_added'.tr());
+    } else {
+      await DatabaseHelperNotes().saveNoteBody(noteBody).whenComplete(() async {
+        notesListData = await DatabaseHelperNotes().getAllNotesBodies();
+      });
+
+      Utils().displayToastMessage('notes_added_successfully'.tr());
+    }
+
+    notifyListeners();
+  }
+
+  //?============================ContactUsScreen=================================================
+  TextEditingController messageController = TextEditingController();
+
+  //?============================AboutUsScreen=================================================
+  TextEditingController aboutUsController = TextEditingController();
 }

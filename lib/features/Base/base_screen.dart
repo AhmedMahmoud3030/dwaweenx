@@ -9,7 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class BaseScreen extends StatelessWidget {
-  const BaseScreen({super.key});
+  BaseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +17,14 @@ class BaseScreen extends StatelessWidget {
       builder: (BuildContext context, provider, Widget? child) => Scaffold(
         backgroundColor: Colors.transparent,
         key: provider.scaffoldKey,
-        drawer: const DrawerFb1(),
+        drawer: ChangeNotifierProvider(
+            create: (BuildContext context) => BaseProvider(),
+            child: DrawerFb1()),
         // floatingActionButton: FloatingActionButton(onPressed: () async {
         //   await provider.uploadDataMethod();
         // }),
         body: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: Constants.bgColor,
             image: DecorationImage(
               image: AssetImage(Assets.paintingsBG),
@@ -60,8 +62,7 @@ class BaseScreen extends StatelessWidget {
                     ),
               title: Text(
                 'Main'.tr(),
-                style:
-                    const TextStyle(fontFamily: 'Cairo', color: Colors.white),
+                style: TextStyle(fontFamily: 'Cairo', color: Colors.white),
               ),
               activeColor: Constants.primary,
               textAlign: TextAlign.center,
@@ -82,7 +83,7 @@ class BaseScreen extends StatelessWidget {
                     ),
               title: Text(
                 'dwaween'.tr(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Cairo',
                   color: Colors.white,
                 ),
@@ -106,7 +107,7 @@ class BaseScreen extends StatelessWidget {
                     ),
               title: Text(
                 'kanash'.tr(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Cairo',
                   color: Colors.white,
                 ),
@@ -130,7 +131,7 @@ class BaseScreen extends StatelessWidget {
                     ),
               title: Text(
                 'shikkh'.tr(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Cairo',
                   color: Colors.white,
                 ),
@@ -154,7 +155,7 @@ class BaseScreen extends StatelessWidget {
                     ),
               title: Text(
                 'more'.tr(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Cairo',
                   color: Colors.white,
                 ),

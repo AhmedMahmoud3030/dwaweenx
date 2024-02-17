@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CardData extends Equatable {
-  const CardData({
+  CardData({
     required this.titleAr,
     required this.titleEn,
     required this.sheikhAr,

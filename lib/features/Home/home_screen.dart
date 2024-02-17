@@ -11,13 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
 
     return GestureDetector(
       onTap: () {
@@ -28,8 +28,8 @@ class HomeScreen extends StatelessWidget {
           SvgPicture.asset(
             Assets.paintingsImgHeadHome,
             alignment: Alignment.topCenter,
-            width: mediaQuery.width,
-            height: mediaQuery.height / 2,
+            width: 100.w,
+            height: 50.h,
           ),
           Consumer<BaseProvider>(
             builder: (BuildContext context, provider, Widget? child) => Column(
@@ -37,10 +37,9 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Container(
                   color: Colors.transparent,
-                  height: mediaQuery.height / 4,
+                  height: 25.h,
                 ),
                 CustomTextFormFiled(
-                  mediaQuery: mediaQuery,
                   textEditingController: provider.homeController,
                   onChanged: (value) {
                     provider.searchHomeMethod(searchValue: value);
@@ -54,16 +53,16 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
+                    physics: BouncingScrollPhysics(),
                     child: provider.dewanBodyLoading
                         ? Center(
                             child: Container(
                               padding: EdgeInsets.only(
-                                bottom: mediaQuery.height / 2,
+                                bottom: 50.h,
                               ),
-                              width: mediaQuery.width,
-                              height: mediaQuery.height,
-                              child: const Center(
+                              width: 100.w,
+                              height: 100.h,
+                              child: Center(
                                 child: SpinKitCircle(
                                   color: Constants.primary,
                                 ),
@@ -75,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               SizedBox(
                                 height: provider.homeController.text.isEmpty
-                                    ? mediaQuery.height * .02
+                                    ? 2.h
                                     : 0,
                               ),
                               Visibility(
@@ -92,23 +91,22 @@ class HomeScreen extends StatelessWidget {
                                     builder: (context, snapshot) {
                                       return Container(
                                         decoration: BoxDecoration(
-                                          color: const Color(0xff51DECF),
+                                          color: Color(0xff51DECF),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
-                                        height: mediaQuery.height / 4.06,
-                                        width: mediaQuery.width * .92,
+                                        height: 24.6305419.h,
+                                        width: 92.w,
                                         child: Stack(
                                           children: <Widget>[
                                             Image.asset(
                                               Assets.paintings1,
-                                              height: mediaQuery.height / 4.1,
-                                              width: mediaQuery.width * .92,
+                                              height: 24.3902439.h,
+                                              width: 92.w,
                                               fit: BoxFit.fill,
                                             ),
                                             Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
+                                              padding: EdgeInsets.symmetric(
                                                 horizontal: 20,
                                                 vertical: 10,
                                               ),
@@ -124,8 +122,7 @@ class HomeScreen extends StatelessWidget {
                                                           Text(
                                                             'Audible_poems'
                                                                 .tr(),
-                                                            style:
-                                                                const TextStyle(
+                                                            style: TextStyle(
                                                               color:
                                                                   Colors.white,
                                                               fontWeight:
@@ -147,8 +144,7 @@ class HomeScreen extends StatelessWidget {
                                                                         .cardData
                                                                         ?.titleEn ??
                                                                     '',
-                                                            style:
-                                                                const TextStyle(
+                                                            style: TextStyle(
                                                               color:
                                                                   Colors.white,
                                                               fontWeight:
@@ -162,7 +158,7 @@ class HomeScreen extends StatelessWidget {
                                                       ),
                                                     ],
                                                   ),
-                                                  const Spacer(),
+                                                  Spacer(),
                                                   Row(
                                                     children: [
                                                       Expanded(
@@ -181,7 +177,7 @@ class HomeScreen extends StatelessWidget {
                                                               Colors.teal[600],
                                                           thumbRadius: 5,
                                                           timeLabelTextStyle:
-                                                              const TextStyle(
+                                                          TextStyle(
                                                             color: Colors.white,
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -203,8 +199,8 @@ class HomeScreen extends StatelessWidget {
                                                       ),
                                                     ],
                                                   ),
-                                                  const SizedBox(
-                                                    height: 10,
+                                                  SizedBox(
+                                                    height: 0.1.h,
                                                   ),
                                                   Row(
                                                     children: [
@@ -221,13 +217,12 @@ class HomeScreen extends StatelessWidget {
                                                                       .cardData
                                                                       ?.sheikhEn ??
                                                                   '',
-                                                          style:
-                                                              const TextStyle(
+                                                          style: TextStyle(
                                                             color: Colors.white,
                                                           ),
                                                         ),
                                                       ),
-                                                      const Spacer(),
+                                                      Spacer(),
                                                       IconButton(
                                                         padding:
                                                             EdgeInsets.zero,
@@ -269,38 +264,38 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: mediaQuery.height * .02,
+                                height: 2.h,
                               ),
                               SizedBox(
-                                height: mediaQuery.height * .07,
+                                height: 7.h,
                                 child: Row(
                                   children: [
                                     SizedBox(
-                                      width: mediaQuery.width / 25,
+                                      width: 4.w,
                                     ),
                                     SvgPicture.asset(
                                       Assets.iconsIcDwawenTit,
-                                      height: mediaQuery.width / 12,
-                                      width: mediaQuery.width / 12,
+                                      height: 8.33333333.w,
+                                      width: 8.33333333.w,
                                     ),
                                     Text(
                                       'dwaween'.tr(),
                                       style: TextStyle(
-                                        color: const Color(0xff1C7F88),
-                                        fontSize: mediaQuery.width / 25,
+                                        color: Color(0xff1C7F88),
+                                        fontSize: 4.w,
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    const Spacer(),
+                                    Spacer(),
                                     SizedBox(
-                                      width: mediaQuery.width / 2.1,
-                                      child: const Divider(
+                                      width: 47.6190476.w,
+                                      child: Divider(
                                         color: Colors.teal,
                                         thickness: 1.5,
                                       ),
                                     ),
-                                    const Spacer(),
+                                    Spacer(),
                                     InkWell(
                                       onTap: () {
                                         FocusManager.instance.primaryFocus
@@ -315,15 +310,15 @@ class HomeScreen extends StatelessWidget {
                                       child: Text(
                                         'view_all'.tr(),
                                         style: TextStyle(
-                                          color: const Color(0xff1C7F88),
-                                          fontSize: mediaQuery.width / 25,
+                                          color: Color(0xff1C7F88),
+                                          fontSize: 4.w,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
                                     SizedBox(
-                                      width: mediaQuery.width / 25,
+                                      width: 4.w,
                                     ),
                                   ],
                                 ),
@@ -336,14 +331,14 @@ class HomeScreen extends StatelessWidget {
                                     ? false
                                     : true,
                                 child: Container(
-                                  width: mediaQuery.width,
+                                  width: 100.w,
                                   margin: EdgeInsets.symmetric(
-                                    horizontal: mediaQuery.width / 30,
+                                    horizontal: 3.33333333.w,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
+                                    padding: EdgeInsets.all(4.0),
                                     child: Container(
-                                      padding: const EdgeInsets.all(8),
+                                      padding: EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
@@ -353,8 +348,8 @@ class HomeScreen extends StatelessWidget {
                                         alignment: Alignment.centerRight,
                                         child: Text(
                                           'there_is_no_Dwaween'.tr(),
-                                          style: const TextStyle(
-                                            fontSize: 16,
+                                          style: TextStyle(
+                                            fontSize: 16.sp,
                                             color: Colors.teal,
                                             fontFamily: 'Cairo',
                                           ),
@@ -370,13 +365,13 @@ class HomeScreen extends StatelessWidget {
                                     : false,
                                 child: ListView.builder(
                                   padding: EdgeInsets.zero,
-                                  physics: const NeverScrollableScrollPhysics(),
+                                  physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return Container(
-                                      width: mediaQuery.width,
+                                      width: 100.w,
                                       margin: EdgeInsets.symmetric(
-                                        horizontal: mediaQuery.width / 30,
+                                        horizontal: 3.33333333.w,
                                       ),
                                       child: InkWell(
                                         onTap: provider.HomeScreenData[index]
@@ -401,7 +396,7 @@ class HomeScreen extends StatelessWidget {
                                                 );
                                               },
                                         child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
+                                          padding: EdgeInsets.all(4.0),
                                           child: Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
@@ -420,7 +415,7 @@ class HomeScreen extends StatelessWidget {
                                                 child: Text(
                                                   provider.HomeScreenData[index]
                                                       .name,
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                     color: Colors.teal,
                                                     fontFamily: 'Cairo',
                                                   ),
@@ -430,14 +425,14 @@ class HomeScreen extends StatelessWidget {
                                                 children: [
                                                   Text(
                                                     'number_of_poems'.tr(),
-                                                    style: const TextStyle(
-                                                      color: Colors.teal,
+                                                    style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontFamily: 'Cairo',
                                                     ),
                                                   ),
-                                                  const Text('  '),
+                                                  Text('  '),
                                                   Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
+                                                    padding: EdgeInsets.only(
                                                       bottom: 4.0,
                                                     ),
                                                     child: Text(
@@ -459,17 +454,18 @@ class HomeScreen extends StatelessWidget {
                                                               .kasaed
                                                               .length
                                                               .toString(),
-                                                      style: const TextStyle(
-                                                        color: Colors.teal,
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
                                                         fontFamily: 'Cairo',
                                                       ),
                                                     ),
                                                   ),
-                                                  const Text('  '),
+                                                  Text('  '),
                                                   Text(
                                                     'poem'.tr(),
-                                                    style: const TextStyle(
-                                                      color: Colors.teal,
+                                                    style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontFamily: 'Cairo',
                                                     ),
                                                   ),
                                                 ],
@@ -486,38 +482,38 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               // SizedBox(
-                              //   height: 10,
+                              //   height: 0.1.h,
                               // ),
                               SizedBox(
-                                height: 35,
+                                height: 3.5.h,
                                 child: Row(
                                   children: [
                                     SizedBox(
-                                      width: mediaQuery.width / 25,
+                                      width: 4.w,
                                     ),
                                     SvgPicture.asset(
                                       Assets.iconsIcKsaed,
-                                      height: mediaQuery.width / 12,
-                                      width: mediaQuery.width / 12,
+                                      height: 8.33333333.w,
+                                      width: 8.33333333.w,
                                     ),
                                     Text(
                                       'poems'.tr(),
                                       style: TextStyle(
-                                        color: const Color(0xff1C7F88),
-                                        fontSize: mediaQuery.width / 25,
+                                        color: Color(0xff1C7F88),
+                                        fontSize: 4.w,
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    const Spacer(),
+                                    Spacer(),
                                     SizedBox(
-                                      width: mediaQuery.width / 2.1,
-                                      child: const Divider(
+                                      width: 47.6190476.w,
+                                      child: Divider(
                                         color: Colors.teal,
                                         thickness: 1.5,
                                       ),
                                     ),
-                                    const Spacer(),
+                                    Spacer(),
                                     InkWell(
                                       onTap: () {
                                         FocusManager.instance.primaryFocus
@@ -532,15 +528,15 @@ class HomeScreen extends StatelessWidget {
                                       child: Text(
                                         'view_all'.tr(),
                                         style: TextStyle(
-                                          color: const Color(0xff1C7F88),
-                                          fontSize: mediaQuery.width / 25,
+                                          color: Color(0xff1C7F88),
+                                          fontSize: 4.w,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
                                     SizedBox(
-                                      width: mediaQuery.width / 25,
+                                      width: 4.w,
                                     ),
                                   ],
                                 ),
@@ -550,14 +546,14 @@ class HomeScreen extends StatelessWidget {
                                     ? false
                                     : true,
                                 child: Container(
-                                  width: mediaQuery.width,
+                                  width: 100.w,
                                   margin: EdgeInsets.symmetric(
-                                    horizontal: mediaQuery.width / 30,
+                                    horizontal: 3.33333333.w,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
+                                    padding: EdgeInsets.all(4.0),
                                     child: Container(
-                                      padding: const EdgeInsets.all(8),
+                                      padding: EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
@@ -567,8 +563,8 @@ class HomeScreen extends StatelessWidget {
                                         alignment: Alignment.centerRight,
                                         child: Text(
                                           'there_is_no_Kasayed'.tr(),
-                                          style: const TextStyle(
-                                            fontSize: 16,
+                                          style: TextStyle(
+                                            fontSize: 16.sp,
                                             color: Colors.teal,
                                             fontFamily: 'Cairo',
                                           ),
@@ -584,12 +580,12 @@ class HomeScreen extends StatelessWidget {
                                     : false,
                                 child: GridView.builder(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: mediaQuery.width / 30,
+                                    horizontal: 3.33333333.w,
                                   ),
-                                  physics: const NeverScrollableScrollPhysics(),
+                                  physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                      SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     childAspectRatio: 2,
                                   ),
@@ -598,7 +594,7 @@ class HomeScreen extends StatelessWidget {
                                       : provider.groupedBy.length,
                                   itemBuilder: (context, index) {
                                     return Card(
-                                      margin: const EdgeInsets.all(6),
+                                      margin: EdgeInsets.all(6),
                                       child: InkWell(
                                         onTap: provider.groupedBy[index].kenshat
                                                 .isNotEmpty
@@ -610,7 +606,7 @@ class HomeScreen extends StatelessWidget {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const KasaedByCategoryScreen(),
+                                                        KasaedByCategoryScreen(),
                                                   ),
                                                 );
                                               }
@@ -623,12 +619,12 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                           child: Column(
                                             children: [
-                                              const SizedBox(
-                                                height: 15,
+                                              SizedBox(
+                                                height: 0.15.h,
                                               ),
                                               Row(
                                                 children: [
-                                                  const SizedBox(
+                                                  SizedBox(
                                                     width: 6,
                                                   ),
                                                   SvgPicture.asset(
@@ -636,27 +632,26 @@ class HomeScreen extends StatelessWidget {
                                                     height: 25,
                                                     width: 25,
                                                   ),
-                                                  const SizedBox(
-                                                    width: 10,
+                                                  SizedBox(
+                                                    width: 0.1.w,
                                                   ),
                                                   Text(
                                                     maxLines: 1,
                                                     overflow: TextOverflow.fade,
                                                     provider.groupedBy[index]
                                                         .purpose,
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                       color: Colors.teal,
-                                                      fontFamily:
-                                                          'Amiri Regular',
+                                                      fontFamily: 'Cairo',
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              const SizedBox(
-                                                height: 5,
+                                              SizedBox(
+                                                height: .5.h,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(
+                                                padding: EdgeInsets.only(
                                                   right: 22,
                                                 ),
                                                 child: Align(
@@ -664,10 +659,9 @@ class HomeScreen extends StatelessWidget {
                                                       Alignment.centerRight,
                                                   child: Text(
                                                     "${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber(provider.groupedBy[index].kenshat.length.toString()) : provider.groupedBy[index].kenshat.length}  ${'poem'.tr()}",
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                       color: Colors.grey,
-                                                      fontFamily:
-                                                          'Amiri Regular',
+                                                      fontFamily: 'Cairo',
                                                     ),
                                                   ),
                                                 ),

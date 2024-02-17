@@ -2,8 +2,8 @@ import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/widgets/customTextFormField.dart';
 import '../provider.dart';
@@ -11,8 +11,6 @@ import '../provider.dart';
 class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
-
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) =>
           GestureDetector(
@@ -21,25 +19,31 @@ class AboutScreen extends StatelessWidget {
         },
         child: Stack(
           children: [
-            SvgPicture.asset(
-              Assets.paintingsImgHeadInternal,
-              alignment: Alignment.topCenter,
-              width: mediaQuery.width * 4,
-              height: mediaQuery.height / 2,
+            Container(
+              width: 100.0.w,
+              height: 20.0.h,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.orn_header_home),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(70),
+                  ),
+                  color: Constants.primary),
             ),
             Column(
               children: [
                 Container(
                   color: Colors.transparent,
-                  height: mediaQuery.height * .09,
+                  height: 9.0.h,
                 ),
                 Row(
                   children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: Device.orientation == Orientation.portrait
+                          ? 1.h
+                          : 1.w,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +52,7 @@ class AboutScreen extends StatelessWidget {
                           'shikkh'.tr(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaQuery.width / 25,
+                            fontSize: 14.sp,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.bold,
                           ),
@@ -57,7 +61,7 @@ class AboutScreen extends StatelessWidget {
                           'shikkh_name'.tr(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: mediaQuery.width / 25,
+                            fontSize: 14.sp,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.normal,
                           ),
@@ -67,10 +71,11 @@ class AboutScreen extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  height: mediaQuery.height * .02,
+                  height: Device.orientation == Orientation.portrait
+                      ? 2.0.h
+                      : 2.0.w,
                 ),
                 CustomTextFormFiled(
-                  mediaQuery: mediaQuery,
                   textEditingController: provider.aboutController,
                   onChanged: (value) {},
                   searchText: 'search_in_dwaween',
@@ -85,19 +90,19 @@ class AboutScreen extends StatelessWidget {
                     provider.searchDewanMethod(searchValue: value);
                   },
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: .1.h,
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 20, left: 20),
+                    padding: EdgeInsets.only(right: 20, left: 20),
                     child: ListView(
                       padding: EdgeInsets.zero,
-                      physics: const BouncingScrollPhysics(),
+                      physics: BouncingScrollPhysics(),
                       shrinkWrap: true,
                       children: [
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: .1.h,
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,32 +115,32 @@ class AboutScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     'his_birth_and_upbringing'.tr(),
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Constants.primary2,
-                                      fontSize: 18,
+                                      fontSize: 18.sp,
                                       fontFamily: 'Cairo',
                                     ),
                                   ),
                                   Container(
                                     width: double.infinity,
-                                    height: .8,
+                                    height: .1.h,
                                     color: Constants.primary2,
                                   ),
                                   Text(
                                     'brief_about_him'.tr(),
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.normal,
                                       color: Colors.black54,
-                                      fontSize: 14,
+                                      fontSize: 14.sp,
                                       fontFamily: 'Cairo',
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(
-                              width: 20,
+                            SizedBox(
+                              width: 2.w,
                             ),
                             Expanded(
                               child: Image.asset(
@@ -144,8 +149,8 @@ class AboutScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
+                        SizedBox(
+                          height: 2.h,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,181 +158,181 @@ class AboutScreen extends StatelessWidget {
                           children: [
                             Text(
                               'his_elders'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Constants.primary2,
-                                fontSize: 18,
+                                fontSize: 18.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Container(
                               width: double.infinity,
-                              height: .8,
+                              height: 0.1.h,
                               color: Constants.primary2,
                             ),
                             Text(
                               'his_elders_brief'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
+                            SizedBox(
+                              height: .2.h,
                             ),
                             Text(
                               'scholars_granted_him_permission'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Constants.primary2,
-                                fontSize: 18,
+                                fontSize: 18.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Container(
                               width: double.infinity,
-                              height: .8,
+                              height: .1.h,
                               color: Constants.primary2,
                             ),
                             Text(
                               'there_are_very_many'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_1'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_2'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_3'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_4'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_5'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_6'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_7'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_8'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_9'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_10'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_11'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_12'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_13'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
                             Text(
                               'scholars_14'.tr(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black54,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontFamily: 'Cairo',
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
+                            SizedBox(
+                              height: .2.h,
                             ),
                           ],
                         ),

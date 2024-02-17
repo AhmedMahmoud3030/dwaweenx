@@ -1,22 +1,22 @@
+import 'package:dwaweenx/core/constants.dart';
+import 'package:dwaweenx/core/utils.dart';
+import 'package:dwaweenx/core/widgets/customTextFormField.dart';
+import 'package:dwaweenx/features/provider.dart';
+import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../core/constants.dart';
-import '../../core/utils.dart';
-import '../../core/widgets/customTextFormField.dart';
-import '../../features/KasydaDetails/kasyda_details.dart';
-import '../../features/provider.dart';
-import '../../generated/assets.dart';
+class NotesScreen extends StatefulWidget {
+  const NotesScreen({super.key});
 
-class FavoriteScreen extends StatefulWidget {
   @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
+  State<NotesScreen> createState() => _NotesScreenState();
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
+class _NotesScreenState extends State<NotesScreen> {
   @override
   void initState() {
     Provider.of<BaseProvider>(context, listen: false).readDataFromDataBase();
@@ -69,7 +69,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         ),
                       ),
                       Text(
-                        'Favourite'.tr(),
+                        'Notes'.tr(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 4.w,
@@ -80,19 +80,19 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: .10.h,
+                    height: 0.1.h,
                   ),
                   Consumer<BaseProvider>(
                     builder: (BuildContext context, provider, Widget? child) {
                       return CustomTextFormFiled(
-                        textEditingController: provider.favoriteController,
+                        textEditingController: provider.noteController,
                         onChanged: (value) {},
                         searchText: 'search_in_dwaween',
                         onPressed: () {
-                          provider.favoriteController.clear();
+                          provider.noteController.clear();
                         },
                         onFieldSubmitted: (value) {
-                          provider.favoriteController.clear();
+                          provider.noteController.clear();
                           provider.dewanController.text = value;
 
                           provider.setSelectedIndex(index: 1);
@@ -102,7 +102,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     },
                   ),
                   SizedBox(
-                    height: .20.h,
+                    height: 20,
                   ),
                   Stack(
                     alignment: AlignmentDirectional.topCenter,
@@ -161,22 +161,22 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                             ),
                             child: Column(
                               children: [
-                                provider.favoriteListData.isEmpty
+                                provider.notesListData.isEmpty
                                     ? Center(
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
                                             SvgPicture.asset(
-                                              Assets.iconsIcKsaed,
-                                              width: 30,
-                                              height: 20,
+                                              Assets.iconsIcAddComment,
+                                              width: 30.w,
+                                              height: 20.h,
                                             ),
                                             SizedBox(
                                               height: 20.h,
                                             ),
                                             Text(
-                                              'no_data_in_favorite'.tr(),
+                                              'no_data_in_notes'.tr(),
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 4.w,
@@ -190,7 +190,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                     : ListView.separated(
                                         shrinkWrap: true,
                                         itemCount:
-                                            provider.favoriteListData.length,
+                                            provider.notesListData.length,
                                         physics: NeverScrollableScrollPhysics(),
                                         itemBuilder: (context, i) => Row(
                                           mainAxisAlignment:
@@ -201,42 +201,18 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                             Expanded(
                                               flex: 2,
                                               child: SvgPicture.asset(
-                                                Assets.iconsIcKsaed,
+                                                Assets.iconsIcAddComment,
                                                 width: 35,
-                                                height: 35,
+                                                height: 0.35.h,
                                               ),
                                             ),
                                             Expanded(
                                               flex: 6,
                                               child: GestureDetector(
-                                                onTap: () {
-                                                  if (provider.favoriteListData
-                                                      .isNotEmpty) {
-                                                    provider
-                                                        .setKasydaDetailsBody(
-                                                      provider
-                                                          .favoriteListData[i],
-                                                      context
-                                                          .locale.languageCode,
-                                                    )
-                                                        .whenComplete(() {
-                                                      provider.splitKasyda();
-                                                    }).whenComplete(
-                                                      () =>
-                                                          Navigator.of(context)
-                                                              .pushReplacement(
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              KasydaDetails(),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                },
                                                 child: Center(
                                                   child: Text(
-                                                    provider.favoriteListData[i]
-                                                        .nameT,
+                                                    provider.notesListData[i]
+                                                        .content,
                                                     style: TextStyle(
                                                       color: Colors.grey,
                                                       fontSize: 4.w,
@@ -254,16 +230,16 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                                 child: IconButton(
                                                   onPressed: () {
                                                     provider
-                                                        .deleteDataFromDataBase(
+                                                        .deleteNotesDataFromDataBase(
                                                       id: provider
-                                                          .favoriteListData[i]
-                                                          .id,
+                                                          .notesListData[i]
+                                                          .title,
                                                     )
                                                         .whenComplete(
                                                       () {
                                                         Utils()
                                                             .displayToastMessage(
-                                                          'kasyda_deleted_successfully'
+                                                          'notes_deleted_successfully'
                                                               .tr(),
                                                         );
                                                       },
@@ -282,8 +258,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                             (BuildContext context, int index) =>
                                                 Container(
                                           margin: EdgeInsets.only(
-                                            left: .10.w,
-                                            right: .10.w,
+                                            left: 10,
+                                            right: 10,
                                           ),
                                           height: .5,
                                           color: Colors.grey,

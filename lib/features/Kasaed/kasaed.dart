@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../KasayedByCategory/kasayed_by_category.dart';
 import '../provider.dart';
@@ -14,7 +15,6 @@ import '../provider.dart';
 class KasaedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
 
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) =>
@@ -26,34 +26,41 @@ class KasaedScreen extends StatelessWidget {
           children: [
             Stack(
               children: [
-                SvgPicture.asset(
-                  Assets.paintingsImgHeadInternal,
-                  alignment: Alignment.topCenter,
-                  width: mediaQuery.width * 4,
-                  height: mediaQuery.height / 2,
+                Container(
+                  width: 100.0.w,
+                  height: 20.0.h,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(Assets.orn_header_home),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(70),
+                      ),
+                      color: Constants.primary),
                 ),
                 Column(
                   children: [
                     Container(
                       color: Colors.transparent,
-                      height: mediaQuery.height * .09,
+                      height: 9.h,
                     ),
                     Row(
                       children: [
-                        const SizedBox(
-                          width: 10,
+                        SizedBox(
+                          width: 1.w,
                         ),
                         Column(
                           children: [
                             SvgPicture.asset(
                               Assets.iconsIcKsaed2,
-                              height: mediaQuery.width / 12,
-                              width: mediaQuery.width / 12,
+                              height: 8.33333333.w,
+                              width: 8.33333333.w,
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          width: 10,
+                        SizedBox(
+                          width: 1.w,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +69,7 @@ class KasaedScreen extends StatelessWidget {
                               'poems'.tr(),
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: mediaQuery.width / 25,
+                                fontSize: 4.w,
                                 fontFamily: 'Cairo',
                                 fontWeight: FontWeight.bold,
                               ),
@@ -71,7 +78,7 @@ class KasaedScreen extends StatelessWidget {
                               'search_Kasaed_catagories'.tr(),
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: mediaQuery.width / 25,
+                                fontSize: 4.w,
                                 fontFamily: 'Cairo',
                                 fontWeight: FontWeight.normal,
                               ),
@@ -81,10 +88,9 @@ class KasaedScreen extends StatelessWidget {
                       ],
                     ),
                     Container(
-                      height: mediaQuery.height * .02,
+                      height: 2.h,
                     ),
                     CustomTextFormFiled(
-                      mediaQuery: mediaQuery,
                       textEditingController: provider.kasayedController,
                       onChanged: (value) {
                         provider.searchKasayedMethod(searchValue: value);
@@ -96,17 +102,17 @@ class KasaedScreen extends StatelessWidget {
                       },
                       onFieldSubmitted: (value) {},
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: 1.h,
                     ),
                     SizedBox(
-                      height: mediaQuery.height / 1.55,
-                      width: mediaQuery.height,
+                      height: 66.6666667.h,
+                      width: 100.h,
                       child: provider.dewanBodyLoading
                           ? SizedBox(
-                              width: mediaQuery.width,
-                              height: mediaQuery.height,
-                              child: const Center(
+                              width: 100.w,
+                              height: 100.h,
+                              child: Center(
                                 child: SpinKitCircle(
                                   color: Constants.primary,
                                 ),
@@ -114,14 +120,14 @@ class KasaedScreen extends StatelessWidget {
                             )
                           : provider.KasayedScreenData.isEmpty
                               ? Container(
-                                  width: mediaQuery.width,
+                        width: 100.w,
                                   margin: EdgeInsets.symmetric(
-                                    horizontal: mediaQuery.width / 30,
+                                    horizontal: 3.33333333.w,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
+                                    padding: EdgeInsets.all(4.0),
                                     child: Container(
-                                      padding: const EdgeInsets.all(8),
+                                      padding: EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
@@ -130,8 +136,8 @@ class KasaedScreen extends StatelessWidget {
                                       child: Align(
                                         child: Text(
                                           'there_is_no_Kasayed'.tr(),
-                                          style: const TextStyle(
-                                            fontSize: 16,
+                                          style: TextStyle(
+                                            fontSize: 16.sp,
                                             color: Colors.teal,
                                             fontFamily: 'Cairo',
                                           ),
@@ -141,13 +147,13 @@ class KasaedScreen extends StatelessWidget {
                                   ),
                                 )
                               : GridView.builder(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: mediaQuery.width / 30,
+                        padding: EdgeInsets.symmetric(
+                                    horizontal: 3.33333333.w,
                                   ),
-                                  physics: const NeverScrollableScrollPhysics(),
+                                  physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                      SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     childAspectRatio: 2,
                                   ),
@@ -157,7 +163,7 @@ class KasaedScreen extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                       child: Card(
-                                        margin: const EdgeInsets.all(6),
+                                        margin: EdgeInsets.all(6),
                                         child: InkWell(
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -171,7 +177,7 @@ class KasaedScreen extends StatelessWidget {
                                               children: [
                                                 Row(
                                                   children: [
-                                                    const SizedBox(
+                                                    SizedBox(
                                                       width: 6,
                                                     ),
                                                     SvgPicture.asset(
@@ -179,12 +185,11 @@ class KasaedScreen extends StatelessWidget {
                                                       height: 25,
                                                       width: 25,
                                                     ),
-                                                    const SizedBox(
-                                                      width: 10,
+                                                    SizedBox(
+                                                      width: 0.1.w,
                                                     ),
                                                     SizedBox(
-                                                      width:
-                                                          mediaQuery.width * .3,
+                                                      width: 30.w,
                                                       child: Text(
                                                         maxLines: 1,
                                                         overflow: TextOverflow
@@ -192,7 +197,7 @@ class KasaedScreen extends StatelessWidget {
                                                         provider
                                                             .groupedBy[index]
                                                             .purpose,
-                                                        style: const TextStyle(
+                                                        style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           color: Colors.teal,
@@ -202,12 +207,11 @@ class KasaedScreen extends StatelessWidget {
                                                     ),
                                                   ],
                                                 ),
-                                                const SizedBox(
-                                                  height: 5,
+                                                SizedBox(
+                                                  height: .5.h,
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
+                                                  padding: EdgeInsets.only(
                                                     right: 22,
                                                   ),
                                                   child: Align(
@@ -215,7 +219,7 @@ class KasaedScreen extends StatelessWidget {
                                                         Alignment.centerRight,
                                                     child: Text(
                                                       "${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber(provider.groupedBy[index].kenshat.length.toString()) : provider.groupedBy[index].kenshat.length}  ${'poem'.tr()}",
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                         color: Colors.grey,
                                                         fontFamily: 'Cairo',
                                                       ),
@@ -232,7 +236,7 @@ class KasaedScreen extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const KasaedByCategoryScreen(),
+                                                    KasaedByCategoryScreen(),
                                               ),
                                             );
                                           },

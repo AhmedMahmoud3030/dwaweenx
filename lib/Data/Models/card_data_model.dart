@@ -1,7 +1,7 @@
 import 'package:dwaweenx/Domain/Entities/card_data.dart';
 
 class CardDataModel extends CardData {
-  const CardDataModel({
+  CardDataModel({
     required super.titleAr,
     required super.titleEn,
     required super.sheikhAr,
