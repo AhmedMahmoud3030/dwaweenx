@@ -43,6 +43,8 @@ class Assets {
   static String paintings1 = 'assets/images/paintings/1.png';
   static String orn_header_home =
       'assets/images/paintings/orn-header-home@2x.png';
+
+  static String logo_home = 'assets/images/paintings/name-app@2x.png';
   static List<String> paintingsShare = [
     'assets/images/paintings/10.jpg',
     'assets/images/paintings/11.jpg',

@@ -25,11 +25,18 @@ class HomeScreen extends StatelessWidget {
       },
       child: Stack(
         children: [
-          SvgPicture.asset(
-            Assets.paintingsImgHeadHome,
-            alignment: Alignment.topCenter,
-            width: 100.w,
-            height: 50.h,
+          Container(
+            width: 100.0.w,
+            height: 30.0.h,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  scale: 5.0,
+                  image: AssetImage(Assets.logo_home),
+                ),
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(70),
+                ),
+                color: Constants.primary),
           ),
           Consumer<BaseProvider>(
             builder: (BuildContext context, provider, Widget? child) => Column(
