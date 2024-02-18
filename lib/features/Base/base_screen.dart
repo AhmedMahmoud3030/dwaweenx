@@ -20,9 +20,9 @@ class BaseScreen extends StatelessWidget {
         drawer: ChangeNotifierProvider(
             create: (BuildContext context) => BaseProvider(),
             child: DrawerFb1()),
-        // floatingActionButton: FloatingActionButton(onPressed: () async {
-        //   await provider.uploadDataMethod();
-        // }),
+        floatingActionButton: FloatingActionButton(onPressed: () async {
+          await provider.uploadDataMethod();
+        }),
         body: Container(
           decoration: BoxDecoration(
             color: Constants.bgColor,
