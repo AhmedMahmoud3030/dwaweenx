@@ -17,7 +17,6 @@ class DwaweenScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) =>
           GestureDetector(
@@ -48,7 +47,7 @@ class DwaweenScreen extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: .10.w,
+                      width: 2.w,
                     ),
                     Column(
                       children: [
@@ -60,7 +59,7 @@ class DwaweenScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      width: .10.w,
+                      width: 2.w,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +102,7 @@ class DwaweenScreen extends StatelessWidget {
                   onFieldSubmitted: (value) {},
                 ),
                 SizedBox(
-                  height: .10.h,
+                  height: 1.h,
                 ),
                 SizedBox(
                   // height: 66.6666667.h
@@ -120,7 +119,7 @@ class DwaweenScreen extends StatelessWidget {
                         )
                       : provider.DewanScreenData.isEmpty
                           ? Container(
-                    width: 100.w,
+                              width: 100.w,
                               margin: EdgeInsets.symmetric(
                                 horizontal: 3.33333333.w,
                               ),
@@ -146,7 +145,9 @@ class DwaweenScreen extends StatelessWidget {
                                 ),
                               ),
                             )
-                          : Expanded(
+                          : Container(
+                              height: 67.h,
+                              color: Colors.transparent,
                               child: ListView.builder(
                                 padding: EdgeInsets.zero,
                                 physics: BouncingScrollPhysics(),
@@ -155,11 +156,9 @@ class DwaweenScreen extends StatelessWidget {
                                 itemBuilder: (BuildContext context, index) {
                                   return InkWell(
                                     child: Padding(
-                                      padding: EdgeInsets.all(4.0),
+                                      padding: EdgeInsets.all(6.0),
                                       child: Container(
-                                        margin: EdgeInsets.symmetric(
-                                          horizontal: 2.5.w,
-                                        ),
+                                        padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
@@ -174,7 +173,7 @@ class DwaweenScreen extends StatelessWidget {
                                               width: 8.33333333.w,
                                             ),
                                             SizedBox(
-                                              width: .10.w,
+                                              width: 1.w,
                                             ),
                                             Column(
                                               mainAxisAlignment:
@@ -183,17 +182,24 @@ class DwaweenScreen extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                Text(
-                                                  provider
-                                                          .dewanBody
-                                                          ?.dawawen[index]
-                                                          .name ??
-                                                      '',
-                                                  style: TextStyle(
-                                                    color: Constants.primary,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 5.w,
-                                                    fontFamily: 'Cairo',
+                                                Container(
+                                                  width: 82.w,
+                                                  child: Text(
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    softWrap: true,
+                                                    provider
+                                                            .dewanBody
+                                                            ?.dawawen[index]
+                                                            .name ??
+                                                        '',
+                                                    style: TextStyle(
+                                                      color: Constants.primary,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 4.7.w,
+                                                      fontFamily: 'Cairo',
+                                                    ),
                                                   ),
                                                 ),
                                                 Text(

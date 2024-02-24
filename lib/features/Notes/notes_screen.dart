@@ -9,6 +9,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../KasydaDetails/kasyda_details.dart';
+
 class NotesScreen extends StatefulWidget {
   const NotesScreen({super.key});
 
@@ -192,67 +194,117 @@ class _NotesScreenState extends State<NotesScreen> {
                                         itemCount:
                                             provider.notesListData.length,
                                         physics: NeverScrollableScrollPhysics(),
-                                        itemBuilder: (context, i) => Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              flex: 2,
-                                              child: SvgPicture.asset(
-                                                Assets.iconsIcAddComment,
-                                                width: 35,
-                                                height: 0.35.h,
+                                        itemBuilder: (context, i) =>
+                                            GestureDetector(
+                                          onTap: () {
+                                            if (provider
+                                                .notesListData.isNotEmpty) {
+                                              provider
+                                                  .setKasydaDetailsBody(
+                                                provider.notesListData[i]
+                                                    .kasydaBody,
+                                                context.locale.languageCode,
+                                              )
+                                                  .whenComplete(() {
+                                                provider.splitKasyda();
+                                              }).whenComplete(
+                                                () => Navigator.of(context)
+                                                    .pushReplacement(
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        KasydaDetails(),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                flex: 2,
+                                                child: SvgPicture.asset(
+                                                  Assets.iconsIcAddComment,
+                                                  width: 35,
+                                                  height: 35,
+                                                ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              flex: 6,
-                                              child: GestureDetector(
+                                              Expanded(
+                                                flex: 6,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      provider.notesListData[i]
+                                                          .title,
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 4.w,
+                                                        fontFamily: 'Cairo',
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      provider.notesListData[i]
+                                                          .content,
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 3.w,
+                                                        fontFamily: 'Cairo',
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                    // Text(
+                                                    //   provider.notesListData[i]
+                                                    //           .kasydaBody.name ??
+                                                    //       '',
+                                                    //   style: TextStyle(
+                                                    //     color: Colors.grey,
+                                                    //     fontSize: 2.w,
+                                                    //     fontFamily: 'Cairo',
+                                                    //     fontWeight:
+                                                    //         FontWeight.bold,
+                                                    //   ),
+                                                    // ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 2,
                                                 child: Center(
-                                                  child: Text(
-                                                    provider.notesListData[i]
-                                                        .content,
-                                                    style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 4.w,
-                                                      fontFamily: 'Cairo',
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      provider
+                                                          .deleteNotesDataFromDataBase(
+                                                        id: provider
+                                                            .notesListData[i]
+                                                            .title,
+                                                      )
+                                                          .whenComplete(
+                                                        () {
+                                                          Utils()
+                                                              .displayToastMessage(
+                                                            'notes_deleted_successfully'
+                                                                .tr(),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.delete,
+                                                      color: Colors.red,
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              flex: 2,
-                                              child: Center(
-                                                child: IconButton(
-                                                  onPressed: () {
-                                                    provider
-                                                        .deleteNotesDataFromDataBase(
-                                                      id: provider
-                                                          .notesListData[i]
-                                                          .title,
-                                                    )
-                                                        .whenComplete(
-                                                      () {
-                                                        Utils()
-                                                            .displayToastMessage(
-                                                          'notes_deleted_successfully'
-                                                              .tr(),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                  icon: Icon(
-                                                    Icons.delete,
-                                                    color: Colors.red,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                         separatorBuilder:
                                             (BuildContext context, int index) =>

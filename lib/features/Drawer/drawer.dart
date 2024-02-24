@@ -1,10 +1,8 @@
 import 'package:dwaweenx/core/constants.dart';
 import 'package:dwaweenx/features/ContactUs/contact_us.dart';
-import 'package:dwaweenx/features/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -16,7 +14,6 @@ import '../Notes/notes_screen.dart';
 class DrawerFb1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Drawer(
       shadowColor: Constants.primary2,
       elevation: 20,
@@ -141,63 +138,63 @@ class DrawerFb1 extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 2.h),
-                Consumer<BaseProvider>(
-                  builder: (BuildContext context, value, Widget? child) =>
-                      InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      value.changeLang(context: context);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset(
-                              Assets.iconsLang,
-                              width: 30,
-                              height: 30,
-                              fit: BoxFit.fill,
-                            ),
-                            SizedBox(
-                              width: .10.w,
-                            ),
-                            Text(
-                              'Language'.tr(),
-                              style: TextStyle(
-                                color: Constants.primary2,
-                                fontFamily: 'Cairo',
-                                fontSize: 16.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              context.locale.languageCode == 'ar'
-                                  ? 'English'
-                                  : 'عربي',
-                              style: TextStyle(
-                                color: Constants.primary2,
-                                fontFamily: 'Cairo',
-                                fontSize: 16.sp,
-                              ),
-                            ),
-                            SizedBox(
-                              width: .10.w,
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: Constants.primary2,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 2.h),
+                // Consumer<BaseProvider>(
+                //   builder: (BuildContext context, value, Widget? child) =>
+                //       InkWell(
+                //     onTap: () {
+                //       Navigator.of(context).pop();
+                //       value.changeLang(context: context);
+                //     },
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         Row(
+                //           children: [
+                //             Image.asset(
+                //               Assets.iconsLang,
+                //               width: 30,
+                //               height: 30,
+                //               fit: BoxFit.fill,
+                //             ),
+                //             SizedBox(
+                //               width: .10.w,
+                //             ),
+                //             Text(
+                //               'Language'.tr(),
+                //               style: TextStyle(
+                //                 color: Constants.primary2,
+                //                 fontFamily: 'Cairo',
+                //                 fontSize: 16.sp,
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //         Row(
+                //           children: [
+                //             Text(
+                //               context.locale.languageCode == 'ar'
+                //                   ? 'English'
+                //                   : 'عربي',
+                //               style: TextStyle(
+                //                 color: Constants.primary2,
+                //                 fontFamily: 'Cairo',
+                //                 fontSize: 16.sp,
+                //               ),
+                //             ),
+                //             SizedBox(
+                //               width: .10.w,
+                //             ),
+                //             Icon(
+                //               Icons.arrow_forward_ios,
+                //               color: Constants.primary2,
+                //             ),
+                //           ],
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(height: 2.h),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pop();

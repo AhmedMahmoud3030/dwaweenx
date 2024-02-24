@@ -18,7 +18,6 @@ class KasaedByCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) => Scaffold(
         body: Container(
@@ -56,6 +55,7 @@ class KasaedByCategoryScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Column(
+                              mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -113,7 +113,7 @@ class KasaedByCategoryScreen extends StatelessWidget {
                           onFieldSubmitted: (value) {},
                         ),
                         SizedBox(
-                          height: 0.1.h,
+                          height: 1.h,
                         ),
                         provider.groupedBy[provider.groupByPurposeIndex].kenshat
                                 .isEmpty
@@ -144,139 +144,145 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            : ListView.builder(
-                          padding: EdgeInsets.zero,
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width: 100.w,
-                                    margin: EdgeInsets.symmetric(
-                                      horizontal: 3.33333333.w,
-                                    ),
-                                    child: InkWell(
-                                      child: Padding(
-                                        padding: EdgeInsets.all(4.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            color: Colors.white,
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  SvgPicture.asset(
-                                                    Assets.iconsIcKsaed,
-                                                    height: 25,
-                                                    width: 25,
-                                                  ),
-                                                  Text(
-                                                    provider
-                                                        .groupedBy[provider
-                                                            .groupByPurposeIndex]
-                                                        .kenshat[index]
-                                                        .name,
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.teal,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 0.1.h,
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  horizontal: 16,
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                            : Container(
+                                height: 73.h,
+                                child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      width: 100.w,
+                                      margin: EdgeInsets.symmetric(
+                                        horizontal: 3.33333333.w,
+                                      ),
+                                      child: InkWell(
+                                        child: Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              color: Colors.white,
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Row(
                                                   children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        provider
-                                                            .groupedBy[provider
-                                                                .groupByPurposeIndex]
-                                                            .kenshat[index]
-                                                            .kaseydaT
-                                                            .split('.')
-                                                            .first,
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          color: Colors.black45,
-                                                        ),
-                                                      ),
+                                                    SvgPicture.asset(
+                                                      Assets.iconsIcKsaed,
+                                                      height: 25,
+                                                      width: 25,
                                                     ),
-                                                    SizedBox(
-                                                      width: 12,
-                                                    ),
-                                                    Expanded(
-                                                      child: Text(
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        provider
-                                                            .groupedBy[provider
-                                                                .groupByPurposeIndex]
-                                                            .kenshat[index]
-                                                            .kaseydaT
-                                                            .split('.')[1],
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          color: Colors.black45,
-                                                        ),
+                                                    Text(
+                                                      provider
+                                                          .groupedBy[provider
+                                                              .groupByPurposeIndex]
+                                                          .kenshat[index]
+                                                          .name,
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.teal,
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                              ),
-                                            ],
+                                                SizedBox(
+                                                  height: 0.1.h,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 16,
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          provider
+                                                              .groupedBy[provider
+                                                                  .groupByPurposeIndex]
+                                                              .kenshat[index]
+                                                              .kaseydaT
+                                                              .split('.')
+                                                              .first,
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            color:
+                                                                Colors.black45,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 12,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          provider
+                                                              .groupedBy[provider
+                                                                  .groupByPurposeIndex]
+                                                              .kenshat[index]
+                                                              .kaseydaT
+                                                              .split('.')[1],
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            color:
+                                                                Colors.black45,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
+                                        onTap: () {
+                                          provider
+                                              .setKasydaDetailsBody(
+                                                provider
+                                                    .groupedBy[provider
+                                                        .groupByPurposeIndex]
+                                                    .kenshat[index],
+                                                context.locale.languageCode,
+                                              )
+                                              .then(
+                                                (value) =>
+                                                    provider.splitKasyda(),
+                                              );
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  KasydaDetails(),
+                                            ),
+                                          );
+                                        },
                                       ),
-                                      onTap: () {
-                                        provider
-                                            .setKasydaDetailsBody(
-                                              provider
-                                                  .groupedBy[provider
-                                                      .groupByPurposeIndex]
-                                                  .kenshat[index],
-                                              context.locale.languageCode,
-                                            )
-                                            .then(
-                                              (value) => provider.splitKasyda(),
-                                            );
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                KasydaDetails(),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                itemCount: provider
-                                    .groupedBy[provider.groupByPurposeIndex]
-                                    .kenshat
-                                    .length,
+                                    );
+                                  },
+                                  itemCount: provider
+                                      .groupedBy[provider.groupByPurposeIndex]
+                                      .kenshat
+                                      .length,
+                                ),
                               ),
                         SizedBox(
                           height: 0.1.h,

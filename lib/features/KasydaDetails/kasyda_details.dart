@@ -177,7 +177,8 @@ class KasydaDetails extends StatelessWidget {
                                   showDialog(
                                     barrierColor: Colors.transparent,
                                     context: context,
-                                    builder: (context) => VocalistList(provider: provider),
+                                    builder: (context) =>
+                                        VocalistList(provider: provider),
                                   );
                                 },
                                 child: Padding(
@@ -244,7 +245,6 @@ class KasydaDetails extends StatelessWidget {
                               ),
                             ],
                           ),
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -648,217 +648,277 @@ class MenuModel extends StatelessWidget {
                               builder: (BuildContext context) {
                                 return FractionallySizedBox(
                                   widthFactor: .8,
-                                  heightFactor: .4,
-                                  child: Card(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Constants.primary,
-                                            spreadRadius: 5,
-                                            blurRadius: 7,
-                                            offset: Offset(0, 3),
-                                          ),
-                                        ],
-                                        border: Border.fromBorderSide(
-                                          BorderSide(
-                                            width: 5,
-                                            color: Constants.primary,
-                                          ),
+                                  heightFactor: .5,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Constants.primary,
+                                          spreadRadius: 5,
+                                          blurRadius: 7,
+                                          offset: Offset(0, 3),
                                         ),
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(8),
+                                      ],
+                                      border: Border.fromBorderSide(
+                                        BorderSide(
+                                          width: 5,
+                                          color: Constants.primary,
+                                        ),
                                       ),
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Container(
+                                      height: 50.h,
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                            height: 40,
+                                            height: 4.h,
                                             width: double.infinity,
                                             color: Constants.primary,
                                           ),
                                           SizedBox(
-                                            height: 10.h,
+                                            height: 6.h,
                                             width: 100.w,
-                                            child: TextFormField(
-                                              cursorRadius: Radius.circular(10),
-                                              controller:
-                                                  provider.titleNoteController,
-                                              cursorColor: Constants.primary,
-                                              decoration: InputDecoration(
-                                                hintText: 'add_note_title'.tr(),
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                focusColor: Constants.primary,
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      width: 3,
-                                                      color: Colors.white),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      width: 3,
-                                                      color: Colors.white),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                hintStyle: TextStyle(
-                                                  color: Color(0xff8C8C8C),
-                                                  fontFamily: 'Cairo',
-                                                ),
-                                                suffixIcon: Visibility(
-                                                  visible: provider
-                                                          .titleNoteController
-                                                          .text
-                                                          .length >
-                                                      0,
-                                                  child: IconButton(
-                                                    icon: Icon(
-                                                      Icons.clear,
-                                                      color: Constants.primary,
+                                            child: Material(
+                                              child: TextFormField(
+                                                cursorRadius:
+                                                    Radius.circular(10),
+                                                controller: provider
+                                                    .titleNoteController,
+                                                cursorColor: Constants.primary,
+                                                decoration: InputDecoration(
+                                                  hintText:
+                                                      'add_note_title'.tr(),
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  focusColor: Constants.primary,
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 3,
+                                                        color: Colors.white),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 3,
+                                                        color: Colors.white),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  hintStyle: TextStyle(
+                                                    color: Color(0xff8C8C8C),
+                                                    fontFamily: 'Cairo',
+                                                  ),
+                                                  suffixIcon: Visibility(
+                                                    visible: provider
+                                                            .titleNoteController
+                                                            .text
+                                                            .length >
+                                                        0,
+                                                    child: IconButton(
+                                                      icon: Icon(
+                                                        Icons.clear,
+                                                        color:
+                                                            Constants.primary,
+                                                      ),
+                                                      onPressed: () {
+                                                        provider
+                                                            .titleNoteController
+                                                            .clear();
+                                                      },
                                                     ),
-                                                    onPressed: () {
-                                                      provider
-                                                          .titleNoteController
-                                                          .clear();
-                                                    },
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 17.h,
+                                            height: 21.h,
                                             width: 100.w,
-                                            child: TextFormField(
-                                              maxLines: 5,
-                                              cursorRadius: Radius.circular(10),
-                                              controller: provider
-                                                  .contentNoteController,
-                                              cursorColor: Constants.primary,
-                                              decoration: InputDecoration(
-                                                hintText:
-                                                    'add_note_content'.tr(),
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                focusColor: Constants.primary,
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      width: 3,
-                                                      color: Colors.white),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      width: 3,
-                                                      color: Colors.white),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                hintStyle: TextStyle(
-                                                  color: Color(0xff8C8C8C),
-                                                  fontFamily: 'Cairo',
-                                                ),
-                                                suffixIcon: Visibility(
-                                                  visible: provider
-                                                          .contentNoteController
-                                                          .text
-                                                          .length >
-                                                      0,
-                                                  child: IconButton(
-                                                    icon: Icon(
-                                                      Icons.clear,
-                                                      color: Constants.primary,
+                                            child: Material(
+                                              child: TextFormField(
+                                                maxLines: 5,
+                                                cursorRadius:
+                                                    Radius.circular(10),
+                                                controller: provider
+                                                    .contentNoteController,
+                                                cursorColor: Constants.primary,
+                                                decoration: InputDecoration(
+                                                  hintText:
+                                                      'add_note_content'.tr(),
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  focusColor: Constants.primary,
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 3,
+                                                        color: Colors.white),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 3,
+                                                        color: Colors.white),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  hintStyle: TextStyle(
+                                                    color: Color(0xff8C8C8C),
+                                                    fontFamily: 'Cairo',
+                                                  ),
+                                                  suffixIcon: Visibility(
+                                                    visible: provider
+                                                            .contentNoteController
+                                                            .text
+                                                            .length >
+                                                        0,
+                                                    child: IconButton(
+                                                      icon: Icon(
+                                                        Icons.clear,
+                                                        color:
+                                                            Constants.primary,
+                                                      ),
+                                                      onPressed: () {
+                                                        provider
+                                                            .contentNoteController
+                                                            .clear();
+                                                      },
                                                     ),
-                                                    onPressed: () {
-                                                      provider
-                                                          .contentNoteController
-                                                          .clear();
-                                                    },
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           ),
                                           Container(
+                                            height: 9.h,
                                             color: Constants.primary,
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
                                               children: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                    provider
-                                                        .saveNotesDataToDataBase(
-                                                      noteBody: NoteBody(
-                                                          title: provider
+                                                Container(
+                                                  width: 30.w,
+                                                  child: TextButton(
+                                                    onPressed: () {
+                                                      if (provider
+                                                          .titleNoteController
+                                                          .text
+                                                          .isEmpty) {
+                                                        Utils()
+                                                            .displayToastMessage(
+                                                          'add_note_title'.tr(),
+                                                        );
+                                                        return;
+                                                      }
+
+                                                      if (provider
+                                                          .contentNoteController
+                                                          .text
+                                                          .isEmpty) {
+                                                        Utils()
+                                                            .displayToastMessage(
+                                                          'add_note_content'
+                                                              .tr(),
+                                                        );
+                                                        return;
+                                                      }
+
+                                                      if (provider
                                                               .titleNoteController
-                                                              .text,
-                                                          content: provider
+                                                              .text
+                                                              .isNotEmpty &&
+                                                          provider
                                                               .contentNoteController
-                                                              .text),
-                                                    );
-                                                    provider.titleNoteController
-                                                        .clear();
-                                                    provider
-                                                        .contentNoteController
-                                                        .clear();
-                                                  },
-                                                  child: Text(
-                                                    'add_note'.tr(),
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16.sp,
-                                                      fontFamily: 'Cairo',
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                              .text
+                                                              .isNotEmpty) {
+                                                        Navigator.of(context)
+                                                            .pop();
+
+                                                        provider
+                                                            .saveNotesDataToDataBase(
+                                                          noteBody: NoteBody(
+                                                              title: provider
+                                                                  .titleNoteController
+                                                                  .text,
+                                                              content: provider
+                                                                  .contentNoteController
+                                                                  .text,
+                                                              kasydaBody:
+                                                                  Provider.of<
+                                                                      BaseProvider>(
+                                                                context,
+                                                                listen: false,
+                                                              ).KasydaDetailsBody!),
+                                                        );
+                                                        provider
+                                                            .titleNoteController
+                                                            .clear();
+                                                        provider
+                                                            .contentNoteController
+                                                            .clear();
+                                                      }
+                                                    },
+                                                    child: Text(
+                                                      'add_note'.tr(),
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 16.sp,
+                                                        fontFamily: 'Cairo',
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  style: ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(
-                                                      Constants.primary,
+                                                    style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                        Constants.primary,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                                TextButton(
-                                                  onPressed: () {
-                                                    provider.titleNoteController
-                                                        .clear();
-                                                    provider
-                                                        .contentNoteController
-                                                        .clear();
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Text(
-                                                    'cancel'.tr(),
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16.sp,
-                                                      fontFamily: 'Cairo',
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                Container(
+                                                  width: 30.w,
+                                                  child: TextButton(
+                                                    onPressed: () {
+                                                      provider
+                                                          .titleNoteController
+                                                          .clear();
+                                                      provider
+                                                          .contentNoteController
+                                                          .clear();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: Text(
+                                                      'cancel'.tr(),
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 16.sp,
+                                                        fontFamily: 'Cairo',
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  style: ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(
-                                                      Constants.primary,
+                                                    style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                        Constants.primary,
+                                                      ),
                                                     ),
                                                   ),
                                                 )
@@ -1209,7 +1269,7 @@ class MenuModel extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 3.5.h,
-                          width: 70.w,
+                          width: 65.w,
                           child: Consumer<BaseProvider>(
                             builder: (
                               BuildContext context,
@@ -1391,8 +1451,7 @@ class ShareDialog extends StatelessWidget {
                                 builder: (context) => FractionallySizedBox(
                                   widthFactor: .9,
                                   heightFactor: .8,
-                                  child: ShareDialog2(
-                                  ),
+                                  child: ShareDialog2(),
                                 ),
                               );
                             },
