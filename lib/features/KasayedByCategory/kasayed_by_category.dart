@@ -99,14 +99,14 @@ class KasaedByCategoryScreen extends StatelessWidget {
                           textEditingController:
                               provider.kasayedByGategoryController,
                           onChanged: (value) {
-                            provider.searchKasayedByGategoryMethod(
+                            provider.searchKasayedByCategoryMethod(
                               searchValue: value,
                             );
                           },
                           searchText: 'search_in_poems',
                           onPressed: () {
                             provider.kasayedByGategoryController.clear();
-                            provider.searchKasayedByGategoryMethod(
+                            provider.searchKasayedByCategoryMethod(
                               searchValue: '',
                             );
                           },

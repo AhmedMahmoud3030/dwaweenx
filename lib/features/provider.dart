@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'dart:io';
 
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:dwaweenx/Data/Models/card_data_model.dart';
 import 'package:dwaweenx/Data/Models/dewan_body_model.dart';
 import 'package:dwaweenx/Domain/Entities/audio.dart';
@@ -1157,23 +1158,32 @@ class BaseProvider extends ChangeNotifier {
 
   TextEditingController kasayedByGategoryController = TextEditingController();
 
-  searchKasayedByGategoryMethod({
-    required String? searchValue,
+  List<groupByPurpose> KasayedByCategoryScreenData = [];
+
+  searchKasayedByCategoryMethod({
+    required String searchValue,
   }) {
-    // restJson();
-    String lowerCaseSearchValue = (searchValue ?? '').toLowerCase();
-    if (lowerCaseSearchValue.isNotEmpty) {
-      groupedBy[groupByPurposeIndex]
-          .kenshat
-          .where(
-            (element) =>
-                element.purpose.toLowerCase().contains(lowerCaseSearchValue),
-          )
-          .toList();
+    if (searchValue.isNotEmpty) {
+      String lowerCaseSearchValue = (searchValue).toLowerCase();
+      KasayedByCategoryScreenData =
+          searchKasayedByName(lowerCaseSearchValue, groupedBy);
+      print("KasayedByCategoryScreenData");
+      print(KasayedByCategoryScreenData.length);
     } else {
-      groupedBy[groupByPurposeIndex].kenshat;
+      KasayedByCategoryScreenData = groupedBy;
+      print("KasayedByCategoryScreenData");
+      print(KasayedByCategoryScreenData.length);
     }
     notifyListeners();
+  }
+
+  List<groupByPurpose> searchKasayedByName(
+      String query, List<groupByPurpose> groupedBy) {
+    return groupedBy
+        .whereIndexed((index, element) =>
+            index == groupByPurposeIndex &&
+            element.kenshat.any((element) => element.name.contains(query)))
+        .toList();
   }
 
 //!----------------------------------------------------------------------------
