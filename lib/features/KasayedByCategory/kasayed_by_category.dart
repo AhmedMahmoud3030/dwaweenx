@@ -1,4 +1,3 @@
-import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/features/KasydaDetails/kasyda_details.dart';
 import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -68,7 +67,7 @@ class KasaedByCategoryScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber(provider.groupedBy[provider.groupByPurposeIndex].kenshat.length.toString()) : provider.groupedBy[provider.groupByPurposeIndex].kenshat.length} ${'poem'.tr()}",
+                                  "${provider.groupedBy[provider.groupByPurposeIndex].kenshat.length} ${'poem'.tr()}",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 4.w,

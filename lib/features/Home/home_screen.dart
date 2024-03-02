@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -33,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                   scale: 5.0,
                   image: AssetImage(Assets.logo_home),
                 ),
-                borderRadius: BorderRadius.vertical(
+                borderRadius: const BorderRadius.vertical(
                   bottom: Radius.circular(70),
                 ),
                 color: Constants.primary),
@@ -60,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     child: provider.dewanBodyLoading
                         ? Center(
                             child: Container(
@@ -98,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                                     builder: (context, snapshot) {
                                       return Container(
                                         decoration: BoxDecoration(
-                                          color: Color(0xff51DECF),
+                                          color: const Color(0xff51DECF),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
@@ -113,7 +112,8 @@ class HomeScreen extends StatelessWidget {
                                               fit: BoxFit.fill,
                                             ),
                                             Container(
-                                              padding: EdgeInsets.symmetric(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
                                                 horizontal: 20,
                                                 vertical: 10,
                                               ),
@@ -129,7 +129,8 @@ class HomeScreen extends StatelessWidget {
                                                           Text(
                                                             'Audible_poems'
                                                                 .tr(),
-                                                            style: TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               color:
                                                                   Colors.white,
                                                               fontWeight:
@@ -151,7 +152,8 @@ class HomeScreen extends StatelessWidget {
                                                                         .cardData
                                                                         ?.titleEn ??
                                                                     '',
-                                                            style: TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               color:
                                                                   Colors.white,
                                                               fontWeight:
@@ -165,7 +167,7 @@ class HomeScreen extends StatelessWidget {
                                                       ),
                                                     ],
                                                   ),
-                                                  Spacer(),
+                                                  const Spacer(),
                                                   Row(
                                                     children: [
                                                       Expanded(
@@ -184,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                                                               Colors.teal[600],
                                                           thumbRadius: 5,
                                                           timeLabelTextStyle:
-                                                          TextStyle(
+                                                              const TextStyle(
                                                             color: Colors.white,
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -224,12 +226,13 @@ class HomeScreen extends StatelessWidget {
                                                                       .cardData
                                                                       ?.sheikhEn ??
                                                                   '',
-                                                          style: TextStyle(
+                                                          style:
+                                                              const TextStyle(
                                                             color: Colors.white,
                                                           ),
                                                         ),
                                                       ),
-                                                      Spacer(),
+                                                      const Spacer(),
                                                       IconButton(
                                                         padding:
                                                             EdgeInsets.zero,
@@ -288,21 +291,21 @@ class HomeScreen extends StatelessWidget {
                                     Text(
                                       'dwaween'.tr(),
                                       style: TextStyle(
-                                        color: Color(0xff1C7F88),
+                                        color: const Color(0xff1C7F88),
                                         fontSize: 4.w,
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       width: 47.6190476.w,
-                                      child: Divider(
+                                      child: const Divider(
                                         color: Colors.teal,
                                         thickness: 1.5,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     InkWell(
                                       onTap: () {
                                         FocusManager.instance.primaryFocus
@@ -317,7 +320,7 @@ class HomeScreen extends StatelessWidget {
                                       child: Text(
                                         'view_all'.tr(),
                                         style: TextStyle(
-                                          color: Color(0xff1C7F88),
+                                          color: const Color(0xff1C7F88),
                                           fontSize: 4.w,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.bold,
@@ -343,9 +346,9 @@ class HomeScreen extends StatelessWidget {
                                     horizontal: 3.33333333.w,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Container(
-                                      padding: EdgeInsets.all(8),
+                                      padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
@@ -372,7 +375,7 @@ class HomeScreen extends StatelessWidget {
                                     : false,
                                 child: ListView.builder(
                                   padding: EdgeInsets.zero,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return Container(
@@ -403,7 +406,7 @@ class HomeScreen extends StatelessWidget {
                                                 );
                                               },
                                         child: Padding(
-                                          padding: EdgeInsets.all(4.0),
+                                          padding: const EdgeInsets.all(4.0),
                                           child: Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
@@ -422,7 +425,7 @@ class HomeScreen extends StatelessWidget {
                                                 child: Text(
                                                   provider.HomeScreenData[index]
                                                       .name,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.teal,
                                                     fontFamily: 'Cairo',
                                                   ),
@@ -432,45 +435,33 @@ class HomeScreen extends StatelessWidget {
                                                 children: [
                                                   Text(
                                                     'number_of_poems'.tr(),
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.grey,
                                                       fontFamily: 'Cairo',
                                                     ),
                                                   ),
-                                                  Text('  '),
+                                                  const Text('  '),
                                                   Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding:
+                                                        const EdgeInsets.only(
                                                       bottom: 4.0,
                                                     ),
                                                     child: Text(
-                                                      context.locale
-                                                                  .languageCode ==
-                                                              'ar'
-                                                          ? Utils()
-                                                              .convertToArabicNumber(
-                                                              provider
-                                                                  .HomeScreenData[
-                                                                      index]
-                                                                  .kasaed
-                                                                  .length
-                                                                  .toString(),
-                                                            )
-                                                          : provider
-                                                              .HomeScreenData[
-                                                                  index]
-                                                              .kasaed
-                                                              .length
-                                                              .toString(),
-                                                      style: TextStyle(
+                                                      provider
+                                                          .HomeScreenData[index]
+                                                          .kasaed
+                                                          .length
+                                                          .toString(),
+                                                      style: const TextStyle(
                                                         color: Colors.grey,
                                                         fontFamily: 'Cairo',
                                                       ),
                                                     ),
                                                   ),
-                                                  Text('  '),
+                                                  const Text('  '),
                                                   Text(
                                                     'poem'.tr(),
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.grey,
                                                       fontFamily: 'Cairo',
                                                     ),
@@ -506,21 +497,21 @@ class HomeScreen extends StatelessWidget {
                                     Text(
                                       'poems'.tr(),
                                       style: TextStyle(
-                                        color: Color(0xff1C7F88),
+                                        color: const Color(0xff1C7F88),
                                         fontSize: 4.w,
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       width: 47.6190476.w,
-                                      child: Divider(
+                                      child: const Divider(
                                         color: Colors.teal,
                                         thickness: 1.5,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     InkWell(
                                       onTap: () {
                                         FocusManager.instance.primaryFocus
@@ -535,7 +526,7 @@ class HomeScreen extends StatelessWidget {
                                       child: Text(
                                         'view_all'.tr(),
                                         style: TextStyle(
-                                          color: Color(0xff1C7F88),
+                                          color: const Color(0xff1C7F88),
                                           fontSize: 4.w,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.bold,
@@ -558,9 +549,9 @@ class HomeScreen extends StatelessWidget {
                                     horizontal: 3.33333333.w,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Container(
-                                      padding: EdgeInsets.all(8),
+                                      padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
@@ -589,10 +580,10 @@ class HomeScreen extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 3.33333333.w,
                                   ),
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     childAspectRatio: 2,
                                   ),
@@ -601,7 +592,7 @@ class HomeScreen extends StatelessWidget {
                                       : provider.groupedBy.length,
                                   itemBuilder: (context, index) {
                                     return Card(
-                                      margin: EdgeInsets.all(6),
+                                      margin: const EdgeInsets.all(6),
                                       child: InkWell(
                                         onTap: provider.groupedBy[index].kenshat
                                                 .isNotEmpty
@@ -631,7 +622,7 @@ class HomeScreen extends StatelessWidget {
                                               ),
                                               Row(
                                                 children: [
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 6,
                                                   ),
                                                   SvgPicture.asset(
@@ -647,7 +638,7 @@ class HomeScreen extends StatelessWidget {
                                                     overflow: TextOverflow.fade,
                                                     provider.groupedBy[index]
                                                         .purpose,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.teal,
                                                       fontFamily: 'Cairo',
                                                     ),
@@ -658,15 +649,15 @@ class HomeScreen extends StatelessWidget {
                                                 height: .5.h,
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(
+                                                padding: const EdgeInsets.only(
                                                   right: 22,
                                                 ),
                                                 child: Align(
                                                   alignment:
                                                       Alignment.centerRight,
                                                   child: Text(
-                                                    "${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber(provider.groupedBy[index].kenshat.length.toString()) : provider.groupedBy[index].kenshat.length}  ${'poem'.tr()}",
-                                                    style: TextStyle(
+                                                    "${provider.groupedBy[index].kenshat.length}  ${'poem'.tr()}",
+                                                    style: const TextStyle(
                                                       color: Colors.grey,
                                                       fontFamily: 'Cairo',
                                                     ),

@@ -1,5 +1,4 @@
 import 'package:dwaweenx/core/constants.dart';
-import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/core/widgets/customTextFormField.dart';
 import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -15,7 +14,6 @@ import '../provider.dart';
 class KasaedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Consumer<BaseProvider>(
       builder: (BuildContext context, provider, Widget? child) =>
           GestureDetector(
@@ -120,7 +118,7 @@ class KasaedScreen extends StatelessWidget {
                             )
                           : provider.KasayedScreenData.isEmpty
                               ? Container(
-                        width: 100.w,
+                                  width: 100.w,
                                   margin: EdgeInsets.symmetric(
                                     horizontal: 3.33333333.w,
                                   ),
@@ -147,7 +145,7 @@ class KasaedScreen extends StatelessWidget {
                                   ),
                                 )
                               : GridView.builder(
-                        padding: EdgeInsets.symmetric(
+                                  padding: EdgeInsets.symmetric(
                                     horizontal: 3.33333333.w,
                                   ),
                                   physics: NeverScrollableScrollPhysics(),
@@ -218,7 +216,7 @@ class KasaedScreen extends StatelessWidget {
                                                     alignment:
                                                         Alignment.centerRight,
                                                     child: Text(
-                                                      "${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber(provider.groupedBy[index].kenshat.length.toString()) : provider.groupedBy[index].kenshat.length}  ${'poem'.tr()}",
+                                                      "${provider.groupedBy[index].kenshat.length}  ${'poem'.tr()}",
                                                       style: TextStyle(
                                                         color: Colors.grey,
                                                         fontFamily: 'Cairo',

@@ -1,15 +1,14 @@
 import 'package:dwaweenx/core/constants.dart';
+import 'package:dwaweenx/features/AboutUs/about_us.dart';
 import 'package:dwaweenx/features/ContactUs/contact_us.dart';
+import 'package:dwaweenx/features/Favorite/favorite_screen.dart';
+import 'package:dwaweenx/features/Notes/notes_screen.dart';
+import 'package:dwaweenx/generated/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:share_plus/share_plus.dart';
-
-import '../../generated/assets.dart';
-import '../AboutUs/about_us.dart';
-import '../Favorite/favorite_screen.dart';
-import '../Notes/notes_screen.dart';
 
 class DrawerFb1 extends StatelessWidget {
   @override

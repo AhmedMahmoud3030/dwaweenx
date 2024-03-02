@@ -1,5 +1,4 @@
 import 'package:dwaweenx/core/constants.dart';
-import 'package:dwaweenx/core/utils.dart';
 import 'package:dwaweenx/core/widgets/customTextFormField.dart';
 import 'package:dwaweenx/features/DewanDetails/dewan_details.dart';
 import 'package:dwaweenx/generated/assets.dart';
@@ -203,7 +202,7 @@ class DwaweenScreen extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${'number_of_poems'.tr()} ${context.locale.languageCode == 'ar' ? Utils().convertToArabicNumber((provider.dewanBody!.dawawen[index].kasaed.length).toString()) : provider.dewanBody?.dawawen[index].kasaed.length} ${'poem'.tr()}',
+                                                  '${'number_of_poems'.tr()} ${provider.dewanBody?.dawawen[index].kasaed.length} ${'poem'.tr()}',
                                                   style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.normal,

@@ -56,7 +56,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                             image: AssetImage(Assets.orn_header_home),
                             fit: BoxFit.cover,
                           ),
-                          borderRadius: BorderRadius.vertical(
+                          borderRadius: const BorderRadius.vertical(
                             bottom: Radius.circular(70),
                           ),
                           color: Constants.primary),
@@ -102,13 +102,13 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
                             InkWell(
                               onTap: () {
                                 Navigator.pop(context);
                                 provider.setKafyaIndex(null);
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.arrow_forward_ios,
                                 color: Colors.white,
                                 size: 20,
@@ -143,7 +143,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                           height: 25.h,
                         ),
                         Container(
-                          padding: EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(15),
                           width: 90.w,
                           height: 17.h,
                           decoration: BoxDecoration(
@@ -152,7 +152,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                 color: Colors.grey.withOpacity(0.3),
                                 spreadRadius: 5,
                                 blurRadius: 7,
-                                offset: Offset(
+                                offset: const Offset(
                                   0,
                                   3,
                                 ), // changes position of shadow
@@ -181,7 +181,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                     ),
                                     Expanded(
                                       child: Container(
-                                        margin: EdgeInsets.only(top: 10),
+                                        margin: const EdgeInsets.only(top: 10),
                                         height: .5,
                                         width: double.infinity,
                                         color: Colors.grey,
@@ -223,8 +223,9 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                         Colors.white,
                                                     children: [
                                                       Padding(
-                                                        padding: EdgeInsets.all(
-                                                            16.0),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(16.0),
                                                         child: Text(
                                                           overflow:
                                                               TextOverflow.fade,
@@ -270,7 +271,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                           height: 1.h,
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
                           height: 4.h,
                           child: Row(
                             children: [
@@ -296,7 +297,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                               ),
                               Expanded(
                                 child: Container(
-                                  margin: EdgeInsets.only(top: 10),
+                                  margin: const EdgeInsets.only(top: 10),
                                   height: .6,
                                   width: double.infinity,
                                   color: Constants.primary2,
@@ -305,21 +306,21 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                             ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: 20.h,
                           width: 90.w,
                           child: GridView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.zero,
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 6,
                               childAspectRatio: 1.8,
                             ),
                             itemCount: provider.kafya.length,
                             itemBuilder: (context, indexGrid) {
                               return Padding(
-                                padding: EdgeInsets.all(3.0),
+                                padding: const EdgeInsets.all(3.0),
                                 child: GestureDetector(
                                   onTap: () {
                                     provider.setKafyaIndex(
@@ -333,7 +334,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                     decoration: BoxDecoration(
                                       color: indexGrid == provider.kafyaIndex
                                           ? Constants.primary
-                                          : Color(0xffE9E9E9),
+                                          : const Color(0xffE9E9E9),
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     height: 0.1.h,
@@ -363,7 +364,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                           height: .5.h,
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
                           height: 4.h,
                           child: Row(
                             children: [
@@ -389,7 +390,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                               ),
                               Expanded(
                                 child: Container(
-                                  margin: EdgeInsets.only(top: 10),
+                                  margin: const EdgeInsets.only(top: 10),
                                   height: .6,
                                   width: double.infinity,
                                   color: Constants.primary2,
@@ -418,9 +419,9 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                         horizontal: 3.33.w,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(4.0),
                                         child: Container(
-                                          padding: EdgeInsets.all(8),
+                                          padding: const EdgeInsets.all(8),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
@@ -445,7 +446,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                     )
                                   : ListView.builder(
                                       padding: EdgeInsets.zero,
-                                      physics: BouncingScrollPhysics(),
+                                      physics: const BouncingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: provider
                                           .KasaedDetailsScreenData.length,
@@ -453,9 +454,9 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                           (BuildContext context, index) {
                                         return InkWell(
                                           child: Padding(
-                                            padding: EdgeInsets.all(4.0),
+                                            padding: const EdgeInsets.all(4.0),
                                             child: Container(
-                                              padding: EdgeInsets.all(8),
+                                              padding: const EdgeInsets.all(8),
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
@@ -465,7 +466,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.center,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: 7.w,
                                                     child: Center(
                                                       child: SvgPicture.asset(
@@ -478,7 +479,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                   SizedBox(
                                                     width: 1.w,
                                                   ),
-                                                  Container(
+                                                  SizedBox(
                                                     width: 85.w,
                                                     height: 7.h,
                                                     child: Column(
@@ -512,7 +513,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: [
-                                                            Container(
+                                                            SizedBox(
                                                               width: 40.w,
                                                               child: Text(
                                                                 overflow:
@@ -547,7 +548,7 @@ class _DewanDetailsPageState extends State<DewanDetailsPage> {
                                                             // SizedBox(
                                                             //   width: 6.w,
                                                             // ),
-                                                            Container(
+                                                            SizedBox(
                                                               width: 40.w,
                                                               child: Text(
                                                                 overflow:
